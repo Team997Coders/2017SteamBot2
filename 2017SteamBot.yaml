@@ -1,0 +1,470 @@
+Version 2.0
+
+---
+Children:
+- Children:
+  - Children:
+    - Children: []
+      Properties:
+        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+            '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          default: '0'
+          name: CAN ID
+          validators: null
+          value: '0'
+      Base: PowerDistributionPanel
+      Name: PowerDistributionPanel
+    Properties:
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: &id012 []
+    Base: Subsystem
+    Name: Power
+  - Children:
+    - Children:
+      - Children: []
+        Properties:
+          Type: !!robotbuilder.data.properties.ChoicesProperty
+            choices: &id001 [Victor, Jaguar, Talon, VictorSP, TalonSRX, Spark, SD540]
+            default: Talon
+            name: Type
+            validators: null
+            value: VictorSP
+          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+            choices: &id002 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+              '11', '12', '13', '14', '15', '16', '17', '18', '19']
+            default: '0'
+            name: Output Channel (PWM)
+            validators: &id003 [PWMOutput]
+            value: '0'
+        Base: Speed Controller
+        Name: RightDriveMotor
+      - Children: []
+        Properties:
+          Type: !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id001
+            default: Talon
+            name: Type
+            validators: null
+            value: VictorSP
+          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id002
+            default: '0'
+            name: Output Channel (PWM)
+            validators: *id003
+            value: '1'
+        Base: Speed Controller
+        Name: LeftDriveMotor
+      Properties:
+        Left Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Left Motor Inverted, validators: null, value: false}
+        Right Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Right Motor Inverted, validators: null, value: false}
+        Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.5,
+          name: Sensitivity, validators: null, value: 0.5}
+        Right Motor: !!robotbuilder.data.properties.ChildSelectionProperty
+          default: 1
+          name: Right Motor
+          type: PIDOutput
+          validators: [RobotDrive2, ChildDropdownSelected]
+          value: Drivetrain RightDriveMotor
+        Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
+          name: Maximum Output, validators: null, value: 1.0}
+        Left Motor: !!robotbuilder.data.properties.ChildSelectionProperty
+          default: 0
+          name: Left Motor
+          type: PIDOutput
+          validators: [RobotDrive2, ChildDropdownSelected]
+          value: Drivetrain LeftDriveMotor
+        Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
+          name: Safety Expiration Time, validators: null, value: 0.1}
+        Safety Enabled: !!robotbuilder.data.properties.BooleanProperty {default: true,
+          name: Safety Enabled, validators: null, value: false}
+      Base: Robot Drive 2
+      Name: Robot Drive 2 1
+    - Children: []
+      Properties:
+        Channel A Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id004 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22',
+            '23', '24', '25']
+          default: '0'
+          name: Channel A Channel (Digital)
+          validators: &id005 [DigitalChannel]
+          value: '0'
+        Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
+          name: Distance Per Pulse, validators: null, value: 1.0}
+        PID Source: !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id006 [kDisplacement, kRate]
+          default: kRate
+          name: PID Source
+          validators: null
+          value: kRate
+        Encoding Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id007 [k4X, k2X, k1X]
+          default: k4X
+          name: Encoding Type
+          validators: null
+          value: k4X
+        Reverse Direction: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Reverse Direction, validators: null, value: false}
+        Channel B Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id008 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22',
+            '23', '24', '25']
+          default: '0'
+          name: Channel B Channel (Digital)
+          validators: &id009 [DigitalChannel]
+          value: '1'
+      Base: Quadrature Encoder
+      Name: LeftDriveEncoder
+    - Children: []
+      Properties:
+        Channel A Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id004
+          default: '0'
+          name: Channel A Channel (Digital)
+          validators: *id005
+          value: '2'
+        Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
+          name: Distance Per Pulse, validators: null, value: 1.0}
+        PID Source: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: kRate
+          name: PID Source
+          validators: null
+          value: kRate
+        Encoding Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: k4X
+          name: Encoding Type
+          validators: null
+          value: k4X
+        Reverse Direction: !!robotbuilder.data.properties.BooleanProperty {default: false,
+          name: Reverse Direction, validators: null, value: false}
+        Channel B Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: '0'
+          name: Channel B Channel (Digital)
+          validators: *id009
+          value: '3'
+      Base: Quadrature Encoder
+      Name: RightDriveEncoder
+    - Children: []
+      Properties:
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Input Channel (Analog)
+          validators: [AnalogInput]
+          value: '0'
+      Base: Analog Input
+      Name: AnalogUltrasonic
+    Properties:
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: []
+    Base: Subsystem
+    Name: Drivetrain
+  - Children:
+    - Children: []
+      Properties:
+        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id010 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          default: '2'
+          name: CAN ID
+          validators: &id011 [CANID]
+          value: '1'
+      Base: CAN Talon
+      Name: ShooterMotor1
+    - Children: []
+      Properties:
+        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '2'
+          name: CAN ID
+          validators: *id011
+          value: '2'
+      Base: CAN Talon
+      Name: ShooterMotor2
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: VictorSP
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '3'
+      Base: Speed Controller
+      Name: ShooterLoaderMotor
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id013 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22',
+            '23', '24', '25']
+          default: '0'
+          name: Input Channel (Digital)
+          validators: &id014 [DigitalChannel]
+          value: '5'
+      Base: Digital Input
+      Name: ShooterBallSensor
+    Properties:
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: *id012
+    Base: Subsystem
+    Name: Shooter
+  - Children:
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: VictorSP
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '2'
+      Base: Speed Controller
+      Name: FloorLoaderMotor
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id013
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id014
+          value: '4'
+      Base: Digital Input
+      Name: LowerBallSensor
+    - Children: []
+      Properties:
+        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id015 ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Output Channel (Solenoid)
+          validators: &id016 [Solenoid]
+          value: '0'
+        Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id017 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          default: '0'
+          name: Output PCM (Solenoid)
+          validators: &id018 [Solenoid]
+          value: '0'
+      Base: Solenoid
+      Name: DeployGatherer
+    - Children: []
+      Properties:
+        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id015
+          default: '0'
+          name: Output Channel (Solenoid)
+          validators: *id016
+          value: '2'
+        Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id017
+          default: '0'
+          name: Output PCM (Solenoid)
+          validators: *id018
+          value: '0'
+      Base: Solenoid
+      Name: DeploySideGate
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: VictorSP
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '4'
+      Base: Speed Controller
+      Name: HopperStirMotor
+    Properties:
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: *id012
+    Base: Subsystem
+    Name: Gatherer
+  - Children:
+    - Children: []
+      Properties:
+        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id015
+          default: '0'
+          name: Output Channel (Solenoid)
+          validators: *id016
+          value: '1'
+        Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id017
+          default: '0'
+          name: Output PCM (Solenoid)
+          validators: *id018
+          value: '0'
+      Base: Solenoid
+      Name: DeployGearPlacer
+    Properties:
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: *id012
+    Base: Subsystem
+    Name: GearPlacer
+  Properties: {}
+  Base: Subsystems
+  Name: Subsystems
+- Children:
+  - Children: []
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: &id019 ['0', '1', '2', '3', '4', '5']
+        default: 1
+        name: Number
+        validators: &id020 [Joystick]
+        value: '0'
+    Base: Joystick
+    Name: DriverGamepad
+  - Children: []
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: *id019
+        default: 1
+        name: Number
+        validators: *id020
+        value: '1'
+    Base: Joystick
+    Name: OperatorControls
+  Properties: {}
+  Base: OI
+  Name: Operator Interface
+- Children:
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: []
+        name: Parameter presets
+        validators: null
+        value: []
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: DoNothing
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Drivetrain}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: []
+        name: Parameter presets
+        validators: null
+        value: []
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: ArcadeDrive
+  Properties: {}
+  Base: Commands
+  Name: Commands
+Properties:
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\RED\workspace',
+    extension: null, folder: true, name: Eclipse Workspace, validators: null, value: 'C:\Users\RED\Local
+      Documents\GitHub'}
+  Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
+    name: Export Commands, validators: null, value: true}
+  Autonomous command parameters: !!robotbuilder.data.properties.ParametersProperty
+    default: []
+    name: Autonomous command parameters
+    validators: null
+    value: []
+  Java Package: !!robotbuilder.data.properties.StringProperty {default: org.usfirst.frc0000,
+    name: Java Package, validators: null, value: org.usfirst.frc.team997}
+  Use Default Java Package: !!robotbuilder.data.properties.BooleanProperty {default: true,
+    name: Use Default Java Package, validators: null, value: false}
+  Team Number: !!robotbuilder.data.properties.IntegerProperty {default: 0, name: Team Number,
+    validators: null, value: 997}
+  Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
+    name: Export Subsystems, validators: null, value: true}
+  Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
+    name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\RED\',
+    extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\RED\Local
+      Documents\GitHub\2017SteamBot'}
+  Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+    name: Autonomous Command, type: Command, validators: null, value: DoNothing}
+Base: Robot
+Name: 2017SteamBot
