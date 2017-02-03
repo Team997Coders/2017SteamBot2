@@ -33,7 +33,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		try {
-			shooter = new Shooter(0, 0);
+			shooter = new Shooter(1, 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,7 +48,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
+		
 		oi = new OI();
+	
 	}
 
 	/**

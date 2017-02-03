@@ -25,23 +25,29 @@ public class Shoot extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {}
+    protected void initialize() {
+    	Robot.shooter.shooterMotorMaster.enable();
+    	Robot.shooter.shooterMotorSlave.enable();
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	shootSpeed = SmartDashboard.getNumber("Shooter Speed", 0);
     	Robot.shooter.shooterMotorMaster.set(shootSpeed);
     	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return !Robot.oi.joy.getRawButton(2);
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.shooter.shooterMotorMaster.set(0);
     	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
+    	Robot.shooter.shooterMotorMaster.disable();
+    	Robot.shooter.shooterMotorSlave.disable();
     }
 
     // Called when another command which requires one or more of the same
