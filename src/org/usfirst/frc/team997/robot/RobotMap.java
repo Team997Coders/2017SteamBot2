@@ -18,10 +18,41 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	public static class PDP {
-		public static final int
-		shooterMotorMaster = 1,
-		shooterMotorSlave = 2;
+		public static final int[]
+		leftDriveMotor = {0, 1, 2},
+		rightDriveMotor = {3, 14, 15}, 
+		climberTalon = {12, 13};
+		
+		public static final int 
+		ballLiftTalon = 11,
+		gatherTalon = 10;
+		//shooterMotorMaster = 1,
+		//shooterMotorSlave = 2;
+		
 	}
+	
+	public static class Ports {
+		public static final int
+		//PWM
+		leftDriveMotor = 0,
+		rightDriveMotor = 1,
+		climberTalon = 2,
+		ballLiftTalon = 3,
+		gatherTalon = 4,
+		
+		//Digital IO
+		leftEncoderOne = 0,
+		leftEncoderTwo = 1,
+		rightEncoderOne = 2,
+		rightEncoderTwo = 3,
+		gatherSensor = 4,
+		ballLiftSensor = 5,
+		
+		//Analog
+		ultraSonic = 0;
+	}
+	
+	
 	
 	public static class Values {
 		public static final double
