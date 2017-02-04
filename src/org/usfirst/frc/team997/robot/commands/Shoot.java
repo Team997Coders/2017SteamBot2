@@ -39,7 +39,7 @@ public class Shoot extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !Robot.oi.joy.getRawButton(2);
+        return !Robot.oi.joy2.getRawButton(2);
     }
 
     // Called once after isFinished returns true

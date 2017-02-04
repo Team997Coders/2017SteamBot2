@@ -1,9 +1,11 @@
 package org.usfirst.frc.team997.robot;
 
+import org.usfirst.frc.team997.robot.commands.DriveToAngle;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,12 +22,12 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static Shooter shooter;
+	public static DriveToAngle driveToAngleCommand;
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	String autoSelected;
 	SendableChooser<String> chooser = new SendableChooser<>();
-
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -38,11 +40,12 @@ public class Robot extends IterativeRobot {
 			e.printStackTrace();
 		}
 		
-		try {
+		//try {
 			driveTrain = new DriveTrain();
-		} catch (Exception e){
+			driveToAngleCommand = new DriveToAngle();
+		/*} catch (Exception e){
 			e.printStackTrace();
-		}
+		}*/
 		
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
@@ -76,7 +79,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	@Override
-	public void autonomousPeriodic() {
+	public void autonomousPeriodic() {    	
+		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 		switch (autoSelected) {
 		case customAuto:
 			// Put custom auto code here
@@ -88,13 +92,17 @@ public class Robot extends IterativeRobot {
 		}
 	}
 
-	/**
-	 * This function is called periodically during operator control
-	 */
+	private int tickcount;
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
-		
+    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    	++tickcount;
+    	SmartDashboard.putNumber("tickCount", tickcount);
+    	Scheduler.getInstance().run();
+	}
+	
+	public void disabledPeriodic() {
+    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 	}
 
 	/**
@@ -102,6 +110,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 	}
 }
 
