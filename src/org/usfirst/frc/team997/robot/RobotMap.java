@@ -53,12 +53,11 @@ public class RobotMap {
 	}
 	
 	
-	
 	public static class Values {
 		public static final double
 
 		shooterF = 3.965,
-		shooterP = 25,
+		shooterP = 30,
 		shooterI = 0.0,
 		shooterD = 500,
 		
