@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot;
 
 
+import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.SetDriveToAngle;
 import org.usfirst.frc.team997.robot.commands.Shoot;
 
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 
 public class OI {
+	public boolean isTank = true;
 	public Joystick joy1;
 	public Joystick joy2;
 
@@ -25,6 +27,8 @@ public class OI {
 		driveTo180Button, driveToN90Button;
 	
 	public OI() {
+		SmartDashboard.putData("Drive type", new DriveToggle());
+		
 		joy1 = new Joystick(0);
 		driveToAngleButton = new JoystickButton(joy1, 1);
 		driveToAngleButton.whenPressed(Robot.driveToAngleCommand);
@@ -41,5 +45,17 @@ public class OI {
 		shoot = new JoystickButton(joy2, 2);
 		shoot.whenPressed(new Shoot());
     	SmartDashboard.putNumber("Shooter Speed", RobotMap.Values.shooterSpeed);
+	}
+	
+	public double getLeftY() {
+		return joy1.getRawAxis(1);
+	}
+	
+	public double getRightY() {
+		return joy2.getRawAxis(1);
+	}
+	
+	public double getRightX() {
+		return joy2.getRawAxis(0);
 	}
 }

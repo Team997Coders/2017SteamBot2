@@ -112,5 +112,12 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
     	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 	}
+	
+	public static double deadband(double x) {
+		if(Math.abs(x) < 0.05) {
+			return 0;
+		} 
+		return x;
+	}
 }
 

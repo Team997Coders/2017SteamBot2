@@ -1,16 +1,13 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
+import org.usfirst.frc.team997.robot.RobotMap;
+import org.usfirst.frc.team997.robot.commands.Drive;
+
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
-import org.usfirst.frc.team997.robot.Robot;
-import org.usfirst.frc.team997.robot.RobotMap;
-import org.usfirst.frc.team997.robot.commands.DriveToAngle;
 
 /**
  *
@@ -27,11 +24,15 @@ public class DriveTrain extends Subsystem {
 		right = new VictorSP(RobotMap.rightPort);
 	}
 
-    public void initDefaultCommand() {}
+    public void initDefaultCommand() {
+    	setDefaultCommand(new Drive());
+    }
     
     public void driveVoltage(double leftV, double rightV) {
     	left.set(-leftV);
     	right.set(rightV);
     }
+    
+    
 }
 
