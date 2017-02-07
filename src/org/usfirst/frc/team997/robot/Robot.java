@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
+import org.usfirst.frc.team997.robot.subsystems.Climber;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
 
@@ -23,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Shooter shooter;
 	public static DriveToAngle driveToAngleCommand;
+	public static Climber climber;
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
@@ -46,6 +48,8 @@ public class Robot extends IterativeRobot {
 		/*} catch (Exception e){
 			e.printStackTrace();
 		}*/
+
+		climber = new Climber();
 		
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
