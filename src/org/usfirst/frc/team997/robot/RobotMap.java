@@ -30,11 +30,9 @@ public class RobotMap {
 		public static final int[]
 		leftDriveMotor = {0, 1, 2},
 		rightDriveMotor = {3, 14, 15}, 
-		climberTalon = {12, 13};
-		
-		public static final int 
-		ballLiftTalon = 11,
-		gatherTalon = 10;
+		climberTalon = {12, 13},
+		ballLiftTalon = {11},
+		gatherTalon = {10};
 		//shooterMotorMaster = 1,
 		//shooterMotorSlave = 2;
 		
@@ -69,8 +67,10 @@ public class RobotMap {
 		shooterP = 30,
 		shooterI = 0.0,
 		shooterD = 500,
-		
-		shooterSpeed = 3500; 
+
+		shooterSpeed = 3500,
+
+		climbSpeed = 1;
 	}
 	
 }
