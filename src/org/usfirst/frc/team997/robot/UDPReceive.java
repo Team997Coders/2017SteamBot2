@@ -42,8 +42,9 @@ public class UDPReceive {
 			
 			
 			if ((packetEnd = string.indexOf(';')) != -1) {
-				float distance = Float.parseFloat(string.substring(0, 8));
+				float hypotnuse = Float.parseFloat(string.substring(0, 8));
 				float horizontalOffset = Float.parseFloat(string.substring(9, 17));
+				float distance = (float) Math.sqrt((hypotnuse*hypotnuse)-(56*56));
 				string = string.substring(packetEnd + 1);
 				result = new VisionStorage(distance, horizontalOffset);
 			} 
