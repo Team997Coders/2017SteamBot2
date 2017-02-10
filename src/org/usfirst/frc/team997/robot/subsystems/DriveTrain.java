@@ -17,7 +17,8 @@ import org.usfirst.frc.team997.robot.commands.DriveToAngle;
  */
 public class DriveTrain extends Subsystem {
 	public AHRS ahrs;
-	private SpeedController left, right;
+	public SpeedController left;
+	public SpeedController right;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

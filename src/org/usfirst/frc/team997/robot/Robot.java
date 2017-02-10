@@ -4,12 +4,13 @@ import org.usfirst.frc.team997.robot.commands.DriveToAngle;
 import org.usfirst.frc.team997.robot.subsystems.Climber;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
-
+import org.usfirst.frc.team997.robot.RobotMap.PDP;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static DriveToAngle driveToAngleCommand;
 	public static Climber climber;
+	public static PowerDistributionPanel pdp;
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
@@ -103,6 +105,14 @@ public class Robot extends IterativeRobot {
     	++tickcount;
     	SmartDashboard.putNumber("tickCount", tickcount);
     	Scheduler.getInstance().run();
+    	
+    	SmartDashboard.putNumber("DriveTrain Left Voltage 1", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[0]));
+    	SmartDashboard.putNumber("DriveTrain Left Voltage 2", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[1]));
+    	SmartDashboard.putNumber("DriveTrain Left Voltage 3", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[2]));
+    	
+    	SmartDashboard.putNumber("DriveTrain Right Voltage 1", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[0]));
+    	SmartDashboard.putNumber("DriveTrain Right Voltage 2", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[1]));
+    	SmartDashboard.putNumber("DriveTrain Right Voltage 3", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[2]));
 	}
 	
 	public void disabledPeriodic() {
@@ -115,6 +125,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
     	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    
 	}
 }
 
