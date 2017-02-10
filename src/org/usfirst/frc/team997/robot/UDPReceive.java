@@ -3,6 +3,7 @@ package org.usfirst.frc.team997.robot;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketTimeoutException;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class UDPReceive {
 	private DatagramSocket dsocket;
@@ -46,6 +47,8 @@ public class UDPReceive {
 				float horizontalOffset = Float.parseFloat(string.substring(9, 17));
 				string = string.substring(packetEnd + 1);
 				result = new VisionStorage(distance, horizontalOffset);
+				SmartDashboard.putNumber("Distance", distance);
+				SmartDashboard.putNumber("Horizontal Offset", horizontalOffset);
 			} 
 			// Reset the length of the packet before reusing it.
 			packet.setLength(buffer.length);
