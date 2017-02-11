@@ -2,6 +2,8 @@ package org.usfirst.frc.team997.robot;
 
 
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
+import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
+import org.usfirst.frc.team997.robot.commands.Gather;
 import org.usfirst.frc.team997.robot.commands.SetDriveToAngle;
 import org.usfirst.frc.team997.robot.commands.Shoot;
 
@@ -23,7 +25,8 @@ public class OI {
 	public Button shoot;
 	private JoystickButton driveToAngleButton, 
 		driveTo0Button, driveTo90Button, 
-		driveTo180Button, driveToN90Button;
+		driveTo180Button, driveToN90Button, extendGatherButton;
+	public JoystickButton  gatherButton;
 	
 	public OI() {
 		SmartDashboard.putData("Drive type", new DriveToggle());
@@ -40,6 +43,11 @@ public class OI {
 		driveToN90Button = new JoystickButton(joy, 5);
 		driveToN90Button.whenPressed(new SetDriveToAngle(-90));		
 		
+		gatherButton = new JoystickButton(joy, 6);
+		gatherButton.whenPressed(new Gather());
+		
+		extendGatherButton = new JoystickButton(joy, 7);
+		extendGatherButton.whenPressed(new ExtendGatherer());
 		
     	SmartDashboard.putNumber("Shooter Speed", RobotMap.Values.shooterSpeed);
 	}

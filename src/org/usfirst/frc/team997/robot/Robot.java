@@ -4,6 +4,7 @@ import org.usfirst.frc.team997.robot.commands.DriveToAngle;
 import org.usfirst.frc.team997.robot.commands.Shoot;
 import org.usfirst.frc.team997.robot.commands.ShootSpinner;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team997.robot.subsystems.Gatherer;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -23,6 +24,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain driveTrain;
+	public static Gatherer gatherer;
 	public static Shooter shooter;
 	public static DriveToAngle driveToAngleCommand;
 	
@@ -48,6 +50,12 @@ public class Robot extends IterativeRobot {
 		/*} catch (Exception e){
 			e.printStackTrace();
 		}*/
+			
+		try {
+			gatherer = new Gatherer();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 			
 		Scheduler.getInstance().add(new ShootSpinner());
 		Scheduler.getInstance().add(new Shoot());
