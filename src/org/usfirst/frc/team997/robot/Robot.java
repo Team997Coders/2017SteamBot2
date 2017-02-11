@@ -5,6 +5,7 @@ import org.usfirst.frc.team997.robot.commands.Shoot;
 import org.usfirst.frc.team997.robot.commands.ShootSpinner;
 import org.usfirst.frc.team997.robot.subsystems.Climber;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team997.robot.subsystems.Elevator;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
 import org.usfirst.frc.team997.robot.RobotMap.PDP;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static DriveToAngle driveToAngleCommand;
 	public static Climber climber;
 	public static PowerDistributionPanel pdp;
+	public static Elevator elevator;
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
