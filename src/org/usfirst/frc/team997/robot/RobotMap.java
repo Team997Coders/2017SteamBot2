@@ -22,9 +22,6 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	public static final SerialPort.Port AHRSPort = SerialPort.Port.kUSB;
-	public static final int
-	leftPort = 0, 
-	rightPort = 1;
 	
 	public static class PDP {
 		public static final int[]
@@ -71,6 +68,7 @@ public class RobotMap {
 		shooterD = 500,
 		
 		shooterSpeed = 3500; 
+		
 	}
 	
 }

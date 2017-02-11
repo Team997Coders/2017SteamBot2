@@ -1,6 +1,8 @@
 package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
+import org.usfirst.frc.team997.robot.commands.Shoot;
+import org.usfirst.frc.team997.robot.commands.ShootSpinner;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
 
@@ -42,10 +44,13 @@ public class Robot extends IterativeRobot {
 		
 		//try {
 			driveTrain = new DriveTrain();
-			driveToAngleCommand = new DriveToAngle();
+			//driveToAngleCommand = new DriveToAngle();
 		/*} catch (Exception e){
 			e.printStackTrace();
 		}*/
+			
+		Scheduler.getInstance().add(new ShootSpinner());
+		Scheduler.getInstance().add(new Shoot());
 		
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
@@ -80,7 +85,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {    	
-		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+		//SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 		switch (autoSelected) {
 		case customAuto:
 			// Put custom auto code here
@@ -95,14 +100,14 @@ public class Robot extends IterativeRobot {
 	private int tickcount;
 	@Override
 	public void teleopPeriodic() {
-    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    	//SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
     	++tickcount;
     	SmartDashboard.putNumber("tickCount", tickcount);
     	Scheduler.getInstance().run();
 	}
 	
 	public void disabledPeriodic() {
-    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    	//SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 	}
 
 	/**
@@ -110,13 +115,22 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    	//SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 	}
 	
 	public static double deadband(double x) {
 		if(Math.abs(x) < 0.05) {
 			return 0;
 		} 
+		return x;
+	}
+	
+	public static double clamp(double x) {
+		if(x > 1) {
+			return 1;
+		} else if(x < -1) {
+			return -1;
+		}
 		return x;
 	}
 }

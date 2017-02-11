@@ -27,8 +27,8 @@ public class Drive extends Command {
     	} else {
     		double aleft = Robot.oi.getLeftY();
     		double aright = Robot.oi.getRightX();
-    		Robot.driveTrain.driveVoltage(Robot.deadband(aleft + aright),
-    										Robot.deadband(aleft - aright));
+    		Robot.driveTrain.driveVoltage(Robot.clamp(Robot.deadband(aleft + aright)),
+    										Robot.clamp(Robot.deadband(aleft - aright)));
     	}
     }
 
