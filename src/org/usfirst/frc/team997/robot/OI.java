@@ -4,6 +4,8 @@ package org.usfirst.frc.team997.robot;
 import org.usfirst.frc.team997.robot.commands.Climb;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.ElevatorIn;
+import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
+import org.usfirst.frc.team997.robot.commands.Gather;
 import org.usfirst.frc.team997.robot.commands.SetDriveToAngle;
 import org.usfirst.frc.team997.robot.commands.Shoot;
 
@@ -27,7 +29,8 @@ public class OI {
 	private JoystickButton driveToAngleButton, 
 		driveTo0Button, driveTo90Button, 
 		driveTo180Button, driveToN90Button, 
-		climbButton;
+		climbButton, extendGatherButton;
+	public JoystickButton gatherButton;
 	
 	public OI() {
 		SmartDashboard.putData("Drive type", new DriveToggle());
@@ -46,6 +49,12 @@ public class OI {
 		
 		climbButton = new JoystickButton(joy, 1);
 		climbButton.whenPressed(new Climb());
+
+		gatherButton = new JoystickButton(joy, 6);
+		gatherButton.whenPressed(new Gather());
+		
+		extendGatherButton = new JoystickButton(joy, 7);
+		extendGatherButton.whenPressed(new ExtendGatherer());
 		
     	SmartDashboard.putNumber("Shooter Speed", RobotMap.Values.shooterSpeed);
 	}

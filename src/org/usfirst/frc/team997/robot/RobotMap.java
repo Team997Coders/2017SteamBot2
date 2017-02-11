@@ -30,9 +30,6 @@ public class RobotMap {
 		climberTalon = {12, 13},
 		ballLiftTalon = {11},
 		gatherTalon = {10};
-		//shooterMotorMaster = 1,
-		//shooterMotorSlave = 2;
-		
 	}
 	
 	public static class Ports {
@@ -53,7 +50,10 @@ public class RobotMap {
 		ballLiftSensor = 5,
 		
 		//Analog
-		ultraSonic = 0;
+		ultraSonic = 0,
+		
+		//Pneumatic???
+		gatherSolenoidPort = 0; //Change this based on Lyla
 	}
 	
 	
@@ -67,7 +67,8 @@ public class RobotMap {
 		
 		shooterSpeed = 3500,
 
-		climbSpeed = 1;
+		climbSpeed = 1,
+		gatherSpeed = 1;
 	}
 	
 }
