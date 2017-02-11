@@ -17,9 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 
 public class OI {
-	public boolean isTank = true;
-	public Joystick joy1;
-	public Joystick joy2;
+	public boolean isTank = false;
+	public Joystick joy;
 
 	public Button shoot;
 	private JoystickButton driveToAngleButton, 
@@ -29,33 +28,39 @@ public class OI {
 	public OI() {
 		SmartDashboard.putData("Drive type", new DriveToggle());
 		
-		joy1 = new Joystick(0);
-		driveToAngleButton = new JoystickButton(joy1, 1);
+		joy = new Joystick(0);
+		driveToAngleButton = new JoystickButton(joy, 1);
 		driveToAngleButton.whenPressed(Robot.driveToAngleCommand);
-		driveTo0Button = new JoystickButton(joy1, 2);
+		driveTo0Button = new JoystickButton(joy, 2);
 		driveTo0Button.whenPressed(new SetDriveToAngle(0));
-		driveTo90Button = new JoystickButton(joy1, 3);
-		driveTo90Button.whenPressed(new SetDriveToAngle(90));
-		driveTo180Button = new JoystickButton(joy1, 4);
+		//driveTo90Button = new JoystickButton(joy1, 3);
+		//driveTo90Button.whenPressed(new SetDriveToAngle(90));
+		driveTo180Button = new JoystickButton(joy, 4);
 		driveTo180Button.whenPressed(new SetDriveToAngle(179.9));
-		driveToN90Button = new JoystickButton(joy1, 5);
-		driveToN90Button.whenPressed(new SetDriveToAngle(-90));
+		driveToN90Button = new JoystickButton(joy, 5);
+		driveToN90Button.whenPressed(new SetDriveToAngle(-90));		
 		
-		joy2 = new Joystick(1);
-		shoot = new JoystickButton(joy2, 2);
-		shoot.whenPressed(new Shoot());
+		
     	SmartDashboard.putNumber("Shooter Speed", RobotMap.Values.shooterSpeed);
 	}
 	
+	public double getLeftTrigger() {
+		return joy.getRawAxis(2);
+	}
+	
+	public double getRightTrigger() {
+		return joy.getRawAxis(3);
+	}
+	
 	public double getLeftY() {
-		return joy1.getRawAxis(1);
+		return joy.getRawAxis(1);
 	}
 	
 	public double getRightY() {
-		return joy2.getRawAxis(1);
+		return joy.getRawAxis(5);
 	}
 	
 	public double getRightX() {
-		return joy2.getRawAxis(0);
+		return -joy.getRawAxis(4);
 	}
 }
