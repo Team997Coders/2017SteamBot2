@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
+import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.Shoot;
 import org.usfirst.frc.team997.robot.commands.ShootSpinner;
 import org.usfirst.frc.team997.robot.subsystems.Climber;
@@ -111,6 +112,7 @@ public class Robot extends IterativeRobot {
     	++tickcount;
     	SmartDashboard.putNumber("tickCount", tickcount);
     	Scheduler.getInstance().run();
+    	Scheduler.getInstance().add(new DriveToggle());
     	
     	SmartDashboard.putNumber("DriveTrain Left Voltage 1", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[0]));
     	SmartDashboard.putNumber("DriveTrain Left Voltage 2", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[1]));
