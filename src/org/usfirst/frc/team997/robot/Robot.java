@@ -149,7 +149,17 @@ public class Robot extends IterativeRobot {
 			return -1;
 		}
 		return x;
-    
+	}
+
+	public static double averageCurrent(int[] ports) {
+		double result = 0;
+		if (ports.length != 0) {
+			for (int i = 0; i != ports.length; ++i) {
+				result += pdp.getCurrent(ports[i]);
+			}
+			result /= ports.length;
+		}
+		return result;
 	}
 }
 
