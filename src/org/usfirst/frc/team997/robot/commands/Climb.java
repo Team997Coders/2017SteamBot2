@@ -27,8 +27,10 @@ public class Climb extends Command {
     }
 
     protected void end() {
+    	Robot.climber.climb(0);
     }
 
     protected void interrupted() {
+    	end();
     }
 }
