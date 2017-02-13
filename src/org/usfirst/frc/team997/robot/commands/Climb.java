@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Climb extends Command {
+	private boolean released = false;
     public Climb() {
     	requires(Robot.climber);
     }
@@ -23,7 +24,12 @@ public class Climb extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+    	if (!released) {
+    		released = !Robot.oi.climbButton.get();
+    		return false;
+    	} else {
+    		return Robot.oi.climbButton.get();
+    	}
     }
 
     protected void end() {

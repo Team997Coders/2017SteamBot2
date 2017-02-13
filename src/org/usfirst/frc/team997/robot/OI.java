@@ -25,7 +25,8 @@ public class OI {
 	private JoystickButton driveToAngleButton, 
 		driveTo0Button, driveTo90Button, 
 		driveTo180Button, driveToN90Button, 
-		climbButton, extendGatherButton;
+		extendGatherButton;
+	public JoystickButton climbButton;
 	public JoystickButton gatherButton;
 	
 	public OI() {
