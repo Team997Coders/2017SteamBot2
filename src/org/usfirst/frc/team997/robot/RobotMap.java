@@ -1,7 +1,5 @@
 package org.usfirst.frc.team997.robot;
 
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.SerialPort;
 
 /**

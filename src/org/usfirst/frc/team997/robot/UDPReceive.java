@@ -2,7 +2,7 @@ package org.usfirst.frc.team997.robot;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketTimeoutException;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class UDPReceive {

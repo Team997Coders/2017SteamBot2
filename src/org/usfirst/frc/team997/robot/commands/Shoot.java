@@ -1,15 +1,9 @@
 package org.usfirst.frc.team997.robot.commands;
 
+import org.usfirst.frc.team997.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team997.robot.OI;
-import org.usfirst.frc.team997.robot.Robot;
-import org.usfirst.frc.team997.robot.RobotMap;
-import org.usfirst.frc.team997.robot.subsystems.Shooter;
-
-import com.ctre.CANTalon.FeedbackDevice;
-import com.ctre.CANTalon.TalonControlMode;
 
 
 /**
