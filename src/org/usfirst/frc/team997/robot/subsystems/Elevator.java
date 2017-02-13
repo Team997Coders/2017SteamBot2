@@ -1,5 +1,7 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
+import org.usfirst.frc.team997.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -10,8 +12,8 @@ public class Elevator extends Subsystem {
 	
 	Talon elevatorMotor;
 
-    public Elevator(int elevatorPort){
-    	elevatorMotor = new Talon (elevatorPort);
+    public Elevator() {
+    	elevatorMotor = new Talon(RobotMap.Ports.elevatorTalon);
     }
     public void spinInward(){
     	elevatorMotor.set(-1);
