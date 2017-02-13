@@ -38,7 +38,7 @@ public class RobotMap {
 		leftDriveMotor = 0,
 		rightDriveMotor = 1,
 		climberTalon = 2,
-		ballLiftTalon = 3,
+		elevatorTalon = 3,
 		gatherTalon = 4,
 		
 		//Digital IO
@@ -47,7 +47,7 @@ public class RobotMap {
 		rightEncoderOne = 2,
 		rightEncoderTwo = 3,
 		gatherSensor = 4,
-		ballLiftSensor = 5,
+		elevatorSensor = 5,
 		
 		//Analog
 		ultraSonic = 0,
