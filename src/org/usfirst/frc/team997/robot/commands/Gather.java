@@ -8,9 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Gather extends Command {
-	public static double gatherSpeed;
-	public static boolean isGather;
-
     public Gather() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -23,25 +20,17 @@ public class Gather extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	if(Robot.oi.gatherButton.get()) {
-    		gatherSpeed = RobotMap.Values.gatherSpeed;
-    		isGather = false;
-    	} else {
-    		gatherSpeed = 0;
-    		isGather = true;
-    	}
-    	Robot.gatherer.gather(gatherSpeed);
+    	Robot.gatherer.spinInward();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isGather;
+        return !Robot.oi.gatherButton.get();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.gatherer.gatherMotor.set(0);
+    	Robot.gatherer.stop();
     }
 
     // Called when another command which requires one or more of the same
