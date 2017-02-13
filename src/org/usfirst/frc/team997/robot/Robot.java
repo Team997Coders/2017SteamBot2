@@ -66,6 +66,8 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new ShootSpinner());
 		Scheduler.getInstance().add(new Shoot());
 
+		pdp = new PowerDistributionPanel();
+
 		climber = new Climber();
 		
 		chooser.addDefault("Default Auto", defaultAuto);
