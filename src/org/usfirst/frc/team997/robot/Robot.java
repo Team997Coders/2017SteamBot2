@@ -62,6 +62,9 @@ public class Robot extends IterativeRobot {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		elevator = new Elevator();
+		
 		pdp = new PowerDistributionPanel();
 
 		climber = new Climber();
