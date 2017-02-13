@@ -52,9 +52,6 @@ public class OI {
 		extendGatherButton = new JoystickButton(joy, 2);
 		extendGatherButton.whenPressed(new ExtendGatherer());
 
-//		Scheduler.getInstance().add(new Shoot());
-		Scheduler.getInstance().add(new ElevatorTrigger());
-		
     	SmartDashboard.putNumber("Shooter Speed", RobotMap.Values.shooterSpeed);
 	}
 	
