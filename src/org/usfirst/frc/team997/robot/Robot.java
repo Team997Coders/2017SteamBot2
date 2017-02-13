@@ -62,10 +62,6 @@ public class Robot extends IterativeRobot {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			
-		Scheduler.getInstance().add(new ShootSpinner());
-		Scheduler.getInstance().add(new Shoot());
-
 		pdp = new PowerDistributionPanel();
 
 		climber = new Climber();

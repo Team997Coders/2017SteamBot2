@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -53,6 +54,9 @@ public class OI {
 		
 		extendGatherButton = new JoystickButton(joy, 2);
 		extendGatherButton.whenPressed(new ExtendGatherer());
+
+//		Scheduler.getInstance().add(new Shoot());
+		Scheduler.getInstance().add(new ElevatorTrigger());
 		
     	SmartDashboard.putNumber("Shooter Speed", RobotMap.Values.shooterSpeed);
 	}
