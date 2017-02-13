@@ -67,8 +67,8 @@ public class RobotMap {
 		
 		shooterSpeed = 3500,
 
-		climbSpeed = 1,
-		gatherSpeed = 1;
+		climbSpeed = .5,
+		gatherSpeed = -1;
 	}
 	
 }
