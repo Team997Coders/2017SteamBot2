@@ -3,7 +3,6 @@ package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.commands.Climb;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
-import org.usfirst.frc.team997.robot.commands.ElevatorIn;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
 import org.usfirst.frc.team997.robot.commands.Gather;
 import org.usfirst.frc.team997.robot.commands.SetDriveToAngle;
