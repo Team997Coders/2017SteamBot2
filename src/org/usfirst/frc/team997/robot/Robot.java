@@ -10,7 +10,6 @@ import org.usfirst.frc.team997.robot.subsystems.Elevator;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
 import org.usfirst.frc.team997.robot.RobotMap.PDP;
 
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -49,7 +48,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		DigitalModule module = DigitalModule.getInstance(2);
-		i2c = module.getI2C(168);
 		try {
 			shooter = new Shooter(1, 2);
 		} catch (Exception e) {
@@ -158,11 +156,5 @@ public class Robot extends IterativeRobot {
 		return x;
 	}
     
-
-	public void sendToArduino(byte put){
-		byte[] byteArray = new byte[1];
-		byteArray[0] = put; 
-		i2c.transaction(byteArray, 1, null, 0);
-	}
 }
 
