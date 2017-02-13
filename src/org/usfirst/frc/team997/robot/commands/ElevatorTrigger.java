@@ -26,8 +26,7 @@ public class ElevatorTrigger extends Command {
         return false;
     }
 
-    protected void end() {
-    }
+    protected void end() { Robot.elevator.stop(); }
 
-    protected void interrupted() {}
+    protected void interrupted() { end(); }
 }
