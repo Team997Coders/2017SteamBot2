@@ -48,10 +48,10 @@ public class OI {
 		climbButton = new JoystickButton(joy, 1);
 		climbButton.whenPressed(new Climb());
 
-		gatherButton = new JoystickButton(joy, 6);
+		gatherButton = new JoystickButton(joy, 5);
 		gatherButton.whenPressed(new Gather());
 		
-		extendGatherButton = new JoystickButton(joy, 7);
+		extendGatherButton = new JoystickButton(joy, 2);
 		extendGatherButton.whenPressed(new ExtendGatherer());
 		
     	SmartDashboard.putNumber("Shooter Speed", RobotMap.Values.shooterSpeed);
