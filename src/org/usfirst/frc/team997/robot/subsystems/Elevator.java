@@ -9,25 +9,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Elevator extends Subsystem {
-	
-	Talon elevatorMotor;
+	private Talon elevatorMotor;
 
     public Elevator() {
     	elevatorMotor = new Talon(RobotMap.Ports.elevatorTalon);
     }
-    public void spinInward(){
-    	elevatorMotor.set(-1);
-    }
-    public void spinOutward(){
+    public void spinInward() {
     	elevatorMotor.set(1);
     }
-    public void stop(){
+    public void spinOutward() {
+    	elevatorMotor.set(-1);
+    }
+    public void stop() {
     	elevatorMotor.set(0);
     }
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+    public void initDefaultCommand() {}
 }
 
