@@ -24,7 +24,6 @@ public class OI {
 	public boolean isTank = false;
 	public Joystick joy;
 
-	public Button shoot;
 	private JoystickButton driveToAngleButton, 
 		driveTo0Button, driveTo90Button, 
 		driveTo180Button, driveToN90Button, 
