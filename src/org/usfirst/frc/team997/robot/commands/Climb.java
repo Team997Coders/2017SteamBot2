@@ -15,7 +15,7 @@ public class Climb extends Command {
     	requires(Robot.climber);
     }
 
-    protected void initialize() {}
+    protected void initialize() {released = false;}
 
     protected void execute() {
     	double current = Robot.averageCurrent(RobotMap.PDP.climberTalon);

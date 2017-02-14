@@ -34,6 +34,7 @@ public class Shooter extends Subsystem {
 
         shooterMotorMaster.enableBrakeMode(false);
         shooterMotorSlave.enableBrakeMode(false);
+        shooterMotorSlave.reverseOutput(true);
         shooterMotorMaster.setPosition(0);
         shooterMotorMaster.setVoltageRampRate(24);
 
