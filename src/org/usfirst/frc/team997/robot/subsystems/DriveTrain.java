@@ -28,7 +28,7 @@ public class DriveTrain extends Subsystem {
 	public Gyro gyro;
 
 	public double driveSpeed = 1;
-	public double driveDrift = 0.95;
+	public double driveDrift = 1;
 	double pasterr = 0.01D;
 	double integral = 0.0D;
 	double speed = 0.0D;
