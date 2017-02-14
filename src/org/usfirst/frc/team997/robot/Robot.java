@@ -119,7 +119,6 @@ public class Robot extends IterativeRobot {
     	++tickcount;
     	SmartDashboard.putNumber("tickCount", tickcount);
     	Scheduler.getInstance().run();
-    	Scheduler.getInstance().add(new DriveToggle());
     	
     	SmartDashboard.putNumber("DriveTrain Left Voltage 1", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[0]));
     	SmartDashboard.putNumber("DriveTrain Left Voltage 2", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[1]));
