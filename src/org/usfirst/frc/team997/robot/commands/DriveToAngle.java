@@ -14,9 +14,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveToAngle extends Command implements PIDOutput {
 	public PIDController controller;
 	private double pidRate;
+	private double setPoint;
 
-    public DriveToAngle() {
+    public DriveToAngle(double angle) {
     	requires(Robot.driveTrain);
+    	setPoint = angle;
 
     	Robot.driveTrain.ahrs.reset();
 
@@ -31,6 +33,7 @@ public class DriveToAngle extends Command implements PIDOutput {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	controller.setSetpoint(setPoint);
     	controller.enable();
     	SmartDashboard.putBoolean("DriveToAngleOn", true);
     }
