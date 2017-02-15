@@ -8,21 +8,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoGearRight extends CommandGroup {
 
     public AutoGearRight() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+    	
+    	// AS OF NOW, THESE NUMBERS ARE ARBITRARY.
+    	
+    	addSequential(new DriveToDistance(-50)); // drive backwards a bit
+    	addSequential(new DriveToAngle(-45)); // turn left towards airship
+    	addSequential(new DriveToDistance(-49)); // drive backwards some more
+    	// add gear deposit command here
+    	
     }
 }
