@@ -16,10 +16,10 @@ public class Elevator extends Subsystem {
     	elevatorMotor = new Talon(RobotMap.Ports.elevatorTalon);
     }
     public void spinInward() {
-    	elevatorMotor.set(1);
+    	elevatorMotor.set(0.8);
     }
     public void spinOutward() {
-    	elevatorMotor.set(-1);
+    	elevatorMotor.set(-0.8);
     }
     public void stop() {
     	elevatorMotor.set(0);
