@@ -32,8 +32,10 @@ public class Shoot extends Command {
     	} else {
     		shootSpeed = 0;
     	}
-    	Robot.shooter.shooterMotorMaster.set(shootSpeed);
+    	Robot.shooter.shooterMotorMaster.setSetpoint(shootSpeed);
     	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
+    	SmartDashboard.putNumber("Shooter output", Robot.shooter.shooterMotorMaster.getSpeed());
+    	SmartDashboard.putNumber("Shooter error", Robot.shooter.shooterMotorMaster.getClosedLoopError());
     }
 
     // Make this return true when this Command no longer needs to run execute()

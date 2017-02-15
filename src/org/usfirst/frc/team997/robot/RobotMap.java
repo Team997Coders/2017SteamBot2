@@ -58,12 +58,12 @@ public class RobotMap {
 	public static class Values {
 		public static final double
 
-		shooterF = 8,
+		shooterF = 10,
 		shooterP = 0,//30,
 		shooterI = 0.0,
 		shooterD = 0,//500,
 		
-		shooterSpeed = 3500,
+		shooterSpeed = 1555,
 
 		climbSpeed = .8,
 		gatherSpeed = -1;

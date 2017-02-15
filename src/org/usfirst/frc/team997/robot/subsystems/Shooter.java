@@ -46,9 +46,6 @@ public class Shooter extends Subsystem {
         shooterMotorMaster.setI(RobotMap.Values.shooterI);
         shooterMotorMaster.setD(RobotMap.Values.shooterD);
 
-        SmartDashboard.putNumber("Velocity:", shooterMotorMaster.getSpeed());
-        SmartDashboard.putNumber("Distance:", shooterMotorMaster.getEncPosition());
-        SmartDashboard.putNumber("Sensor Position", shooterMotorMaster.getPosition());
     }
     
     public void initDefaultCommand() {
