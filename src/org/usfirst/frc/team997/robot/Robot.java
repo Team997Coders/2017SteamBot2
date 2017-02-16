@@ -5,6 +5,7 @@ import org.usfirst.frc.team997.robot.commands.AutoGearRight;
 import org.usfirst.frc.team997.robot.commands.AutoGearShootLeft;
 import org.usfirst.frc.team997.robot.commands.AutoGearShootRight;
 import org.usfirst.frc.team997.robot.commands.AutoGearStraight;
+import org.usfirst.frc.team997.robot.commands.AutoNullCommand;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.subsystems.Climber;
@@ -73,6 +74,7 @@ public class Robot extends IterativeRobot {
 
 		climber = new Climber();
 		
+		chooser.addDefault("Null", new AutoNullCommand());
 		chooser.addObject("AutoGearLeft", new AutoGearLeft());
 		chooser.addObject("AutoGearRight", new AutoGearRight());
 		chooser.addObject("AutoGearShootLeft", new AutoGearShootLeft());
@@ -141,7 +143,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void disabledPeriodic() {
-    	//SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 	}
 
 	/**

@@ -52,6 +52,7 @@ public class DriveTrain extends Subsystem {
 		final double calculated = ((gearRatio*2*pi)/ticksPerRev)*radius;
 		
 		//gyro = new ADXRS450_Gyro(SPI.Port.valueOf("kOnboardCS0"));
+		ahrs.reset();
 		
 		leftEncoder = new Encoder(0, 1, false, EncodingType.k4X);
 		leftEncoder.setDistancePerPulse(calculated);
