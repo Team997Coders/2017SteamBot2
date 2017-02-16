@@ -34,7 +34,7 @@ public class Shoot extends Command {
     	}
     	Robot.shooter.shooterMotorMaster.setSetpoint(shootSpeed);
     	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
-    	SmartDashboard.putNumber("Shooter output", Robot.shooter.shooterMotorMaster.getSpeed());
+    	SmartDashboard.putNumber("Shooter speed", Robot.shooter.shooterMotorMaster.getSpeed());
     	SmartDashboard.putNumber("Shooter error", Robot.shooter.shooterMotorMaster.getClosedLoopError());
     }
 

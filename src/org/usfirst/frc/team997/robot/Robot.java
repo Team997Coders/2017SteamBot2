@@ -1,5 +1,10 @@
 package org.usfirst.frc.team997.robot;
 
+import org.usfirst.frc.team997.robot.commands.AutoGearLeft;
+import org.usfirst.frc.team997.robot.commands.AutoGearRight;
+import org.usfirst.frc.team997.robot.commands.AutoGearShootLeft;
+import org.usfirst.frc.team997.robot.commands.AutoGearShootRight;
+import org.usfirst.frc.team997.robot.commands.AutoGearStraight;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.subsystems.Climber;
@@ -10,6 +15,7 @@ import org.usfirst.frc.team997.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,8 +40,8 @@ public class Robot extends IterativeRobot {
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
-	String autoSelected;
-	SendableChooser<String> chooser = new SendableChooser<>();
+	Command autoSelected;
+	SendableChooser<Command> chooser = new SendableChooser<>();
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -67,8 +73,11 @@ public class Robot extends IterativeRobot {
 
 		climber = new Climber();
 		
-		chooser.addDefault("Default Auto", defaultAuto);
-		chooser.addObject("My Auto", customAuto);
+		chooser.addObject("AutoGearLeft", new AutoGearLeft());
+		chooser.addObject("AutoGearRight", new AutoGearRight());
+		chooser.addObject("AutoGearShootLeft", new AutoGearShootLeft());
+		chooser.addObject("AutoGearShootRight", new AutoGearShootRight());
+		chooser.addObject("AutoGearStraight", new AutoGearStraight());
 		SmartDashboard.putData("Auto choices", chooser);
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		
@@ -89,7 +98,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autoSelected = chooser.getSelected();
+		autoSelected = (Command) chooser.getSelected();
+		autoSelected.start();
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
@@ -100,8 +110,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {    	
-		//SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
-		switch (autoSelected) {
+		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+		/*switch (autoSelected) {
 		case customAuto:
 			// Put custom auto code here
 			break;
@@ -109,13 +119,14 @@ public class Robot extends IterativeRobot {
 		default:
 			// Put default auto code here
 			break;
-		}
+		}*/
+		Scheduler.getInstance().run();
 	}
 
 	private int tickcount;
 	@Override
 	public void teleopPeriodic() {
-    	//SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
     	++tickcount;
     	SmartDashboard.putNumber("tickCount", tickcount);
     	Scheduler.getInstance().run();

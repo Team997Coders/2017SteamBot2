@@ -53,7 +53,7 @@ public class OI {
 		extendGatherButton = new JoystickButton(joy, 2);
 		extendGatherButton.whenPressed(new ExtendGatherer());
 
-    	SmartDashboard.putNumber("Shooter Speed", RobotMap.Values.shooterSpeed);
+    	SmartDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
 	}
 	
 	public double getLeftTrigger() {
