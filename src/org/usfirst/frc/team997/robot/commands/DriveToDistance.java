@@ -44,12 +44,17 @@ public class DriveToDistance extends Command implements PIDOutput{
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return controller.onTarget();
+        
+    	if(controller.get() == setPoint) {
+    		return true;
+    	}
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	controller.disable();
+    	SmartDashboard.putBoolean("DriveToDistance On", false);
     }
 
     // Called when another command which requires one or more of the same

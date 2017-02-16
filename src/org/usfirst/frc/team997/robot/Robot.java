@@ -167,6 +167,30 @@ public class Robot extends IterativeRobot {
 		}
 		return x;
 	}
+	
+	public static double negSqRt(double x) {
+		if(x > 0) {
+			return Math.sqrt(x);
+		} else {
+			return -Math.sqrt(-x);
+		}
+	}
+	
+	public static double negSq(double x) {
+		if(x > 0) {
+			return (x*x);
+		} else {
+			return -(x*x);
+		}
+	}
+	
+	public static double cube(double x) {
+		if(x > 0) {
+			return (4*((x-0.5)*(x-0.5)*(x-0.5))) + 0.5;
+		} else {
+			return (4*((-x+0.5)*(-x+0.5)*(-x+0.5))) + 0.5;
+		}
+	}
 
 	public static double averageCurrent(int[] ports) {
 		double result = 0;
