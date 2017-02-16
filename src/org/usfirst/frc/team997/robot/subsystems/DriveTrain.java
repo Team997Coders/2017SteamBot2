@@ -25,7 +25,7 @@ public class DriveTrain extends Subsystem {
 	private SpeedController left, right;
 	public Encoder leftEncoder;
 	public Encoder rightEncoder;
-	public Gyro gyro;
+	//public Gyro gyro;
 
 	public double driveSpeed = 1;
 	public double driveDrift = 1;
@@ -51,7 +51,7 @@ public class DriveTrain extends Subsystem {
 		final double radius = 2;
 		final double calculated = ((gearRatio*2*pi)/ticksPerRev)*radius;
 		
-		gyro = new ADXRS450_Gyro(SPI.Port.valueOf("kOnboardCS0"));
+		//gyro = new ADXRS450_Gyro(SPI.Port.valueOf("kOnboardCS0"));
 		
 		leftEncoder = new Encoder(0, 1, false, EncodingType.k4X);
 		leftEncoder.setDistancePerPulse(calculated);
@@ -70,7 +70,7 @@ public class DriveTrain extends Subsystem {
     	right.set(rightV*driveSpeed*driveDrift);
     }
     
-    public void driveToDistance(double setPoint) {
+    /*public void driveToDistance(double setPoint) {
     	while(leftEncoder.getDistance() <= setPoint) {
     		double kpe = 0.5/setPoint;
     		double error = setPoint-leftEncoder.getDistance();
@@ -116,7 +116,7 @@ public class DriveTrain extends Subsystem {
     			driveVoltage(curve, curve);
     		}
     	}
-    }
+    }*/
 
 
 }
