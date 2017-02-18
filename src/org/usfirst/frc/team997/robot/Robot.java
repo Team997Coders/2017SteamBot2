@@ -39,6 +39,7 @@ public class Robot extends IterativeRobot {
 	public static PowerDistributionPanel pdp;
 	public static Elevator elevator;
 	public static Preferences prefs;
+	public static UDPReceive udpReceive;
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
@@ -86,9 +87,10 @@ public class Robot extends IterativeRobot {
 		
 		prefs = Preferences.getInstance();
 		
+		udpReceive = new UDPReceive();
+		
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		oi = new OI();
-	
 	}
 	
 	private void pollPreferences() {
