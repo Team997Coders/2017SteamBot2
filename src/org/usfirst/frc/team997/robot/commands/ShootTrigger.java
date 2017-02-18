@@ -25,7 +25,7 @@ public class ShootTrigger extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.oi.getRightTrigger() > 0) {
-    		shoot.shootSpeed = SmartDashboard.getNumber("Shooter Speed", 0);
+    		shoot.shootSpeed = SmartDashboard.getNumber("Shooter Setpoint", 0);
     	} else {
     		shoot.shootSpeed = 0;
     	}
