@@ -1,7 +1,7 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
 import org.usfirst.frc.team997.robot.RobotMap;
-import org.usfirst.frc.team997.robot.commands.Shoot;
+import org.usfirst.frc.team997.robot.commands.ShootTrigger;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -51,6 +51,6 @@ public class Shooter extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new Shoot());
+    	setDefaultCommand(new ShootTrigger());
     }
 }

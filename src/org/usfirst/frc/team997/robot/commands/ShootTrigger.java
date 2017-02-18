@@ -9,33 +9,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class Shoot extends Command {
+public class ShootTrigger extends Command {
+	private Shoot shoot;
 
-	public static double shootSpeed;
-    public Shoot() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public ShootTrigger() {
     	requires(Robot.shooter);
+    	shoot = new Shoot(false);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.shooterMotorMaster.enable();
-    	Robot.shooter.shooterMotorSlave.enable();
+    	shoot.initialize();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
     	if(Robot.oi.getRightTrigger() > 0) {
-    		shootSpeed = SmartDashboard.getNumber("Shooter Speed", 0);
+    		shoot.shootSpeed = SmartDashboard.getNumber("Shooter Speed", 0);
     	} else {
-    		shootSpeed = 0;
+    		shoot.shootSpeed = 0;
     	}
-    	Robot.shooter.shooterMotorMaster.setSetpoint(shootSpeed);
-    	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
-    	SmartDashboard.putNumber("Shooter speed", Robot.shooter.shooterMotorMaster.getSpeed());
-    	SmartDashboard.putNumber("Shooter error", Robot.shooter.shooterMotorMaster.getClosedLoopError());
+    	shoot.execute();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -45,16 +39,12 @@ public class Shoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.shooterMotorMaster.set(0);
-    	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
-    	Robot.shooter.shooterMotorMaster.disable();
-    	Robot.shooter.shooterMotorSlave.disable();
+    	shoot.end();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.shooter.shooterMotorMaster.set(0);
-    	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
+    	shoot.interrupted();
     }
 }
