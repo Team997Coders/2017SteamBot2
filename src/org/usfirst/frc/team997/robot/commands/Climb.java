@@ -10,12 +10,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Climb extends Command {
-	private boolean released = false;
     public Climb() {
     	requires(Robot.climber);
     }
 
-    protected void initialize() {released = false;}
+    protected void initialize() {}
 
     protected void execute() {
     	double current = Robot.averageCurrent(RobotMap.PDP.climberTalon);
@@ -24,12 +23,7 @@ public class Climb extends Command {
     }
 
     protected boolean isFinished() {
-    	if (!released) {
-    		released = !Robot.oi.climbButton.get();
-    		return false;
-    	} else {
-    		return Robot.oi.climbButton.get();
-    	}
+    	return !Robot.oi.climbButton.get();
     }
 
     protected void end() {
