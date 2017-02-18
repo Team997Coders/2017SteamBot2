@@ -4,6 +4,7 @@ import org.usfirst.frc.team997.robot.commands.DriveToAngle;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.Shoot;
 import org.usfirst.frc.team997.robot.commands.ShootSpinner;
+import org.usfirst.frc.team997.robot.subsystems.Arduino;
 import org.usfirst.frc.team997.robot.subsystems.Climber;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Elevator;
@@ -25,9 +26,6 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	I2C i2c;
-	byte[] toSend = new byte[1];
 	
 	public static OI oi;
 	public static DriveTrain driveTrain;
@@ -36,7 +34,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static PowerDistributionPanel pdp;
 	public static Elevator elevator;
-	
+	public static Arduino arduino;
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	String autoSelected;
@@ -47,7 +45,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		DigitalModule module = DigitalModule.getInstance(2);
 		try {
 			shooter = new Shooter(1, 2);
 		} catch (Exception e) {
@@ -68,10 +65,10 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);
+		arduino = new Arduino();
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		
 		oi = new OI();
-	
 	}
 
 	/**

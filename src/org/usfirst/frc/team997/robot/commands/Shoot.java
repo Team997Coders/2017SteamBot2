@@ -20,7 +20,6 @@ public class Shoot extends Command {
 	public static double shootSpeed;
     public Shoot() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.shooter);
     }
 
@@ -28,6 +27,7 @@ public class Shoot extends Command {
     protected void initialize() {
     	Robot.shooter.shooterMotorMaster.enable();
     	Robot.shooter.shooterMotorSlave.enable();
+    	Robot.arduino.sendChase((byte) 'B');
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -53,6 +53,8 @@ public class Shoot extends Command {
     	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
     	Robot.shooter.shooterMotorMaster.disable();
     	Robot.shooter.shooterMotorSlave.disable();
+    	Robot.arduino.sendChase((byte) 'K');
+    	
     }
 
     // Called when another command which requires one or more of the same
