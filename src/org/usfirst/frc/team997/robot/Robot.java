@@ -38,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static PowerDistributionPanel pdp;
 	public static Elevator elevator;
+	public static UDPReceive udpReceive;
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
@@ -82,6 +83,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoGearStraight", new AutoGearStraight());
 		SmartDashboard.putData("Auto choices", chooser);
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
+		
+		udpReceive = new UDPReceive();
 		
 		oi = new OI();
 	
