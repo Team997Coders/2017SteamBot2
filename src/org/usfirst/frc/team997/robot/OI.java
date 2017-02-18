@@ -3,9 +3,9 @@ package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.commands.Climb;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
-import org.usfirst.frc.team997.robot.commands.ElevatorTrigger;
+import org.usfirst.frc.team997.robot.commands.ElevatorSpinWhileHeld;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
-import org.usfirst.frc.team997.robot.commands.Gather;
+import org.usfirst.frc.team997.robot.commands.GatherTrigger;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -27,7 +27,7 @@ public class OI {
 		driveTo180Button, driveToN90Button, 
 		extendGatherButton;
 	public JoystickButton climbButton;
-	public JoystickButton gatherButton;
+	public JoystickButton elevatorButton;
 	
 	public OI() {
 		SmartDashboard.putData("Drive type", new DriveToggle());
@@ -47,8 +47,8 @@ public class OI {
 		climbButton = new JoystickButton(joy, 1);
 		climbButton.whenPressed(new Climb());
 
-		gatherButton = new JoystickButton(joy, 5);
-		gatherButton.whenPressed(new Gather());
+		elevatorButton = new JoystickButton(joy, 5);
+		elevatorButton.whenPressed(new GatherTrigger());
 		
 		extendGatherButton = new JoystickButton(joy, 2);
 		extendGatherButton.whenPressed(new ExtendGatherer());

@@ -7,18 +7,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorTrigger extends Command {
-    public ElevatorTrigger() {
-    	requires(Robot.elevator);
+public class GatherTrigger extends Command {
+    public GatherTrigger() {
+    	requires(Robot.gatherer);
     }
 
-    protected void initialize() {}
-
+    protected void initialize() {
+    }
+ 
     protected void execute() {
     	if (0 == Robot.deadband(Robot.oi.getLeftTrigger())) {
-    		Robot.elevator.stop();
+    		Robot.gatherer.stop();
     	} else {
-    		Robot.elevator.spinInward();
+    		Robot.gatherer.spinInward();
     	}
     }
 
@@ -26,7 +27,11 @@ public class ElevatorTrigger extends Command {
         return false;
     }
 
-    protected void end() { Robot.elevator.stop(); }
+    protected void end() {
+    	Robot.gatherer.stop();
+    }
 
-    protected void interrupted() { end(); }
+    protected void interrupted() {
+    	end();
+    }
 }
