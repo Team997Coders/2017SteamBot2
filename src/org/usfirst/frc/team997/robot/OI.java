@@ -48,8 +48,8 @@ public class OI {
 		climbButton.whenPressed(new Climb());
 
 		elevatorButton = new JoystickButton(joy, 5);
-		elevatorButton.whenPressed(new GatherTrigger());
-		
+		elevatorButton.whenPressed(new ElevatorSpinWhileHeld());
+
 		extendGatherButton = new JoystickButton(joy, 2);
 		extendGatherButton.whenPressed(new ExtendGatherer());
 

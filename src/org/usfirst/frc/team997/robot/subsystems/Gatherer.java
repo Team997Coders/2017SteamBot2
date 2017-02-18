@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
 import org.usfirst.frc.team997.robot.RobotMap;
+import org.usfirst.frc.team997.robot.commands.GatherTrigger;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
@@ -33,6 +34,6 @@ public class Gatherer extends Subsystem {
 		gatherSolenoid.set(false);
 	}
 
-    public void initDefaultCommand() {}
+    public void initDefaultCommand() { setDefaultCommand(new GatherTrigger()); }
 }
 

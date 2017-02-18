@@ -25,6 +25,6 @@ public class Elevator extends Subsystem {
     	elevatorMotor.set(0);
     }
 
-    public void initDefaultCommand() { setDefaultCommand(new ElevatorSpinWhileHeld()); }
+    public void initDefaultCommand() {}
 }
 
