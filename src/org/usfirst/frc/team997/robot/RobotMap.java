@@ -51,7 +51,7 @@ public class RobotMap {
 		ultraSonic = 0,
 		
 		//Pneumatic???
-		gatherSolenoidPort = 0; //Change this based on Lyla
+		gatherSolenoidPort = 3;
 	}
 	
 	
