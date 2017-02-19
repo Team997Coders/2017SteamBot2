@@ -54,12 +54,13 @@ public class DriveTrain extends Subsystem {
 		//gyro = new ADXRS450_Gyro(SPI.Port.valueOf("kOnboardCS0"));
 		ahrs.reset();
 		
-		leftEncoder = new Encoder(0, 1, false, EncodingType.k4X);
+		leftEncoder = new Encoder(RobotMap.Ports.leftEncoderOne, RobotMap.Ports.leftEncoderTwo, false, EncodingType.k4X);
 		leftEncoder.setDistancePerPulse(calculated);
-		leftEncoder.setPIDSourceType(PIDSourceType.kRate);
-		rightEncoder = new Encoder(2, 3, false, EncodingType.k4X);
+		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		leftEncoder.setReverseDirection(true);
+		rightEncoder = new Encoder(RobotMap.Ports.rightEncoderOne, RobotMap.Ports.rightEncoderTwo, false, EncodingType.k4X);
 		rightEncoder.setDistancePerPulse(calculated);
-		rightEncoder.setPIDSourceType(PIDSourceType.kRate);
+		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 	}
 
     public void initDefaultCommand() {
