@@ -34,7 +34,8 @@ public class DriveToAngle extends Command implements PIDOutput {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	controller.setSetpoint(setPoint);
+    	controller.setSetpoint((Robot.driveTrain.ahrs.getYaw() + setPoint + 180) % 360 - 180);
+    	SmartDashboard.putNumber("DriveToAngle Setpoint", controller.getSetpoint());
     	controller.enable();
     	SmartDashboard.putBoolean("DriveToAngleOn", true);
     }
