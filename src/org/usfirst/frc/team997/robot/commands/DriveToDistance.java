@@ -23,11 +23,9 @@ public class DriveToDistance extends Command implements PIDOutput{
     	
     	Robot.driveTrain.ahrs.reset();
     	
-    	controller = new PIDController(0.5/setPoint, 0, (setPoint-Robot.driveTrain.leftEncoder.getDistance())-0.01, Robot.driveTrain.leftEncoder, this);
-    	controller.setInputRange(-180, 180);
+    	controller = new PIDController(0.01, 0, 0, Robot.driveTrain.rightEncoder, this);
     	controller.setOutputRange(-1, 1);
     	controller.setAbsoluteTolerance(0.01);
-    	controller.setContinuous(true);
     }
 
     // Called just before this Command runs the first time
@@ -39,7 +37,7 @@ public class DriveToDistance extends Command implements PIDOutput{
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.driveVoltage(-pidRate, 0.06*Robot.driveTrain.ahrs.getAngle());
+    	Robot.driveTrain.driveVoltage(pidRate, pidRate);
     }
 
     // Make this return true when this Command no longer needs to run execute()
