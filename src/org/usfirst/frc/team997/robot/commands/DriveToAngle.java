@@ -1,5 +1,6 @@
 package org.usfirst.frc.team997.robot.commands;
 
+import org.usfirst.frc.team997.robot.AHRSWrapper;
 import org.usfirst.frc.team997.robot.Robot;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -22,7 +23,7 @@ public class DriveToAngle extends Command implements PIDOutput {
 
     	Robot.driveTrain.ahrs.reset();
 
-    	controller = new PIDController(0.015, 0, 0, Robot.driveTrain.ahrs, this);
+    	controller = new PIDController(0.030, 0, 0.020, new AHRSWrapper(), this);
     	controller.setInputRange(-180, 180);
     	controller.setOutputRange(-.3, .3);
     	controller.setAbsoluteTolerance(2.0);
