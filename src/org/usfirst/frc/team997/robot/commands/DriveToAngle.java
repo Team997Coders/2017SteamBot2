@@ -49,11 +49,7 @@ public class DriveToAngle extends Command implements PIDOutput {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-       
-    	if(controller.get() == setPoint) {
-    		return true;
-    	}
-    	return false;
+    	return controller.onTarget();
     }
 
     // Called once after isFinished returns true
