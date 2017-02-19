@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
 
 
@@ -68,6 +69,10 @@ public class DriveTrain extends Subsystem {
     }
     
     public void driveVoltage(double leftV, double rightV) {
+    	SmartDashboard.putNumber("DriveTrain Encoder Left", leftEncoder.getDistance());
+    	SmartDashboard.putNumber("DriveTrain Encoder Right", rightEncoder.getDistance());
+    	SmartDashboard.putNumber("DriveTrain Encoder Left Ticks", leftEncoder.getRaw());
+    	SmartDashboard.putNumber("DriveTrain Encoder Right Ticks", rightEncoder.getRaw());
     	left.set(-leftV*driveSpeed);
     	right.set(rightV*driveSpeed*driveDrift);
     }
