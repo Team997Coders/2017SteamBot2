@@ -22,7 +22,11 @@ public class Gatherer extends Subsystem {
 	public void spinInward() {
 		gatherMotor.set(RobotMap.Values.gatherSpeed);
 	}
-	
+
+	public void spitOut() {
+		gatherMotor.set(-RobotMap.Values.gatherSpeed);
+	}
+
 	public void stop() {
 		gatherMotor.set(0);
 	}

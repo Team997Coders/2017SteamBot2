@@ -3,6 +3,7 @@ package org.usfirst.frc.team997.robot.commands;
 import org.usfirst.frc.team997.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -26,9 +27,11 @@ public class Drive extends Command {
     										Robot.deadband(Robot.oi.getRightY()));
     	} else {
     		double aleft = Robot.oi.getLeftY();
-    		double aright = Robot.oi.getRightX();
-    		Robot.driveTrain.driveVoltage(Robot.clamp(Robot.negSq(Robot.deadband(aleft + aright))),
-    										Robot.clamp(Robot.negSq(Robot.deadband(aleft - aright))));
+    		double aright = Robot.oi.getRightX() * .8;
+    		SmartDashboard.putNumber("Joystick Left Y", aleft);
+    		SmartDashboard.putNumber("Joystick Right X", aright);
+    		Robot.driveTrain.driveVoltage(Robot.clamp(/*Robot.negSq*/(Robot.deadband(aleft + aright))),
+    										Robot.clamp(/*Robot.negSq*/(Robot.deadband(aleft - aright))));
     	}
     }
 

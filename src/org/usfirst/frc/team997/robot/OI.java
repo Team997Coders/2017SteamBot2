@@ -2,10 +2,13 @@ package org.usfirst.frc.team997.robot;
 
 
 import org.usfirst.frc.team997.robot.commands.Climb;
+import org.usfirst.frc.team997.robot.commands.DriveToAngle;
+import org.usfirst.frc.team997.robot.commands.DriveToDistance;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.ElevatorSpinWhileHeld;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
 import org.usfirst.frc.team997.robot.commands.GatherTrigger;
+import org.usfirst.frc.team997.robot.commands.SpitoutGatherer;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -28,21 +31,17 @@ public class OI {
 		extendGatherButton;
 	public JoystickButton climbButton;
 	public JoystickButton elevatorButton;
+	public JoystickButton reverseGatherButton;
 	
 	public OI() {
 		SmartDashboard.putData("Drive type", new DriveToggle());
 		
 		joy = new Joystick(0);
-		//driveToAngleButton = new JoystickButton(joy1, 1);
-		//driveToAngleButton.whenPressed(Robot.driveToAngleCommand);
-		//driveTo0Button = new JoystickButton(joy1, 2);
-		//driveTo0Button.whenPressed(new SetDriveToAngle(0));
-		//driveTo90Button = new JoystickButton(joy1, 3);
-		//driveTo90Button.whenPressed(new SetDriveToAngle(90));
-		//driveTo180Button = new JoystickButton(joy1, 4);
-		//driveTo180Button.whenPressed(new SetDriveToAngle(179.9));
-		//driveToN90Button = new JoystickButton(joy1, 5);
-		//driveToN90Button.whenPressed(new SetDriveToAngle(-90));
+		
+//		driveTo90Button = new JoystickButton(joy, 3);
+//		driveTo90Button.whenPressed(new DriveToDistance(60));
+		reverseGatherButton = new JoystickButton(joy, 3);
+		reverseGatherButton.whenPressed(new SpitoutGatherer());
 		
 		climbButton = new JoystickButton(joy, 1);
 		climbButton.whenPressed(new Climb());
@@ -52,6 +51,8 @@ public class OI {
 
 		extendGatherButton = new JoystickButton(joy, 2);
 		extendGatherButton.whenPressed(new ExtendGatherer());
+		
+		
 
     	SmartDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
 	}

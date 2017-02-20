@@ -100,6 +100,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		driveTrain.resetEncoders();
+		driveTrain.resetGyro();
 		autoSelected = (Command) chooser.getSelected();
 		autoSelected.start();
 		// autoSelected = SmartDashboard.getString("Auto Selector",
@@ -125,6 +127,11 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 
+	public void teleopInit() {
+		driveTrain.resetEncoders();
+		driveTrain.resetGyro();
+	}
+
 	private int tickcount;
 	@Override
 	public void teleopPeriodic() {
@@ -133,13 +140,15 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("tickCount", tickcount);
     	Scheduler.getInstance().run();
     	
-    	SmartDashboard.putNumber("DriveTrain Left Voltage 1", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[0]));
-    	SmartDashboard.putNumber("DriveTrain Left Voltage 2", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[1]));
-    	SmartDashboard.putNumber("DriveTrain Left Voltage 3", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[2]));
-    	
-    	SmartDashboard.putNumber("DriveTrain Right Voltage 1", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[0]));
-    	SmartDashboard.putNumber("DriveTrain Right Voltage 2", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[1]));
-    	SmartDashboard.putNumber("DriveTrain Right Voltage 3", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[2]));
+    	/*
+    	 * SmartDashboard.putNumber("DriveTrain Left Current 1", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[0]));
+    	 * SmartDashboard.putNumber("DriveTrain Left Current 2", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[1]));
+    	 * SmartDashboard.putNumber("DriveTrain Left Current 3", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[2]));
+         *    	
+    	 * SmartDashboard.putNumber("DriveTrain Right Voltage 1", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[0]));
+    	 * SmartDashboard.putNumber("DriveTrain Right Voltage 2", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[1]));
+    	 * SmartDashboard.putNumber("DriveTrain Right Voltage 3", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[2]));
+    	 */
 	}
 	
 	public void disabledPeriodic() {

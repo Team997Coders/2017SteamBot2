@@ -40,10 +40,10 @@ public class RobotMap {
 		gatherTalon = 4,
 		
 		//Digital IO
-		leftEncoderOne = 0,
-		leftEncoderTwo = 1,
-		rightEncoderOne = 2,
-		rightEncoderTwo = 3,
+		leftEncoderOne = 2,
+		leftEncoderTwo = 3,
+		rightEncoderOne = 0,
+		rightEncoderTwo = 1,
 		gatherSensor = 4,
 		elevatorSensor = 5,
 		

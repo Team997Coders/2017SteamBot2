@@ -55,7 +55,8 @@ public class DriveTrain extends Subsystem {
 		//gyro = new ADXRS450_Gyro(SPI.Port.valueOf("kOnboardCS0"));
 		ahrs.reset();
 		
-		leftEncoder = new Encoder(RobotMap.Ports.leftEncoderOne, RobotMap.Ports.leftEncoderTwo, false, EncodingType.k4X);
+		//leftEncoder = new Encoder(RobotMap.Ports.leftEncoderOne, RobotMap.Ports.leftEncoderTwo, false, EncodingType.k4X);
+		leftEncoder = new Encoder(RobotMap.Ports.leftEncoderOne, RobotMap.Ports.leftEncoderTwo);
 		leftEncoder.setDistancePerPulse(calculated);
 		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		leftEncoder.setReverseDirection(true);
@@ -70,11 +71,20 @@ public class DriveTrain extends Subsystem {
     
     public void driveVoltage(double leftV, double rightV) {
     	SmartDashboard.putNumber("DriveTrain Encoder Left", leftEncoder.getDistance());
-    	SmartDashboard.putNumber("DriveTrain Encoder Right", rightEncoder.getDistance());
-    	SmartDashboard.putNumber("DriveTrain Encoder Left Ticks", leftEncoder.getRaw());
-    	SmartDashboard.putNumber("DriveTrain Encoder Right Ticks", rightEncoder.getRaw());
+    	SmartDashboard.putNumber("DriveTrain Encoder Right", leftEncoder.getDistance());
+    	SmartDashboard.putNumber("DriveTrain Encoder Left Ticks", leftEncoder.get());
+    	SmartDashboard.putNumber("DriveTrain Encoder Right Ticks", rightEncoder.get());
     	left.set(-leftV*driveSpeed);
     	right.set(rightV*driveSpeed*driveDrift);
+    }
+    
+    public void resetEncoders() {
+    	leftEncoder.reset();
+    	rightEncoder.reset();
+    }
+    
+    public void resetGyro() {
+    	ahrs.reset();
     }
     
     /*public void driveToDistance(double setPoint) {

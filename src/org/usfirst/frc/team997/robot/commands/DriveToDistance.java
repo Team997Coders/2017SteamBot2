@@ -37,6 +37,7 @@ public class DriveToDistance extends Command implements PIDOutput{
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+//    	Robot.driveTrain.driveVoltage(-pidRate, 0.06*Robot.driveTrain.ahrs.getAngle());
     	Robot.driveTrain.driveVoltage(pidRate, pidRate);
     }
 

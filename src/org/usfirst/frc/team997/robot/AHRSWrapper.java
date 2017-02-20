@@ -20,7 +20,7 @@ public class AHRSWrapper implements PIDSource{
 	@Override
 	public double pidGet() {
 		// TODO Auto-generated method stub
-		return Robot.driveTrain.ahrs.pidGet() - offset;
+		return Robot.driveTrain.ahrs.getYaw() - offset;
 	}
 
 }
