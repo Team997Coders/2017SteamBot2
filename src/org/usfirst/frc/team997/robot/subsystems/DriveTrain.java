@@ -87,6 +87,10 @@ public class DriveTrain extends Subsystem {
     	ahrs.reset();
     }
     
+    public double getDistance() {
+    	return (leftEncoder.getDistance() + rightEncoder.getDistance()) / 2.0;
+    }
+    
     /*public void driveToDistance(double setPoint) {
     	while(leftEncoder.getDistance() <= setPoint) {
     		double kpe = 0.5/setPoint;
