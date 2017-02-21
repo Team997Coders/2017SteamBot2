@@ -6,6 +6,7 @@ import org.usfirst.frc.team997.robot.commands.GatherTrigger;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  *
@@ -17,6 +18,8 @@ public class Gatherer extends Subsystem {
 	public Gatherer() {
 		gatherSolenoid = new Solenoid(RobotMap.Ports.gatherSolenoidPort);
 		gatherMotor = new Talon(RobotMap.Ports.gatherTalon);
+		
+		LiveWindow.addActuator("Gatherer", "Gatherer Motor", (Talon) gatherMotor);
 	}
 	
 	public void spinInward() {

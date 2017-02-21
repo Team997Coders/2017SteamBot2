@@ -6,21 +6,15 @@ import org.usfirst.frc.team997.robot.commands.Drive;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.SPI;
-
 
 /**
  *
@@ -30,7 +24,6 @@ public class DriveTrain extends Subsystem {
 	private SpeedController left, right;
 	public Encoder leftEncoder;
 	public Encoder rightEncoder;
-	//public Gyro gyro;
 	private PIDController leftPID, rightPID;
 
 	public double driveSpeed = 1;
@@ -56,7 +49,6 @@ public class DriveTrain extends Subsystem {
 		final double radius = 2;
 		final double calculated = ((gearRatio*2*pi)/ticksPerRev)*radius;
 		
-		//gyro = new ADXRS450_Gyro(SPI.Port.valueOf("kOnboardCS0"));
 		ahrs.reset();
 		
 		//leftEncoder = new Encoder(RobotMap.Ports.leftEncoderOne, RobotMap.Ports.leftEncoderTwo, false, EncodingType.k4X);

@@ -2,17 +2,13 @@ package org.usfirst.frc.team997.robot;
 
 
 import org.usfirst.frc.team997.robot.commands.Climb;
-import org.usfirst.frc.team997.robot.commands.DriveToAngle;
-import org.usfirst.frc.team997.robot.commands.DriveToDistance;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.ElevatorSpinWhileHeld;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
-import org.usfirst.frc.team997.robot.commands.GatherTrigger;
 import org.usfirst.frc.team997.robot.commands.SpitoutGatherer;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -25,10 +21,7 @@ public class OI {
 	public boolean isTank = false;
 	public Joystick joy;
 
-	private JoystickButton driveToAngleButton, 
-		driveTo0Button, driveTo90Button, 
-		driveTo180Button, driveToN90Button, 
-		extendGatherButton;
+	private JoystickButton extendGatherButton;
 	public JoystickButton climbButton;
 	public JoystickButton elevatorButton;
 	public JoystickButton reverseGatherButton;
@@ -38,8 +31,6 @@ public class OI {
 		
 		joy = new Joystick(0);
 		
-//		driveTo90Button = new JoystickButton(joy, 3);
-//		driveTo90Button.whenPressed(new DriveToDistance(60));
 		reverseGatherButton = new JoystickButton(joy, 3);
 		reverseGatherButton.whenPressed(new SpitoutGatherer());
 		
@@ -51,8 +42,6 @@ public class OI {
 
 		extendGatherButton = new JoystickButton(joy, 2);
 		extendGatherButton.whenPressed(new ExtendGatherer());
-		
-		
 
     	SmartDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
 	}

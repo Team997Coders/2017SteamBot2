@@ -4,7 +4,6 @@ import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.VisionStorage;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *

@@ -8,7 +8,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  *
@@ -45,7 +45,8 @@ public class Shooter extends Subsystem {
         shooterMotorMaster.setP(RobotMap.Values.shooterP);
         shooterMotorMaster.setI(RobotMap.Values.shooterI);
         shooterMotorMaster.setD(RobotMap.Values.shooterD);
-
+        
+        LiveWindow.addActuator("Shooter", "Shooter Motor", (CANTalon) shooterMotorMaster);
     }
     
     public void initDefaultCommand() {
