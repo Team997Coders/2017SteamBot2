@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
 
@@ -72,6 +74,14 @@ public class DriveTrain extends Subsystem {
 		rightPID = new PIDController(
 				RobotMap.Values.driveTrainP, RobotMap.Values.driveTrainI,
 				RobotMap.Values.driveTrainD, new RateEncoder(leftEncoder), right);
+		
+		// Let's show everything on the LiveWindow
+		LiveWindow.addActuator("Drive Train", "Left Motor", (VictorSP) left);
+		LiveWindow.addActuator("Drive Train", "Right Motor", (VictorSP) right);
+		LiveWindow.addSensor("Drive Train", "Left Encoder", leftEncoder);
+		LiveWindow.addSensor("Drive Train", "Right Encoder", rightEncoder);
+		LiveWindow.addSensor("Drive Train", "Gyro", ahrs);
+		LiveWindow.addActuator("Drive Train", "PID", leftPID);
 	}
 
     public void initDefaultCommand() {
