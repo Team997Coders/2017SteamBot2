@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot.commands;
 
 import org.usfirst.frc.team997.robot.Robot;
+import org.usfirst.frc.team997.robot.DistanceEncoder;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -20,12 +21,10 @@ public class DriveToDistance extends Command implements PIDOutput{
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
     	setPoint = distance;
-    	
-    	Robot.driveTrain.ahrs.reset();
-    	
-    	controller = new PIDController(0.01, 0, 0, Robot.driveTrain.rightEncoder, this);
+
+    	controller = new PIDController(0.01, 0, 0, new DistanceEncoder(Robot.driveTrain.rightEncoder), this);
     	controller.setOutputRange(-1, 1);
-    	controller.setAbsoluteTolerance(0.01);
+    	controller.setAbsoluteTolerance(1);
     }
 
     // Called just before this Command runs the first time
@@ -43,11 +42,7 @@ public class DriveToDistance extends Command implements PIDOutput{
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        
-    	if(controller.get() == setPoint) {
-    		return true;
-    	}
-    	return false;
+    	return controller.onTarget();
     }
 
     // Called once after isFinished returns true

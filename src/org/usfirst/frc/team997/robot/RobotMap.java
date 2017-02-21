@@ -63,6 +63,10 @@ public class RobotMap {
 		shooterI = 0.0,
 		shooterD = 0,//500,
 		
+		driveTrainP = 0,
+		driveTrainI = 0,
+		driveTrainD = 0,
+		
 		shooterSpeed = 1555,
 
 		climbSpeed = .8,

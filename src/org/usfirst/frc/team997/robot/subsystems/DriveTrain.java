@@ -1,5 +1,6 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
+import org.usfirst.frc.team997.robot.RateEncoder;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.commands.Drive;
 
@@ -8,6 +9,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
@@ -27,6 +29,7 @@ public class DriveTrain extends Subsystem {
 	public Encoder leftEncoder;
 	public Encoder rightEncoder;
 	//public Gyro gyro;
+	private PIDController leftPID, rightPID;
 
 	public double driveSpeed = 1;
 	public double driveDrift = 1;
@@ -41,7 +44,6 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DriveTrain() {
-	
 		ahrs = new AHRS(RobotMap.AHRSPort);
 		left = new VictorSP(RobotMap.Ports.leftDriveMotor);
 		right = new VictorSP(RobotMap.Ports.rightDriveMotor);
@@ -63,6 +65,13 @@ public class DriveTrain extends Subsystem {
 		rightEncoder = new Encoder(RobotMap.Ports.rightEncoderOne, RobotMap.Ports.rightEncoderTwo, false, EncodingType.k4X);
 		rightEncoder.setDistancePerPulse(calculated);
 		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+
+		leftPID = new PIDController(
+				RobotMap.Values.driveTrainP, RobotMap.Values.driveTrainI,
+				RobotMap.Values.driveTrainD, new RateEncoder(leftEncoder), left);
+		rightPID = new PIDController(
+				RobotMap.Values.driveTrainP, RobotMap.Values.driveTrainI,
+				RobotMap.Values.driveTrainD, new RateEncoder(leftEncoder), right);
 	}
 
     public void initDefaultCommand() {
@@ -90,6 +99,19 @@ public class DriveTrain extends Subsystem {
     public double getDistance() {
     	return (leftEncoder.getDistance() + rightEncoder.getDistance()) / 2.0;
     }
+
+	public void drivePID(double leftV, double rightV) {
+		leftPID.setSetpoint(leftV);
+		rightPID.setSetpoint(rightV);
+	}
+	public void startPID() {
+		leftPID.enable();
+		rightPID.enable();
+	}
+	public void stopPID() {
+		leftPID.disable();
+		rightPID.disable();
+	}
     
     /*public void driveToDistance(double setPoint) {
     	while(leftEncoder.getDistance() <= setPoint) {

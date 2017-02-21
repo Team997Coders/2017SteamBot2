@@ -18,21 +18,22 @@ public class Drive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.driveTrain.startPID();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double left, right;
     	if(Robot.oi.isTank) {
-    		Robot.driveTrain.driveVoltage(Robot.deadband(Robot.oi.getLeftY()), 
-    										Robot.deadband(Robot.oi.getRightY()));
+    		left = Robot.deadband(Robot.oi.getLeftY());
+    		right = Robot.deadband(Robot.oi.getRightX());
     	} else {
-    		double aleft = Robot.oi.getLeftY();
-    		double aright = Robot.oi.getRightX() * .8;
-    		SmartDashboard.putNumber("Joystick Left Y", aleft);
-    		SmartDashboard.putNumber("Joystick Right X", aright);
-    		Robot.driveTrain.driveVoltage(Robot.clamp(/*Robot.negSq*/(Robot.deadband(aleft + aright))),
-    										Robot.clamp(/*Robot.negSq*/(Robot.deadband(aleft - aright))));
+    		double aleft = Robot.deadband(Robot.oi.getLeftY());
+    		double aright = Robot.deadband(Robot.oi.getRightX() * .8);
+    		left = aleft + aright;
+    		right = aleft - aright;
     	}
+    	Robot.driveTrain.drivePID(left, right);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -42,6 +43,7 @@ public class Drive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveTrain.stopPID();
     	Robot.driveTrain.driveVoltage(0, 0);
     }
 
