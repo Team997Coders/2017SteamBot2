@@ -73,4 +73,13 @@ public class RobotMap {
 		gatherSpeed = -1;
 	}
 	
+	public static class PrefVars {
+		public static double 
+		
+		Shooter_P,
+		Shooter_I,
+		Shooter_D,
+		Shooter_F,
+		Shooter_defSpeed;
+	}
 }

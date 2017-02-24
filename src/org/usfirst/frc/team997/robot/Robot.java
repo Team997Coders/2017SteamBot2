@@ -16,6 +16,7 @@ import org.usfirst.frc.team997.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -38,6 +39,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static PowerDistributionPanel pdp;
 	public static Elevator elevator;
+	public static Preferences prefs;
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
@@ -74,6 +76,7 @@ public class Robot extends IterativeRobot {
 
 		climber = new Climber();
 		
+		// Set up the Autonomous Chooser to select auto mode
 		chooser.addDefault("Null", new AutoNullCommand());
 		chooser.addObject("AutoGearLeft", new AutoGearLeft());
 		chooser.addObject("AutoGearRight", new AutoGearRight());
@@ -81,8 +84,17 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoGearShootRight", new AutoGearShootRight());
 		chooser.addObject("AutoGearStraight", new AutoGearStraight());
 		SmartDashboard.putData("Auto choices", chooser);
-		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		
+		
+		// Set up preference variables for the shooter PID to allow easier tuning
+		// and storage of the variables
+		RobotMap.PrefVars.Shooter_P = prefs.getDouble("Shooter PID P", 0.0);
+		RobotMap.PrefVars.Shooter_I = prefs.getDouble("Shooter PID I", 0.0);
+		RobotMap.PrefVars.Shooter_D = prefs.getDouble("Shooter PID D", 0.0);
+		RobotMap.PrefVars.Shooter_F = prefs.getDouble("Shooter PID F", 0.0);
+		RobotMap.PrefVars.Shooter_defSpeed = prefs.getDouble("Shooter Default Speed", 3000.0);
+		
+		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		oi = new OI();
 	
 	}

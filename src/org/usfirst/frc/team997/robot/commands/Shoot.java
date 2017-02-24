@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot.commands;
 
 import org.usfirst.frc.team997.robot.Robot;
+import org.usfirst.frc.team997.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,11 +24,17 @@ public class Shoot extends Command {
     	Robot.shooter.shooterMotorSlave.enable();
     	shootSpeed = 0;
     	done = false;
+    	
+        Robot.shooter.shooterMotorMaster.setF(RobotMap.PrefVars.Shooter_F);
+        Robot.shooter.shooterMotorMaster.setP(RobotMap.PrefVars.Shooter_P);
+        Robot.shooter.shooterMotorMaster.setI(RobotMap.PrefVars.Shooter_I);
+        Robot.shooter.shooterMotorMaster.setD(RobotMap.PrefVars.Shooter_D);
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.shooterMotorMaster.set(shootSpeed);
+    	Robot.shooter.shooterMotorMaster.set(RobotMap.PrefVars.Shooter_defSpeed);
     	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
     	SmartDashboard.putNumber("Shooter speed", Robot.shooter.shooterMotorMaster.getSpeed());
     	SmartDashboard.putNumber("Shooter error", Robot.shooter.shooterMotorMaster.getClosedLoopError());
