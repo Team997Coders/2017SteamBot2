@@ -84,7 +84,14 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoGearStraight", new AutoGearStraight());
 		SmartDashboard.putData("Auto choices", chooser);
 		
+		prefs = Preferences.getInstance();
 		
+		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
+		oi = new OI();
+	
+	}
+	
+	private void pollPreferences() {
 		// Set up preference variables for the shooter PID to allow easier tuning
 		// and storage of the variables
 		RobotMap.PrefVars.Shooter_P = prefs.getDouble("Shooter PID P", 0.0);
@@ -92,10 +99,6 @@ public class Robot extends IterativeRobot {
 		RobotMap.PrefVars.Shooter_D = prefs.getDouble("Shooter PID D", 0.0);
 		RobotMap.PrefVars.Shooter_F = prefs.getDouble("Shooter PID F", 0.0);
 		RobotMap.PrefVars.Shooter_defSpeed = prefs.getDouble("Shooter Default Speed", 3000.0);
-		
-		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
-		oi = new OI();
-	
 	}
 
 	/**
@@ -124,7 +127,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	@Override
-	public void autonomousPeriodic() {    	
+	public void autonomousPeriodic() {
+		pollPreferences();
 		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 		/*switch (autoSelected) {
 		case customAuto:
@@ -146,6 +150,7 @@ public class Robot extends IterativeRobot {
 	private int tickcount;
 	@Override
 	public void teleopPeriodic() {
+		pollPreferences();
     	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
     	++tickcount;
     	SmartDashboard.putNumber("tickCount", tickcount);

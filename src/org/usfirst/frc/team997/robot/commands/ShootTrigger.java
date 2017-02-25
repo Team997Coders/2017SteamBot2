@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot.commands;
 
 import org.usfirst.frc.team997.robot.Robot;
+import org.usfirst.frc.team997.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,7 +26,7 @@ public class ShootTrigger extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.oi.getRightTrigger() > 0) {
-    		shoot.shootSpeed = SmartDashboard.getNumber("Shooter Setpoint", 0);
+    		shoot.shootSpeed = RobotMap.PrefVars.Shooter_defSpeed;
     	} else {
     		shoot.shootSpeed = 0;
     	}

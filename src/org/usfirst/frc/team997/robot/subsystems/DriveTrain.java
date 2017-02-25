@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
 import org.usfirst.frc.team997.robot.RateEncoder;
+import org.usfirst.frc.team997.robot.ReversedMotor;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.commands.Drive;
 
@@ -42,30 +43,34 @@ public class DriveTrain extends Subsystem {
 		ahrs = new AHRS(RobotMap.AHRSPort);
 		left = new VictorSP(RobotMap.Ports.leftDriveMotor);
 		right = new VictorSP(RobotMap.Ports.rightDriveMotor);
+		right.setInverted(true);
 		
-		final double gearRatio = 0.225;
+		final double gearRatio = 1.25;
 		final double ticksPerRev = 2048;
-		final double pi = 3.14;
 		final double radius = 2;
-		final double calculated = ((gearRatio*2*pi)/ticksPerRev)*radius;
+		final double calculated = ((gearRatio*2*Math.PI)/ticksPerRev)*radius;
 		
 		ahrs.reset();
 		
-		//leftEncoder = new Encoder(RobotMap.Ports.leftEncoderOne, RobotMap.Ports.leftEncoderTwo, false, EncodingType.k4X);
-		leftEncoder = new Encoder(RobotMap.Ports.leftEncoderOne, RobotMap.Ports.leftEncoderTwo);
+		leftEncoder = new Encoder(RobotMap.Ports.leftEncoderOne, RobotMap.Ports.leftEncoderTwo, true, EncodingType.k4X);
 		leftEncoder.setDistancePerPulse(calculated);
-		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
-		leftEncoder.setReverseDirection(true);
+		leftEncoder.setPIDSourceType(PIDSourceType.kRate);
 		rightEncoder = new Encoder(RobotMap.Ports.rightEncoderOne, RobotMap.Ports.rightEncoderTwo, false, EncodingType.k4X);
 		rightEncoder.setDistancePerPulse(calculated);
-		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		rightEncoder.setPIDSourceType(PIDSourceType.kRate);
 
 		leftPID = new PIDController(
 				RobotMap.Values.driveTrainP, RobotMap.Values.driveTrainI,
-				RobotMap.Values.driveTrainD, new RateEncoder(leftEncoder), left);
+				RobotMap.Values.driveTrainD, RobotMap.Values.driveTrainF, 
+				new RateEncoder(leftEncoder), left);
+		leftPID.setInputRange(-300, 300);
+		leftPID.setOutputRange(-1, 1);
 		rightPID = new PIDController(
 				RobotMap.Values.driveTrainP, RobotMap.Values.driveTrainI,
-				RobotMap.Values.driveTrainD, new RateEncoder(leftEncoder), right);
+				RobotMap.Values.driveTrainD, RobotMap.Values.driveTrainF, 
+				new RateEncoder(rightEncoder), right);
+		rightPID.setInputRange(-300, 300);
+		rightPID.setOutputRange(-1, 1);
 		
 		// Let's show everything on the LiveWindow
 		LiveWindow.addActuator("Drive Train", "Left Motor", (VictorSP) left);
@@ -74,6 +79,7 @@ public class DriveTrain extends Subsystem {
 		LiveWindow.addSensor("Drive Train", "Right Encoder", rightEncoder);
 		LiveWindow.addSensor("Drive Train", "Gyro", ahrs);
 		LiveWindow.addActuator("Drive Train", "PID", leftPID);
+		
 	}
 
     public void initDefaultCommand() {
@@ -81,12 +87,23 @@ public class DriveTrain extends Subsystem {
     }
     
     public void driveVoltage(double leftV, double rightV) {
+    	updateSD();
+    	left.set(leftV*driveSpeed);
+    	right.set(rightV*driveSpeed*driveDrift);
+    }
+    
+    private void updateSD() {
     	SmartDashboard.putNumber("DriveTrain Encoder Left", leftEncoder.getDistance());
-    	SmartDashboard.putNumber("DriveTrain Encoder Right", leftEncoder.getDistance());
+    	SmartDashboard.putNumber("DriveTrain Encoder Right", rightEncoder.getDistance());
     	SmartDashboard.putNumber("DriveTrain Encoder Left Ticks", leftEncoder.get());
     	SmartDashboard.putNumber("DriveTrain Encoder Right Ticks", rightEncoder.get());
-    	left.set(-leftV*driveSpeed);
-    	right.set(rightV*driveSpeed*driveDrift);
+    	SmartDashboard.putNumber("DriveTrain Encoder L Rate", leftEncoder.getRate());
+    	SmartDashboard.putNumber("DriveTrain Encoder R Rate", rightEncoder.getRate());
+    	
+    	SmartDashboard.putBoolean("PID Status", leftPID.isEnabled());
+    	SmartDashboard.putNumber("PID Setpoint", leftPID.getSetpoint());
+    	SmartDashboard.putNumber("PID Error", leftPID.getError());
+    	SmartDashboard.putNumber("PID Output", leftPID.get());
     }
     
     public void resetEncoders() {
@@ -103,6 +120,7 @@ public class DriveTrain extends Subsystem {
     }
 
 	public void drivePID(double leftV, double rightV) {
+		updateSD();
 		leftPID.setSetpoint(leftV);
 		rightPID.setSetpoint(rightV);
 	}

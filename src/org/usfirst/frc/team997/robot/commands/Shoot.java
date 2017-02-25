@@ -29,12 +29,11 @@ public class Shoot extends Command {
         Robot.shooter.shooterMotorMaster.setP(RobotMap.PrefVars.Shooter_P);
         Robot.shooter.shooterMotorMaster.setI(RobotMap.PrefVars.Shooter_I);
         Robot.shooter.shooterMotorMaster.setD(RobotMap.PrefVars.Shooter_D);
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.shooterMotorMaster.set(RobotMap.PrefVars.Shooter_defSpeed);
+    	Robot.shooter.shooterMotorMaster.set(shootSpeed);
     	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
     	SmartDashboard.putNumber("Shooter speed", Robot.shooter.shooterMotorMaster.getSpeed());
     	SmartDashboard.putNumber("Shooter error", Robot.shooter.shooterMotorMaster.getClosedLoopError());
@@ -42,7 +41,7 @@ public class Shoot extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !done;
+        return done;
     }
 
     // Called once after isFinished returns true

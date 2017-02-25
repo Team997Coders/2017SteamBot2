@@ -23,10 +23,10 @@ public class DriveToAngle extends Command implements PIDOutput {
 
     	Robot.driveTrain.ahrs.reset();
 
-    	controller = new PIDController(0.030, 0, 0.020, new AHRSWrapper(), this);
+    	controller = new PIDController(0.01, 0, 0, 100000000, new AHRSWrapper(), this);
     	controller.setInputRange(-180, 180);
-    	controller.setOutputRange(-.3, .3);
-    	controller.setAbsoluteTolerance(2.0);
+    	controller.setOutputRange(-.25, .25);
+    	controller.setAbsoluteTolerance(1.0);
     	controller.setContinuous(true);
 
     	LiveWindow.addActuator("DriveToAngle", "RotationController", controller);
@@ -34,6 +34,9 @@ public class DriveToAngle extends Command implements PIDOutput {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	double setpoint = Robot.driveTrain.ahrs.getYaw() + setPoint;
+    	if (setpoint > 180) setpoint -= 360;
+    	if (setpoint < -180) setpoint += 360;
     	controller.setSetpoint((Robot.driveTrain.ahrs.getYaw() + setPoint + 180) % 360 - 180);
     	SmartDashboard.putNumber("DriveToAngle Setpoint", controller.getSetpoint());
     	controller.enable();
@@ -43,8 +46,10 @@ public class DriveToAngle extends Command implements PIDOutput {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	SmartDashboard.putNumber("DriveToAngle currentRotationRate", pidRate);
+    	if (pidRate < .2 && pidRate > 0) { pidRate = .25; }
+    	if (pidRate > -.2 && pidRate <= 0) { pidRate = -.25; }
 
-    	Robot.driveTrain.driveVoltage(-pidRate, pidRate);
+    	Robot.driveTrain.driveVoltage(pidRate, -pidRate);
     }
 
     // Make this return true when this Command no longer needs to run execute()

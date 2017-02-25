@@ -22,14 +22,14 @@ public class DriveToDistance extends Command implements PIDOutput{
     	requires(Robot.driveTrain);
     	setPoint = distance;
 
-    	controller = new PIDController(0.01, 0, 0, new DistanceEncoder(Robot.driveTrain.rightEncoder), this);
-    	controller.setOutputRange(-1, 1);
+    	controller = new PIDController(1, 0, 1, new DistanceEncoder(Robot.driveTrain.rightEncoder), this);
+    	controller.setOutputRange(-.5, .5);
     	controller.setAbsoluteTolerance(1);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	controller.setSetpoint(setPoint);
+    	controller.setSetpoint(setPoint + Robot.driveTrain.rightEncoder.getDistance());
     	controller.enable();
     	SmartDashboard.putBoolean("DriveToDistance On", true);
     }

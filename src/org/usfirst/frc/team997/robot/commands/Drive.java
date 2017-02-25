@@ -8,8 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Drive extends Command {
+    public static boolean useAccelerationControl = true;
 
-    public Drive() {
+	public Drive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
@@ -17,7 +18,9 @@ public class Drive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.startPID();
+    	if (useAccelerationControl) {
+    		Robot.driveTrain.startPID();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,11 +31,15 @@ public class Drive extends Command {
     		right = Robot.deadband(Robot.oi.getRightX());
     	} else {
     		double aleft = Robot.deadband(Robot.oi.getLeftY());
-    		double aright = Robot.deadband(Robot.oi.getRightX() * .8);
+    		double aright = Robot.deadband(Robot.oi.getRightX() * .3);
     		left = aleft + aright;
     		right = aleft - aright;
     	}
-    	Robot.driveTrain.drivePID(left, right);
+    	if (useAccelerationControl) {
+    		Robot.driveTrain.drivePID(left * 200, right * 200);
+    	} else {
+    		Robot.driveTrain.driveVoltage(Robot.clamp(left), Robot.clamp(right));
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -42,7 +49,9 @@ public class Drive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.stopPID();
+    	if (useAccelerationControl) {
+    		Robot.driveTrain.stopPID();
+    	}
     	Robot.driveTrain.driveVoltage(0, 0);
     }
 

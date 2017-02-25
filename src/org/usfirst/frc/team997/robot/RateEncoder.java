@@ -23,7 +23,7 @@ public class RateEncoder implements PIDSource{
 
 	@Override
 	public double pidGet() {
-		return encoderStore.getDistance();
+		return encoderStore.getRate();
 	}
 
 }

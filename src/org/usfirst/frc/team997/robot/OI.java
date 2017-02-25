@@ -2,10 +2,12 @@ package org.usfirst.frc.team997.robot;
 
 
 import org.usfirst.frc.team997.robot.commands.Climb;
+import org.usfirst.frc.team997.robot.commands.DriveToAngle;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.ElevatorSpinWhileHeld;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
 import org.usfirst.frc.team997.robot.commands.SpitoutGatherer;
+import org.usfirst.frc.team997.robot.commands.ToggleAccelerationControl;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -22,6 +24,7 @@ public class OI {
 	public Joystick joy;
 
 	private JoystickButton extendGatherButton;
+	private JoystickButton driveSetDistanceButton;
 	public JoystickButton climbButton;
 	public JoystickButton elevatorButton;
 	public JoystickButton reverseGatherButton;
@@ -30,9 +33,14 @@ public class OI {
 		SmartDashboard.putData("Drive type", new DriveToggle());
 		
 		joy = new Joystick(0);
+
+		JoystickButton drive90Clockwise = new JoystickButton(joy, 4);
+		drive90Clockwise.whenPressed(new DriveToAngle(-90));
+		JoystickButton drive90CounterClockwise = new JoystickButton(joy, 3);
+		drive90CounterClockwise.whenPressed(new DriveToAngle(90));
 		
-		reverseGatherButton = new JoystickButton(joy, 3);
-		reverseGatherButton.whenPressed(new SpitoutGatherer());
+//		reverseGatherButton = new JoystickButton(joy, 3);
+//		reverseGatherButton.whenPressed(new SpitoutGatherer());
 		
 		climbButton = new JoystickButton(joy, 1);
 		climbButton.whenPressed(new Climb());
@@ -44,6 +52,7 @@ public class OI {
 		extendGatherButton.whenPressed(new ExtendGatherer());
 
     	SmartDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
+    	SmartDashboard.putData("Toggle Acceleration Control", new ToggleAccelerationControl());
 	}
 	
 	public double getLeftTrigger() {
@@ -55,7 +64,7 @@ public class OI {
 	}
 	
 	public double getLeftY() {
-		return joy.getRawAxis(1);
+		return -joy.getRawAxis(1);
 	}
 	
 	public double getRightY() {
@@ -63,6 +72,6 @@ public class OI {
 	}
 	
 	public double getRightX() {
-		return -joy.getRawAxis(4);
+		return joy.getRawAxis(4);
 	}
 }
