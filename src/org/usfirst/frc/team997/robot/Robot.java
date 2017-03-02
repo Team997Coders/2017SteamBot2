@@ -38,7 +38,9 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static PowerDistributionPanel pdp;
 	public static Elevator elevator;
+
 	public static Preferences prefs;
+	
 	public static UDPReceive udpReceive;
 	
 	final String defaultAuto = "Default";
@@ -85,7 +87,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoGearShootRight", new AutoGearShootRight());
 		
 		SmartDashboard.putData("Auto choices", chooser);
-		
+
 		prefs = Preferences.getInstance();
 		
 		udpReceive = new UDPReceive();
