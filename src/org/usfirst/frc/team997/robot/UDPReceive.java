@@ -18,7 +18,7 @@ public class UDPReceive {
 
 			// Create a socket to listen on the port.
 			dsocket = new DatagramSocket(port);
-			dsocket.setSoTimeout(10);
+			dsocket.setSoTimeout(2);
 			
 			// Create a buffer to read datagrams into.
 			buffer = new byte[2048];
@@ -55,8 +55,7 @@ public class UDPReceive {
 			packet.setLength(buffer.length);
 			
 		} catch (Exception e) {
-			e.printStackTrace();;
-			
+			e.printStackTrace();
 		}
 		
 		return result;

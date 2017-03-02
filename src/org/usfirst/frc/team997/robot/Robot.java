@@ -77,12 +77,13 @@ public class Robot extends IterativeRobot {
 		climber = new Climber();
 		
 		// Set up the Autonomous Chooser to select auto mode
-		chooser.addDefault("Null", new AutoNullCommand());
+		chooser.addDefault("AutoGearStraight", new AutoGearStraight());
+		chooser.addObject("Null", new AutoNullCommand());
 		chooser.addObject("AutoGearLeft", new AutoGearLeft());
 		chooser.addObject("AutoGearRight", new AutoGearRight());
 		chooser.addObject("AutoGearShootLeft", new AutoGearShootLeft());
 		chooser.addObject("AutoGearShootRight", new AutoGearShootRight());
-		chooser.addObject("AutoGearStraight", new AutoGearStraight());
+		
 		SmartDashboard.putData("Auto choices", chooser);
 		
 		prefs = Preferences.getInstance();
