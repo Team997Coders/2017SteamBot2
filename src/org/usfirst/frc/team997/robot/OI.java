@@ -3,11 +3,14 @@ package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.commands.Climb;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
+import org.usfirst.frc.team997.robot.commands.DriveToDistance;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.ElevatorSpinWhileHeld;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
 import org.usfirst.frc.team997.robot.commands.SpitoutGatherer;
+import org.usfirst.frc.team997.robot.commands.StopClimb;
 import org.usfirst.frc.team997.robot.commands.ToggleAccelerationControl;
+import org.usfirst.frc.team997.robot.commands.UnClimb;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -53,6 +56,9 @@ public class OI {
 
     	SmartDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
     	SmartDashboard.putData("Toggle Acceleration Control", new ToggleAccelerationControl());
+    	SmartDashboard.putData("Climb", new Climb());
+    	SmartDashboard.putData("UnClimb", new UnClimb());
+    	SmartDashboard.putData("Stop Climb", new StopClimb());
 	}
 	
 	public double getLeftTrigger() {

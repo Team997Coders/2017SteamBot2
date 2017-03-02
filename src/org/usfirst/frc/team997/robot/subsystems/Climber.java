@@ -19,8 +19,16 @@ public class Climber extends Subsystem {
 		LiveWindow.addActuator("Climber", "Motor", (Talon) climberMotor);
 	}
 
-	public void climb(double climbSpeed){
-		climberMotor.set(climbSpeed);
+	public void climb(){
+		climberMotor.set(RobotMap.Values.climbSpeed);
+	}
+	
+	public void unClimb(){
+		climberMotor.set(-RobotMap.Values.climbSpeed);
+	}
+	
+	public void stopClimb(){
+		climberMotor.set(0);
 	}
 
     public void initDefaultCommand() {}

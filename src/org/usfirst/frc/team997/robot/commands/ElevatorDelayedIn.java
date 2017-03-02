@@ -11,12 +11,14 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ElevatorDelayedIn extends Command {
 	public boolean done;
 	private Timer timer;
+	private double time;
 
-    public ElevatorDelayedIn() {
+    public ElevatorDelayedIn(double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
     	timer = new Timer();
+    	this.time = time;
     }
 
     // Called just before this Command runs the first time
@@ -28,7 +30,7 @@ public class ElevatorDelayedIn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (timer.get() > 2) {
+    	if (timer.get() > time) {
     		Robot.elevator.spinInward();
     	}
     }
