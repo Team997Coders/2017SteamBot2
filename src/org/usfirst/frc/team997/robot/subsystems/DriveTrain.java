@@ -44,10 +44,10 @@ public class DriveTrain extends Subsystem {
 		right = new VictorSP(RobotMap.Ports.rightDriveMotor);
 		right.setInverted(true);
 		
-		final double gearRatio = 1.25;
+		final double gearRatio = 4/3;
 		final double ticksPerRev = 2048;
-		final double radius = 2;
-		final double calculated = ((gearRatio*2*Math.PI)/ticksPerRev)*radius;
+		final double radius = 1.5;
+		final double calculated = (radius * 2 * Math.PI) * gearRatio / ticksPerRev;
 		
 		ahrs.reset();
 		
