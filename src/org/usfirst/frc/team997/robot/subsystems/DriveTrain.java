@@ -47,7 +47,8 @@ public class DriveTrain extends Subsystem {
 		final double gearRatio = 4/3;
 		final double ticksPerRev = 2048;
 		final double radius = 1.5;
-		final double calculated = (radius * 2 * Math.PI) * gearRatio / ticksPerRev;
+		final double magic = 1/.737;
+		final double calculated = (radius * 2 * Math.PI) * gearRatio * magic / ticksPerRev;
 		
 		ahrs.reset();
 		
