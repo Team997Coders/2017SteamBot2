@@ -57,6 +57,14 @@ public class RobotMap {
 	
 	public static class Values {
 		public static final double
+		robotWidth = 30, // FIXME
+		robotHeight = 30, // FIXME
+
+		autoKeyForward = 129.125 - (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 73*Math.sqrt(2))/2 - robotHeight/2,
+		autoKeyCross = (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 73*Math.sqrt(2))*Math.sqrt(3)/2,
+
+		autoRetrievalForward = 129.125 - (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 53.75)/2 - robotHeight/2,
+		autoRetrievalCross = (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 53.75)*Math.sqrt(3)/2,
 
 		shooterF = 10,
 		shooterP = 0,//30,

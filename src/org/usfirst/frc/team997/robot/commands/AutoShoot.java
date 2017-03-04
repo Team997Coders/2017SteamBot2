@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoShoot extends CommandGroup {
 
     public AutoShoot() {
+    	
+    	
     	// put vision tracking alignment command here
     	addSequential(new DriveToAngle(0, new VisionAngleSource()));
     	addSequential(new DriveToDistance(10, new VisionDistanceSource()));

@@ -1,9 +1,9 @@
 package org.usfirst.frc.team997.robot;
 
-import org.usfirst.frc.team997.robot.commands.AutoGearLeft;
-import org.usfirst.frc.team997.robot.commands.AutoGearRight;
-import org.usfirst.frc.team997.robot.commands.AutoGearShootLeft;
-import org.usfirst.frc.team997.robot.commands.AutoGearShootRight;
+import org.usfirst.frc.team997.robot.commands.AutoRedLeftGear;
+import org.usfirst.frc.team997.robot.commands.AutoRedRightGear;
+import org.usfirst.frc.team997.robot.commands.AutoBlueLeftGear;
+import org.usfirst.frc.team997.robot.commands.AutoBlueRightGear;
 import org.usfirst.frc.team997.robot.commands.AutoGearStraight;
 import org.usfirst.frc.team997.robot.commands.AutoNullCommand;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
@@ -81,10 +81,10 @@ public class Robot extends IterativeRobot {
 		// Set up the Autonomous Chooser to select auto mode
 		chooser.addDefault("AutoGearStraight", new AutoGearStraight());
 		chooser.addObject("Null", new AutoNullCommand());
-		chooser.addObject("AutoGearLeft", new AutoGearLeft());
-		chooser.addObject("AutoGearRight", new AutoGearRight());
-		chooser.addObject("AutoGearShootLeft", new AutoGearShootLeft());
-		chooser.addObject("AutoGearShootRight", new AutoGearShootRight());
+		chooser.addObject("AutoGearLeft", new AutoRedLeftGear());
+		chooser.addObject("AutoGearRight", new AutoRedRightGear());
+		chooser.addObject("AutoGearShootLeft", new AutoBlueLeftGear());
+		chooser.addObject("AutoGearShootRight", new AutoBlueRightGear());
 		
 		SmartDashboard.putData("Auto choices", chooser);
 
