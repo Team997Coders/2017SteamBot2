@@ -91,7 +91,9 @@ public class Robot extends IterativeRobot {
 		prefs = Preferences.getInstance();
 		
 		udpReceive = new UDPReceive();
-		
+
+		pollPreferences();
+
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		oi = new OI();
 	}
@@ -126,6 +128,7 @@ public class Robot extends IterativeRobot {
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
+		pollPreferences();
 	}
 
 	/**
@@ -133,7 +136,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		pollPreferences();
 		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 		/*switch (autoSelected) {
 		case customAuto:
@@ -150,12 +152,12 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		driveTrain.resetEncoders();
 		driveTrain.resetGyro();
+		pollPreferences();
 	}
 
 	private int tickcount;
 	@Override
 	public void teleopPeriodic() {
-		pollPreferences();
     	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
     	++tickcount;
     	SmartDashboard.putNumber("tickCount", tickcount);
