@@ -31,7 +31,7 @@ public class Drive extends Command {
     		right = Robot.deadband(Robot.oi.getRightX());
     	} else {
     		double aleft = Robot.deadband(Robot.oi.getLeftY());
-    		double aright = Robot.deadband(Robot.oi.getRightX() * .3);
+    		double aright = Robot.deadband(Robot.oi.getRightX()) * (1 - .7 * Math.abs(aleft));
     		left = aleft + aright;
     		right = aleft - aright;
     	}
