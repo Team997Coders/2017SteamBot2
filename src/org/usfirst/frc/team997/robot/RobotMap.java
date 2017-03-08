@@ -19,8 +19,6 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	public static final SerialPort.Port AHRSPort = SerialPort.Port.kUSB;
-	
 	public static class PDP {
 		public static final int[]
 		leftDriveMotor = {0, 1, 2},
@@ -52,6 +50,8 @@ public class RobotMap {
 		
 		//Pneumatic???
 		gatherSolenoidPort = 3;
+		
+		public static final SerialPort.Port AHRS = SerialPort.Port.kUSB;
 	}
 	
 	
