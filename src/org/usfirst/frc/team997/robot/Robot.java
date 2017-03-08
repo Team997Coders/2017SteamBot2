@@ -2,7 +2,9 @@ package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.commands.AutoRedLeftGear;
 import org.usfirst.frc.team997.robot.commands.AutoRedRightGear;
+import org.usfirst.frc.team997.robot.commands.AutoRedRightShoot;
 import org.usfirst.frc.team997.robot.commands.AutoBlueLeftGear;
+import org.usfirst.frc.team997.robot.commands.AutoBlueLeftShoot;
 import org.usfirst.frc.team997.robot.commands.AutoBlueRightGear;
 import org.usfirst.frc.team997.robot.commands.AutoGearStraight;
 import org.usfirst.frc.team997.robot.commands.AutoNullCommand;
@@ -79,14 +81,18 @@ public class Robot extends IterativeRobot {
 		climber = new Climber();
 		
 		// Set up the Autonomous Chooser to select auto mode
-		chooser.addDefault("AutoGearStraight", new AutoGearStraight());
-		chooser.addObject("Null", new AutoNullCommand());
-		chooser.addObject("AutoGearLeft", new AutoRedLeftGear());
-		chooser.addObject("AutoGearRight", new AutoRedRightGear());
-		chooser.addObject("AutoGearShootLeft", new AutoBlueLeftGear());
-		chooser.addObject("AutoGearShootRight", new AutoBlueRightGear());
+		chooser.addDefault("Null", new AutoNullCommand());
+		chooser.addObject("Auto Straight (Gear)", new AutoGearStraight());
+		chooser.addObject("Auto Red Left (Gear)", new AutoRedLeftGear());
+		chooser.addObject("Auto Red Right (Gear)", new AutoRedRightGear());
+		chooser.addObject("Auto Blue Left (Gear)", new AutoBlueLeftGear());
+		chooser.addObject("Auto Blue Right (Gear)", new AutoBlueRightGear());
+		chooser.addObject("Auto Blue Left (Gear)", new AutoBlueLeftGear());
+		chooser.addObject("Auto Blue Right (Gear)", new AutoBlueRightGear());
+		chooser.addObject("Auto Blue Left Shoot", new AutoBlueLeftShoot());
+		chooser.addObject("Auto Red Right Shoot", new AutoRedRightShoot());
 		
-		SmartDashboard.putData("Auto choices", chooser);
+		SmartDashboard.putData("Auto Choices", chooser);
 
 		prefs = Preferences.getInstance();
 		
