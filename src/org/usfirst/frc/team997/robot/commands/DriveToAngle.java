@@ -73,10 +73,11 @@ public class DriveToAngle extends Command implements PIDOutput {
     }
 
 	public void pidWrite(double output) {
-		if (output < .15 && output >= 0) {
-			pidRate = .15;
-		} else if (output > -.15 && output < 0) {
-			pidRate = -.15;
+		final double min = .2;
+		if (output < min && output > 0) {
+			pidRate = min;
+		} else if (output > -min && output < 0) {
+			pidRate = -min;
 		} else {
 			pidRate = output;
 		}
