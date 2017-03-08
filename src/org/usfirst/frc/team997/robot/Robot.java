@@ -94,9 +94,9 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putData("Auto Choices", chooser);
 
-		prefs = Preferences.getInstance();
-		
 		udpReceive = new UDPReceive();
+
+		prefs = Preferences.getInstance();
 
 		pollPreferences();
 

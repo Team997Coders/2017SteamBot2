@@ -37,10 +37,11 @@ public class OI {
 		
 		joy = new Joystick(0);
 
-		//JoystickButton drive90Clockwise = new JoystickButton(joy, 4);
-		//drive90Clockwise.whenPressed(new DriveToAngle(-90));
 		JoystickButton drive60In = new JoystickButton(joy, 4);
 		drive60In.whenPressed(new DriveToDistance(60));
+
+//		JoystickButton drive90Clockwise = new JoystickButton(joy, 4);
+//		drive90Clockwise.whenPressed(new DriveToAngle(-90));
 		JoystickButton drive90CounterClockwise = new JoystickButton(joy, 3);
 		drive90CounterClockwise.whenPressed(new DriveToAngle(90));
 		
