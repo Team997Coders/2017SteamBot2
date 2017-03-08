@@ -27,7 +27,7 @@ public class DriveToAngle extends Command implements PIDOutput {
 
     	controller = new PIDController(0.75, 0, 0.9, 0, source, this);
     	controller.setInputRange(-180, 180);
-    	controller.setOutputRange(-.25, .25);
+    	controller.setOutputRange(-.3, .3);
     	controller.setAbsoluteTolerance(1.0);
     	controller.setContinuous(true);
 
