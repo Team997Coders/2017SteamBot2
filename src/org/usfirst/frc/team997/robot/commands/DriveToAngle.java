@@ -49,7 +49,6 @@ public class DriveToAngle extends Command implements PIDOutput {
     protected void execute() {
     	SmartDashboard.putNumber("DriveToAngle currentRotationRate", pidRate);
     	SmartDashboard.putNumber("DriveToAngle Error", controller.getError());
-    	SmartDashboard.putBoolean("DriveToAngle onTarget", controller.onTarget());
     	//if (pidRate < .17 && pidRate > 0) { pidRate = .17; }
     	//if (pidRate > -.17 && pidRate <= 0) { pidRate = -.17; }
 
