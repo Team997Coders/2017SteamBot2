@@ -24,9 +24,9 @@ public class DriveToDistance extends Command implements PIDOutput{
     	requires(Robot.driveTrain);
     	setPoint = distance;
 
-    	controller = new PIDController(0.5, 0, 0.5, source, this);
-    	controller.setOutputRange(-.5, .5);
-    	controller.setAbsoluteTolerance(1);
+    	controller = new PIDController(0.3, 0, 1, source, this);
+    	controller.setOutputRange(-.35, .35);
+    	controller.setAbsoluteTolerance(.5);
     }
 
     // Called just before this Command runs the first time
