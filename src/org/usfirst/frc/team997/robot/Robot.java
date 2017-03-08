@@ -1,9 +1,11 @@
 package org.usfirst.frc.team997.robot;
 
-import org.usfirst.frc.team997.robot.commands.AutoGearLeft;
-import org.usfirst.frc.team997.robot.commands.AutoGearRight;
-import org.usfirst.frc.team997.robot.commands.AutoGearShootLeft;
-import org.usfirst.frc.team997.robot.commands.AutoGearShootRight;
+import org.usfirst.frc.team997.robot.commands.AutoRedLeftGear;
+import org.usfirst.frc.team997.robot.commands.AutoRedRightGear;
+import org.usfirst.frc.team997.robot.commands.AutoRedRightShoot;
+import org.usfirst.frc.team997.robot.commands.AutoBlueLeftGear;
+import org.usfirst.frc.team997.robot.commands.AutoBlueLeftShoot;
+import org.usfirst.frc.team997.robot.commands.AutoBlueRightGear;
 import org.usfirst.frc.team997.robot.commands.AutoGearStraight;
 import org.usfirst.frc.team997.robot.commands.AutoNullCommand;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
@@ -38,7 +40,10 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static PowerDistributionPanel pdp;
 	public static Elevator elevator;
+
 	public static Preferences prefs;
+	
+	public static UDPReceive udpReceive;
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
@@ -77,18 +82,26 @@ public class Robot extends IterativeRobot {
 		
 		// Set up the Autonomous Chooser to select auto mode
 		chooser.addDefault("Null", new AutoNullCommand());
-		chooser.addObject("AutoGearLeft", new AutoGearLeft());
-		chooser.addObject("AutoGearRight", new AutoGearRight());
-		chooser.addObject("AutoGearShootLeft", new AutoGearShootLeft());
-		chooser.addObject("AutoGearShootRight", new AutoGearShootRight());
-		chooser.addObject("AutoGearStraight", new AutoGearStraight());
-		SmartDashboard.putData("Auto choices", chooser);
+		chooser.addObject("Auto Straight (Gear)", new AutoGearStraight());
+		chooser.addObject("Auto Red Left (Gear)", new AutoRedLeftGear());
+		chooser.addObject("Auto Red Right (Gear)", new AutoRedRightGear());
+		chooser.addObject("Auto Blue Left (Gear)", new AutoBlueLeftGear());
+		chooser.addObject("Auto Blue Right (Gear)", new AutoBlueRightGear());
+		chooser.addObject("Auto Blue Left (Gear)", new AutoBlueLeftGear());
+		chooser.addObject("Auto Blue Right (Gear)", new AutoBlueRightGear());
+		chooser.addObject("Auto Blue Left Shoot", new AutoBlueLeftShoot());
+		chooser.addObject("Auto Red Right Shoot", new AutoRedRightShoot());
 		
+		SmartDashboard.putData("Auto Choices", chooser);
+
+		udpReceive = new UDPReceive();
+
 		prefs = Preferences.getInstance();
-		
+
+		pollPreferences();
+
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		oi = new OI();
-	
 	}
 	
 	private void pollPreferences() {
@@ -121,6 +134,7 @@ public class Robot extends IterativeRobot {
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
+		pollPreferences();
 	}
 
 	/**
@@ -128,7 +142,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		pollPreferences();
 		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 		/*switch (autoSelected) {
 		case customAuto:
@@ -145,12 +158,12 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		driveTrain.resetEncoders();
 		driveTrain.resetGyro();
+		pollPreferences();
 	}
 
 	private int tickcount;
 	@Override
 	public void teleopPeriodic() {
-		pollPreferences();
     	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
     	++tickcount;
     	SmartDashboard.putNumber("tickCount", tickcount);

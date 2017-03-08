@@ -5,6 +5,7 @@ import org.usfirst.frc.team997.robot.DistanceEncoder;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,15 +17,16 @@ public class DriveToDistance extends Command implements PIDOutput{
 	public PIDController controller;
 	private double setPoint;
 
-    public DriveToDistance(double distance) {
+	public DriveToDistance(double distance) { this(distance, new DistanceEncoder(Robot.driveTrain.rightEncoder)); }
+    public DriveToDistance(double distance, PIDSource source) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
     	setPoint = distance;
 
-    	controller = new PIDController(1, 0, 1, new DistanceEncoder(Robot.driveTrain.rightEncoder), this);
-    	controller.setOutputRange(-.5, .5);
-    	controller.setAbsoluteTolerance(1);
+    	controller = new PIDController(0.3, 0, 1, source, this);
+    	controller.setOutputRange(-.35, .35);
+    	controller.setAbsoluteTolerance(.5);
     }
 
     // Called just before this Command runs the first time

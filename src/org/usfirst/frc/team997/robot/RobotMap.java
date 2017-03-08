@@ -19,8 +19,6 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	public static final SerialPort.Port AHRSPort = SerialPort.Port.kUSB;
-	
 	public static class PDP {
 		public static final int[]
 		leftDriveMotor = {0, 1, 2},
@@ -52,11 +50,21 @@ public class RobotMap {
 		
 		//Pneumatic???
 		gatherSolenoidPort = 3;
+		
+		public static final SerialPort.Port AHRS = SerialPort.Port.kUSB;
 	}
 	
 	
 	public static class Values {
 		public static final double
+		robotWidth = 30, // FIXME
+		robotLength = 30, // FIXME
+
+		autoKeyForward = 129.125 - (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 73*Math.sqrt(2))/2 - robotLength/2,
+		autoKeyCross = (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 73*Math.sqrt(2))*Math.sqrt(3)/2 - robotLength/2,
+
+		autoRetrievalForward = 129.125 - (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 53.75)/2 - robotLength/2,
+		autoRetrievalCross = (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 53.75)*Math.sqrt(3)/2 - robotLength/2,
 
 		shooterF = 10,
 		shooterP = 0,//30,

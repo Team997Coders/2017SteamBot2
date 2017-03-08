@@ -39,15 +39,16 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DriveTrain() {
-		ahrs = new AHRS(RobotMap.AHRSPort);
+		ahrs = new AHRS(RobotMap.Ports.AHRS);
 		left = new VictorSP(RobotMap.Ports.leftDriveMotor);
 		right = new VictorSP(RobotMap.Ports.rightDriveMotor);
 		right.setInverted(true);
 		
-		final double gearRatio = 1.25;
+		final double gearRatio = 4/3;
 		final double ticksPerRev = 2048;
-		final double radius = 2;
-		final double calculated = ((gearRatio*2*Math.PI)/ticksPerRev)*radius;
+		final double radius = 1.5;
+		final double magic = 1/.737;
+		final double calculated = (radius * 2 * Math.PI) * gearRatio * magic / ticksPerRev;
 		
 		ahrs.reset();
 		

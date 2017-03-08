@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot.commands;
 
 import org.usfirst.frc.team997.robot.Robot;
+import org.usfirst.frc.team997.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,40 +9,41 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorDelayedIn extends Command {
-	public boolean done;
+public class UnClimb extends Command {
 	private Timer timer;
-	private double time;
 
-    public ElevatorDelayedIn(double time) {
+    public UnClimb() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
-    	timer = new Timer();
-    	this.time = time;
+    	requires(Robot.climber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timer = new Timer();
     	timer.reset();
     	timer.start();
-    	done = false;
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (timer.get() > time) {
-    		Robot.elevator.spinInward();
-    	}
+    	Robot.climber.unClimb();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !done;
-    }
+        
+    	return (timer.get() > 2);
 
+    }
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator.stop();
+    	Robot.climber.stopClimb();
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
     }
 }
