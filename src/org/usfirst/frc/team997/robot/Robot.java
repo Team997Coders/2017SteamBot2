@@ -14,6 +14,7 @@ import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Elevator;
 import org.usfirst.frc.team997.robot.subsystems.Gatherer;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
+import org.usfirst.frc.team997.robot.subsystems.UltraSonic;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static PowerDistributionPanel pdp;
 	public static Elevator elevator;
+	public static UltraSonic ultraSonic;
 
 	public static Preferences prefs;
 	
@@ -99,6 +101,8 @@ public class Robot extends IterativeRobot {
 		prefs = Preferences.getInstance();
 
 		pollPreferences();
+		
+		ultraSonic = new UltraSonic();
 
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		oi = new OI();
