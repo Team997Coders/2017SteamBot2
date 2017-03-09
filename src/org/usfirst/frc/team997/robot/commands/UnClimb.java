@@ -34,7 +34,7 @@ public class UnClimb extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         
-    	return (timer.get() > 2);
+    	return (timer.get() > 0.5);
 
     }
     // Called once after isFinished returns true
