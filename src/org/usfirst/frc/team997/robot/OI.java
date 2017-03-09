@@ -7,6 +7,7 @@ import org.usfirst.frc.team997.robot.commands.DriveToDistance;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.ElevatorSpinWhileHeld;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
+import org.usfirst.frc.team997.robot.commands.ReverseGatherHold;
 import org.usfirst.frc.team997.robot.commands.ShakeGatherer;
 import org.usfirst.frc.team997.robot.commands.SpitoutGatherer;
 import org.usfirst.frc.team997.robot.commands.StopClimb;
@@ -55,8 +56,11 @@ public class OI {
 		elevatorButton = new JoystickButton(joy, 5);
 		elevatorButton.whenPressed(new ElevatorSpinWhileHeld());
 
-		extendGatherButton = new JoystickButton(joy, 2);
-		extendGatherButton.whenPressed(new ExtendGatherer());
+//		extendGatherButton = new JoystickButton(joy, 2);
+//		extendGatherButton.whenPressed(new ExtendGatherer());
+		
+		reverseGatherButton = new JoystickButton(joy, 2);
+		reverseGatherButton.whenPressed(new ReverseGatherHold());
 
     	SmartDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
     	SmartDashboard.putData("Toggle Acceleration Control", new ToggleAccelerationControl());
