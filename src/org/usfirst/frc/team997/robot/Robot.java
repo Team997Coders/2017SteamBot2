@@ -146,7 +146,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 		/*switch (autoSelected) {
 		case customAuto:
 			// Put custom auto code here
@@ -156,6 +155,7 @@ public class Robot extends IterativeRobot {
 			// Put default auto code here
 			break;
 		}*/
+		smartDashboard();
 		Scheduler.getInstance().run();
 	}
 
@@ -164,13 +164,15 @@ public class Robot extends IterativeRobot {
 		driveTrain.resetGyro();
 		pollPreferences();
 	}
+	
+	private void smartDashboard() {
+		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+		SmartDashboard.putNumber("UltraSonic Voltage", Robot.ultraSonic.ultraSonic.getVoltage());
+	}
 
-	private int tickcount;
 	@Override
 	public void teleopPeriodic() {
-    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
-    	++tickcount;
-    	SmartDashboard.putNumber("tickCount", tickcount);
+    	smartDashboard();
     	Scheduler.getInstance().run();
     	
     	/*
@@ -185,7 +187,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void disabledPeriodic() {
-    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    	smartDashboard();
 	}
 
 	/**
