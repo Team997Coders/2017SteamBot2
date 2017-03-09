@@ -7,6 +7,7 @@ import org.usfirst.frc.team997.robot.commands.DriveToDistance;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.ElevatorSpinWhileHeld;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
+import org.usfirst.frc.team997.robot.commands.ShakeGatherer;
 import org.usfirst.frc.team997.robot.commands.SpitoutGatherer;
 import org.usfirst.frc.team997.robot.commands.StopClimb;
 import org.usfirst.frc.team997.robot.commands.ToggleAccelerationControl;
@@ -62,6 +63,7 @@ public class OI {
     	SmartDashboard.putData("Climb", new Climb());
     	SmartDashboard.putData("UnClimb", new UnClimb());
     	SmartDashboard.putData("Stop Climb", new StopClimb());
+    	SmartDashboard.putData("ShakeGatherer", new ShakeGatherer());
 	}
 	
 	public double getLeftTrigger() {
