@@ -164,9 +164,11 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
+		chooser.getSelected().cancel(); //STOPS AUTO ROUTINE
 		driveTrain.resetEncoders();
 		driveTrain.resetGyro();
 		pollPreferences();
+
 	}
 	
 	private void smartDashboard() {

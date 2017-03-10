@@ -63,6 +63,7 @@ public class DriveToAngle extends Command implements PIDOutput {
     // Called once after isFinished returns true
     protected void end() {
     	controller.disable();
+    	Robot.driveTrain.driveVoltage(0, 0);
     	SmartDashboard.putBoolean("DriveToAngleOn", false);
     }
 
