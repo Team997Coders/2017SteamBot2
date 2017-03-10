@@ -60,10 +60,10 @@ public class RobotMap {
 		robotWidth = 30, // FIXME
 		robotLength = 30, // FIXME
 
-		autoKeyForward = 129.125 - (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 73*Math.sqrt(2))/2 - robotLength/2,
-		autoKeyCross = (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 73*Math.sqrt(2))*Math.sqrt(3)/2 - robotLength/2,
+		autoKeyForward = 131 - (162 - 70.5/Math.sqrt(3) + robotWidth/2 - 73*Math.sqrt(2))/2 - robotLength/2,
+		autoKeyCross = (162 - 70.5/Math.sqrt(3) + robotWidth/2 - 73*Math.sqrt(2))*Math.sqrt(3)/2 - robotLength/2,
 
-		autoRetrievalForward = 129.125 - (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 53.75)/2 - robotLength/2,
+		autoRetrievalForward = 131 - (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 53.75)/2 - robotLength/2,
 		autoRetrievalCross = (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 53.75)*Math.sqrt(3)/2 - robotLength/2,
 
 		shooterF = 10,
