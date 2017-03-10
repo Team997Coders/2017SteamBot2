@@ -9,6 +9,7 @@ import org.usfirst.frc.team997.robot.commands.AutoBlueRightGear;
 import org.usfirst.frc.team997.robot.commands.AutoGearStraight;
 import org.usfirst.frc.team997.robot.commands.AutoNullCommand;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
+import org.usfirst.frc.team997.robot.subsystems.Arduino;
 import org.usfirst.frc.team997.robot.subsystems.Climber;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Elevator;
@@ -42,6 +43,7 @@ public class Robot extends IterativeRobot {
 	public static PowerDistributionPanel pdp;
 	public static Elevator elevator;
 	public static UltraSonic ultraSonic;
+	public static Arduino arduino;
 
 	public static Preferences prefs;
 	
