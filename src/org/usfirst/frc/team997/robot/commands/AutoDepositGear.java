@@ -8,6 +8,6 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  */
 public class AutoDepositGear extends CommandGroup {
     public AutoDepositGear() {
-    	addSequential(new WaitCommand(3));
+    	//addSequential(new WaitCommand(3));
     }
 }
