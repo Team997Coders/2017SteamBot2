@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Drive extends Command {
     public static boolean useAccelerationControl = false;
+    
 
 	public Drive() {
         // Use requires() here to declare subsystem dependencies
@@ -37,15 +38,25 @@ public class Drive extends Command {
     	}
     	if (useAccelerationControl) {
     		Robot.driveTrain.drivePID(left * 200, right * 200);
-    	} else {
     		
-    		if(Robot.oi.forward) {
+    	} else {
+    		if(Robot.oi.useDeccelerationControl && Robot.oi.forward) {
+        		Robot.driveTrain.driveDeccel(Robot.clamp(left), Robot.clamp(right));
+        		
+        	} else if(Robot.oi.useDeccelerationControl && !Robot.oi.forward) {
+        		Robot.driveTrain.driveVoltage(-Robot.clamp(left), -Robot.clamp(right));
+        		
+        	} else if(Robot.oi.forward && !Robot.oi.useDeccelerationControl) {
     			Robot.driveTrain.driveVoltage(Robot.clamp(left), Robot.clamp(right));
-    		} else {
+    			
+    		} else if(!Robot.oi.forward && !Robot.oi.useDeccelerationControl) {
     			Robot.driveTrain.driveVoltage(-Robot.clamp(left), -Robot.clamp(right));
+    			
     		}
     		
     	}
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

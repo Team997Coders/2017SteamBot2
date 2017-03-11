@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
 import org.usfirst.frc.team997.robot.RateEncoder;
+import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.commands.Drive;
 
@@ -28,6 +29,11 @@ public class DriveTrain extends Subsystem {
 
 	public double driveSpeed = 1;
 	public double driveDrift = 1;
+	public double deccelSpeed = 0.3;
+	
+	public double prevLeftV;
+	public double prevRightV;
+	
 	double pasterr = 0.01D;
 	double integral = 0.0D;
 	double speed = 0.0D;
@@ -90,6 +96,27 @@ public class DriveTrain extends Subsystem {
     	updateSD();
     	left.set(leftV*driveSpeed);
     	right.set(rightV*driveSpeed*driveDrift);
+    }
+    
+    private double deccelIterate(double leftv, double prevLeftV) {
+    	if(leftv >= prevLeftV && prevLeftV >= 0 || leftv <= prevLeftV && prevLeftV <= 0) {
+    		prevLeftV = leftv;
+    	} else {
+    		if(prevLeftV > 0) {
+    			prevLeftV -= deccelSpeed;
+    		} else {
+    			prevLeftV += deccelSpeed;
+    		}
+    	}
+    	return prevLeftV;
+    }
+    
+    public void driveDeccel(double leftv, double rightv) { 
+    	prevLeftV = deccelIterate(leftv, prevLeftV);
+    	left.set(prevLeftV*driveSpeed);
+    	
+    	prevRightV = deccelIterate(rightv, prevRightV);
+    	right.set(prevRightV*driveSpeed);
     }
     
     private void updateSD() {
