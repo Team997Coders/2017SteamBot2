@@ -2,6 +2,7 @@ package org.usfirst.frc.team997.robot;
 
 
 import org.usfirst.frc.team997.robot.commands.Climb;
+import org.usfirst.frc.team997.robot.commands.DriveDirectionToggle;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
 import org.usfirst.frc.team997.robot.commands.DriveToDistance;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
@@ -26,6 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI {
 	public boolean isTank = false;
+	public boolean forward = true; //true when gatherer is front
 	public Joystick joy;
 
 	private JoystickButton extendGatherButton;
@@ -33,6 +35,7 @@ public class OI {
 	public JoystickButton climbButton;
 	public JoystickButton elevatorButton;
 	public JoystickButton reverseGatherButton;
+	public JoystickButton driveDirectionToggle;
 	
 	public OI() {
 		SmartDashboard.putData("Drive type", new DriveToggle());
@@ -61,6 +64,9 @@ public class OI {
 		
 		reverseGatherButton = new JoystickButton(joy, 2);
 		reverseGatherButton.whenPressed(new ReverseGatherHold());
+		
+		driveDirectionToggle = new JoystickButton(joy, 3);
+		driveDirectionToggle.whenPressed(new DriveDirectionToggle());
 
     	SmartDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
     	SmartDashboard.putData("Toggle Acceleration Control", new ToggleAccelerationControl());
@@ -68,6 +74,7 @@ public class OI {
     	SmartDashboard.putData("UnClimb", new UnClimb());
     	SmartDashboard.putData("Stop Climb", new StopClimb());
     	SmartDashboard.putData("ShakeGatherer", new ShakeGatherer());
+    	SmartDashboard.putBoolean("Drivetrain Forward", forward);
 	}
 	
 	public double getLeftTrigger() {
