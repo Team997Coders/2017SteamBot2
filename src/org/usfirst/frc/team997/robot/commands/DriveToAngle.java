@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
  *
@@ -40,15 +40,15 @@ public class DriveToAngle extends Command implements PIDOutput {
     	if (setPoint > 180) setPoint -= 360;
     	if (setPoint < -180) setPoint += 360;
     	controller.setSetpoint(setPoint);
-    	SmartDashboard.putNumber("DriveToAngle Setpoint", controller.getSetpoint());
+    	CustomDashboard.putNumber("DriveToAngle Setpoint", controller.getSetpoint());
     	controller.enable();
-    	SmartDashboard.putBoolean("DriveToAngleOn", true);
+    	CustomDashboard.putBoolean("DriveToAngleOn", true);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("DriveToAngle currentRotationRate", pidRate);
-    	SmartDashboard.putNumber("DriveToAngle Error", controller.getError());
+    	CustomDashboard.putNumber("DriveToAngle currentRotationRate", pidRate);
+    	CustomDashboard.putNumber("DriveToAngle Error", controller.getError());
     	//if (pidRate < .17 && pidRate > 0) { pidRate = .17; }
     	//if (pidRate > -.17 && pidRate <= 0) { pidRate = -.17; }
 
@@ -64,7 +64,7 @@ public class DriveToAngle extends Command implements PIDOutput {
     protected void end() {
     	controller.disable();
     	Robot.driveTrain.driveVoltage(0, 0);
-    	SmartDashboard.putBoolean("DriveToAngleOn", false);
+    	CustomDashboard.putBoolean("DriveToAngleOn", false);
     }
 
     // Called when another command which requires one or more of the same

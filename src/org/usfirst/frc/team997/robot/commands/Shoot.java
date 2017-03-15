@@ -4,7 +4,7 @@ import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
  *
@@ -35,8 +35,8 @@ public class Shoot extends Command {
     protected void execute() {
     	Robot.shooter.shooterMotorMaster.set(shootSpeed);
     	Robot.shooter.shooterMotorSlave.set(Robot.shooter.shooterMotorMaster.getDeviceID());
-    	SmartDashboard.putNumber("Shooter speed", Robot.shooter.shooterMotorMaster.getSpeed());
-    	SmartDashboard.putNumber("Shooter error", Robot.shooter.shooterMotorMaster.getClosedLoopError());
+    	CustomDashboard.putNumber("Shooter speed", Robot.shooter.shooterMotorMaster.getSpeed());
+    	CustomDashboard.putNumber("Shooter error", Robot.shooter.shooterMotorMaster.getClosedLoopError());
     }
 
     // Make this return true when this Command no longer needs to run execute()

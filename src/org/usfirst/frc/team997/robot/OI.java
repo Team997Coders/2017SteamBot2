@@ -18,7 +18,7 @@ import org.usfirst.frc.team997.robot.commands.UnClimb;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 
 /**
@@ -41,7 +41,7 @@ public class OI {
 	public JoystickButton deccelControlToggle;
 	
 	public OI() {
-		SmartDashboard.putData("Drive type", new DriveToggle());
+		CustomDashboard.putData("Drive type", new DriveToggle());
 		
 		joy = new Joystick(0);
 
@@ -74,14 +74,14 @@ public class OI {
 		deccelControlToggle = new JoystickButton(joy, 4);
 		deccelControlToggle.whenPressed(new ToggleDeccelerationControl());
 
-    	SmartDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
-    	SmartDashboard.putData("Toggle Acceleration Control", new ToggleAccelerationControl());
-    	SmartDashboard.putData("Climb", new Climb());
-    	SmartDashboard.putData("UnClimb", new UnClimb());
-    	SmartDashboard.putData("Stop Climb", new StopClimb());
-    	SmartDashboard.putData("ShakeGatherer", new ShakeGatherer());
-    	SmartDashboard.putBoolean("Drivetrain Forward", forward);
-    	SmartDashboard.putData("Toggle Decceleration Control", new ToggleDeccelerationControl());
+    	CustomDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
+    	CustomDashboard.putData("Toggle Acceleration Control", new ToggleAccelerationControl());
+    	CustomDashboard.putData("Climb", new Climb());
+    	CustomDashboard.putData("UnClimb", new UnClimb());
+    	CustomDashboard.putData("Stop Climb", new StopClimb());
+    	CustomDashboard.putData("ShakeGatherer", new ShakeGatherer());
+    	CustomDashboard.putBoolean("Drivetrain Forward", forward);
+    	CustomDashboard.putData("Toggle Decceleration Control", new ToggleDeccelerationControl());
 	}
 	
 	public double getLeftTrigger() {

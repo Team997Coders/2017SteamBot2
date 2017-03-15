@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -98,7 +98,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Auto Blue Left Shoot", new AutoBlueLeftShoot());
 		chooser.addObject("Auto Red Right Shoot", new AutoRedRightShoot());
 		
-		SmartDashboard.putData("Auto Choices", chooser);
+		CustomDashboard.putData("Auto Choices", chooser);
 
 		udpReceive = new UDPReceive();
 
@@ -125,7 +125,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
+	 * chooser code works with the Java CustomDashboard. If you prefer the
 	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
 	 * getString line to get the auto name from the text box below the Gyro
 	 *
@@ -139,7 +139,7 @@ public class Robot extends IterativeRobot {
 		driveTrain.resetGyro();
 		autoSelected = (Command) chooser.getSelected();
 		autoSelected.start();
-		// autoSelected = SmartDashboard.getString("Auto Selector",
+		// autoSelected = CustomDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
 		pollPreferences();
@@ -172,8 +172,8 @@ public class Robot extends IterativeRobot {
 	}
 	
 	private void smartDashboard() {
-		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
-		SmartDashboard.putNumber("UltraSonic Voltage", Robot.ultraSonic.ultraSonic.getVoltage());
+		CustomDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+		CustomDashboard.putNumber("UltraSonic Voltage", Robot.ultraSonic.ultraSonic.getVoltage());
 	}
 
 	@Override
@@ -182,13 +182,13 @@ public class Robot extends IterativeRobot {
     	Scheduler.getInstance().run();
     	
     	/*
-    	 * SmartDashboard.putNumber("DriveTrain Left Current 1", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[0]));
-    	 * SmartDashboard.putNumber("DriveTrain Left Current 2", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[1]));
-    	 * SmartDashboard.putNumber("DriveTrain Left Current 3", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[2]));
+    	 * CustomDashboard.putNumber("DriveTrain Left Current 1", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[0]));
+    	 * CustomDashboard.putNumber("DriveTrain Left Current 2", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[1]));
+    	 * CustomDashboard.putNumber("DriveTrain Left Current 3", pdp.getCurrent(RobotMap.PDP.leftDriveMotor[2]));
          *    	
-    	 * SmartDashboard.putNumber("DriveTrain Right Voltage 1", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[0]));
-    	 * SmartDashboard.putNumber("DriveTrain Right Voltage 2", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[1]));
-    	 * SmartDashboard.putNumber("DriveTrain Right Voltage 3", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[2]));
+    	 * CustomDashboard.putNumber("DriveTrain Right Voltage 1", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[0]));
+    	 * CustomDashboard.putNumber("DriveTrain Right Voltage 2", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[1]));
+    	 * CustomDashboard.putNumber("DriveTrain Right Voltage 3", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[2]));
     	 */
 	}
 	
@@ -201,7 +201,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-    	SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    	CustomDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 	}
 	
 	public static double deadband(double x) {

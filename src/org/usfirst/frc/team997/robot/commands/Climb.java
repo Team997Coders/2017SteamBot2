@@ -4,7 +4,7 @@ import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Climb extends Command {
 
     protected void execute() {
     	double current = Robot.averageCurrent(RobotMap.PDP.climberTalon);
-    	SmartDashboard.putNumber("Climber current", current);
+    	CustomDashboard.putNumber("Climber current", current);
     	Robot.climber.climb();
     }
 

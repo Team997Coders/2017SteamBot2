@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
  *
@@ -120,17 +120,17 @@ public class DriveTrain extends Subsystem {
     }
     
     private void updateSD() {
-    	SmartDashboard.putNumber("DriveTrain Encoder Left", leftEncoder.getDistance());
-    	SmartDashboard.putNumber("DriveTrain Encoder Right", rightEncoder.getDistance());
-    	SmartDashboard.putNumber("DriveTrain Encoder Left Ticks", leftEncoder.get());
-    	SmartDashboard.putNumber("DriveTrain Encoder Right Ticks", rightEncoder.get());
-    	SmartDashboard.putNumber("DriveTrain Encoder L Rate", leftEncoder.getRate());
-    	SmartDashboard.putNumber("DriveTrain Encoder R Rate", rightEncoder.getRate());
+    	CustomDashboard.putNumber("DriveTrain Encoder Left", leftEncoder.getDistance());
+    	CustomDashboard.putNumber("DriveTrain Encoder Right", rightEncoder.getDistance());
+    	CustomDashboard.putNumber("DriveTrain Encoder Left Ticks", leftEncoder.get());
+    	CustomDashboard.putNumber("DriveTrain Encoder Right Ticks", rightEncoder.get());
+    	CustomDashboard.putNumber("DriveTrain Encoder L Rate", leftEncoder.getRate());
+    	CustomDashboard.putNumber("DriveTrain Encoder R Rate", rightEncoder.getRate());
     	
-    	SmartDashboard.putBoolean("PID Status", leftPID.isEnabled());
-    	SmartDashboard.putNumber("PID Setpoint", leftPID.getSetpoint());
-    	SmartDashboard.putNumber("PID Error", leftPID.getError());
-    	SmartDashboard.putNumber("PID Output", leftPID.get());
+    	CustomDashboard.putBoolean("PID Status", leftPID.isEnabled());
+    	CustomDashboard.putNumber("PID Setpoint", leftPID.getSetpoint());
+    	CustomDashboard.putNumber("PID Error", leftPID.getError());
+    	CustomDashboard.putNumber("PID Output", leftPID.get());
     }
     
     public void resetEncoders() {
