@@ -3,6 +3,7 @@ package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.commands.Climb;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
+import org.usfirst.frc.team997.robot.commands.DriveToDistance;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.ElevatorSpinWhileHeld;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
@@ -34,11 +35,9 @@ public class OI {
 		
 		joy = new Joystick(0);
 
-		JoystickButton drive90Clockwise = new JoystickButton(joy, 4);
-		drive90Clockwise.whenPressed(new DriveToAngle(-90));
-		JoystickButton drive90CounterClockwise = new JoystickButton(joy, 3);
-		drive90CounterClockwise.whenPressed(new DriveToAngle(90));
-		
+		JoystickButton driveForward60Inches = new JoystickButton(joy, 4);
+		driveForward60Inches.whenPressed(new DriveToDistance(60));
+
 //		reverseGatherButton = new JoystickButton(joy, 3);
 //		reverseGatherButton.whenPressed(new SpitoutGatherer());
 		
