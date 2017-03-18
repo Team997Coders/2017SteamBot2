@@ -165,6 +165,8 @@ public class Robot extends IterativeRobot {
     	 * SmartDashboard.putNumber("DriveTrain Right Voltage 2", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[1]));
     	 * SmartDashboard.putNumber("DriveTrain Right Voltage 3", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[2]));
     	 */
+    	SmartDashboard.putNumber("Climber current 1", pdp.getCurrent(RobotMap.PDP.climberTalon[0]));
+    	SmartDashboard.putNumber("Climber current 2", pdp.getCurrent(RobotMap.PDP.climberTalon[1]));
 	}
 	
 	public void disabledPeriodic() {

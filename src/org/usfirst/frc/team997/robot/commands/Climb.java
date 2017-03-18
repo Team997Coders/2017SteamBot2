@@ -17,9 +17,8 @@ public class Climb extends Command {
     protected void initialize() {}
 
     protected void execute() {
-    	double current = Robot.averageCurrent(RobotMap.PDP.climberTalon);
-    	SmartDashboard.putNumber("Climber current", current);
-    	Robot.climber.climb(RobotMap.Values.climbSpeed);
+     	//Robot.climber.climb(RobotMap.Values.climbSpeed);
+    	Robot.climber.safeClimb(RobotMap.Values.climbSpeed);
     }
 
     protected boolean isFinished() {
