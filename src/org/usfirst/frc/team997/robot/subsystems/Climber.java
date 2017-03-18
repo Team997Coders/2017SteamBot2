@@ -25,7 +25,7 @@ public class Climber extends Subsystem {
 	}
 	
 	public void safeClimb(double climbSpeed){
-		if(Robot.pdp.getCurrent(RobotMap.PDP.climberTalon[0]) < 40) // 40 is a magic number atm
+		if(Robot.pdp.getCurrent(RobotMap.PDP.climberTalon[0]) < 40 | Robot.pdp.getCurrent(RobotMap.PDP.climberTalon[1]) < 40) // 40 is a magic number atm
 			climberMotor.set(climbSpeed);
 		else {
 			System.out.println("Climber Overcurrent");
