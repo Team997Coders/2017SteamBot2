@@ -10,6 +10,7 @@ import org.usfirst.frc.team997.robot.commands.AutoBlueRightGear;
 import org.usfirst.frc.team997.robot.commands.AutoStraightNOGEAR;
 import org.usfirst.frc.team997.robot.commands.AutoNullCommand;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
+import org.usfirst.frc.team997.robot.commands.LEDColorToggle;
 import org.usfirst.frc.team997.robot.subsystems.Arduino;
 import org.usfirst.frc.team997.robot.subsystems.Climber;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
@@ -174,6 +175,9 @@ public class Robot extends IterativeRobot {
 	private void smartDashboard() {
 		CustomDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 		CustomDashboard.putNumber("UltraSonic Voltage", Robot.ultraSonic.ultraSonic.getVoltage());
+		CustomDashboard.putData("LEDs to blue", new LEDColorToggle('b'));
+		CustomDashboard.putData("LEDs to red", new LEDColorToggle('r'));
+		
 	}
 
 	@Override
