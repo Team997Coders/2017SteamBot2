@@ -3,7 +3,7 @@ package org.usfirst.frc.team997.robot.commands;
 import org.usfirst.frc.team997.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
  *
@@ -18,7 +18,7 @@ public class DriveToggle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.oi.isTank = !Robot.oi.isTank;
-    	SmartDashboard.putString("Drivetrain is:", Robot.oi.isTank ? "Tank" : "Arcade");
+    	CustomDashboard.putString("Drivetrain is:", Robot.oi.isTank ? "Tank" : "Arcade");
     }
 
     // Called repeatedly when this Command is scheduled to run

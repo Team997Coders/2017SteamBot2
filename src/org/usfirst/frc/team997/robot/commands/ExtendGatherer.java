@@ -4,7 +4,7 @@ import org.usfirst.frc.team997.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
  *
@@ -23,7 +23,7 @@ public class ExtendGatherer extends Command {
     protected void initialize() {
     	timer.reset();
     	timer.start();
-    	SmartDashboard.putBoolean("Extending gatherer", true);
+    	CustomDashboard.putBoolean("Extending gatherer", true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -40,7 +40,7 @@ public class ExtendGatherer extends Command {
     protected void end() {
     	Robot.gatherer.resetSolenoid();
     	
-    	SmartDashboard.putBoolean("Extending gatherer", false);
+    	CustomDashboard.putBoolean("Extending gatherer", false);
     }
 
     // Called when another command which requires one or more of the same

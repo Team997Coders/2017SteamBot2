@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
  *
@@ -33,7 +33,7 @@ public class DriveToDistance extends Command implements PIDOutput{
     protected void initialize() {
     	controller.setSetpoint(setPoint + Robot.driveTrain.rightEncoder.getDistance());
     	controller.enable();
-    	SmartDashboard.putBoolean("DriveToDistance On", true);
+    	CustomDashboard.putBoolean("DriveToDistance On", true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -51,7 +51,7 @@ public class DriveToDistance extends Command implements PIDOutput{
     protected void end() {
     	controller.disable();
     	Robot.driveTrain.driveVoltage(0, 0);
-    	SmartDashboard.putBoolean("DriveToDistance On", false);
+    	CustomDashboard.putBoolean("DriveToDistance On", false);
     }
 
     // Called when another command which requires one or more of the same

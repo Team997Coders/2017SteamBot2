@@ -3,7 +3,7 @@ package org.usfirst.frc.team997.robot.commands;
 import org.usfirst.frc.team997.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team997.robot.CustomDashboard;
 
 public class SetDriveToAngle extends Command {
 	private double setpoint;
@@ -12,7 +12,7 @@ public class SetDriveToAngle extends Command {
 	}
 
 	protected void initialize() {
-		SmartDashboard.putNumber("SetDriveToAngle setSetpoint", setpoint);
+		CustomDashboard.putNumber("SetDriveToAngle setSetpoint", setpoint);
 		Robot.driveToAngleCommand.controller.setSetpoint(setpoint);
 	}
 
