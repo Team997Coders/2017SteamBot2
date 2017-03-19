@@ -29,10 +29,12 @@ public class DriveTrain extends Subsystem {
 
 	public double driveSpeed = 1;
 	public double driveDrift = 1;
-	public double deccelSpeed = 0.3;
+	public double deccelSpeed = 0.2;
+	public double decceldivider = 1.2;
 	
-	public double prevLeftV;
-	public double prevRightV;
+	public double disableDeccel = 0;
+	public double prevLeftV = 0.0;
+	public double prevRightV = 0.0;
 	
 	double pasterr = 0.01D;
 	double integral = 0.0D;
@@ -98,17 +100,23 @@ public class DriveTrain extends Subsystem {
     	right.set(rightV*driveSpeed*driveDrift);
     }
     
-    private double deccelIterate(double leftv, double prevLeftV) {
-    	if(leftv >= prevLeftV && prevLeftV >= 0 || leftv <= prevLeftV && prevLeftV <= 0) {
-    		prevLeftV = leftv;
+    private double deccelIterate(double v, double prevV) {
+    	    	
+    	if (disableDeccel == 1) {
+    		return v;
+    	}
+    	
+    	if((v >= prevV && prevV >= 0) || (v <= prevV && prevV <= 0)) {
+    		prevV = v;
     	} else {
-    		if(prevLeftV > 0) {
-    			prevLeftV -= deccelSpeed;
-    		} else {
-    			prevLeftV += deccelSpeed;
+    		if(Math.abs(prevV) <= deccelSpeed) {
+    			prevV = v;
+    		}
+    		else {
+    			prevV = prevV / decceldivider;
     		}
     	}
-    	return prevLeftV;
+    	return prevV;
     }
     
     public void driveDeccel(double leftv, double rightv) { 

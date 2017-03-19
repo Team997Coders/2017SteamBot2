@@ -174,6 +174,7 @@ public class Robot extends IterativeRobot {
 	private void smartDashboard() {
 		SmartDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
 		SmartDashboard.putNumber("UltraSonic Voltage", Robot.ultraSonic.ultraSonic.getVoltage());
+		SmartDashboard.putBoolean("Deccel Control", Robot.oi.useDeccelerationControl);
 	}
 
 	@Override
