@@ -168,6 +168,8 @@ public class Robot extends IterativeRobot {
 		chooser.getSelected().cancel(); //STOPS AUTO ROUTINE
 		driveTrain.resetEncoders();
 		driveTrain.resetGyro();
+		driveTrain.prevLeftV = 0;
+		driveTrain.prevRightV = 0;
 		pollPreferences();
 
 	}

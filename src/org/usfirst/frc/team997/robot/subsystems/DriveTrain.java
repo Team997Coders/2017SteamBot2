@@ -131,6 +131,8 @@ public class DriveTrain extends Subsystem {
     	CustomDashboard.putNumber("PID Setpoint", leftPID.getSetpoint());
     	CustomDashboard.putNumber("PID Error", leftPID.getError());
     	CustomDashboard.putNumber("PID Output", leftPID.get());
+    	
+    	CustomDashboard.putBoolean("Using deccel control or not", Robot.oi.useDeccelerationControl);
     }
     
     public void resetEncoders() {
