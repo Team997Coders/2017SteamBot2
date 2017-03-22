@@ -33,7 +33,11 @@ public class Drive extends Command {
     		right = Robot.deadband(Robot.oi.getRightX());
     	} else {
     		double aleft = Robot.deadband(Robot.oi.getLeftY());
-    		double aright = Robot.deadband(Robot.oi.getRightX()) * (RobotMap.Values.driveTrainMaxTurn - (RobotMap.Values.driveTrainMaxTurn - RobotMap.Values.driveTrainMinTurn) * Math.abs(aleft));
+    		double aright = Robot.deadband(Robot.oi.getRightX()) * 
+    				(RobotMap.Values.driveTrainMaxTurn -
+    						(RobotMap.Values.driveTrainMaxTurn -
+    								RobotMap.Values.driveTrainMinTurn) *
+    						Math.abs(aleft));
     		left = aleft + aright;
     		right = aleft - aright;
     	}
