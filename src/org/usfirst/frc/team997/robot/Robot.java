@@ -107,6 +107,14 @@ public class Robot extends IterativeRobot {
 		pollPreferences();
 		
 		ultraSonic = new UltraSonic();
+		
+		try {
+			arduino = new Arduino();
+			arduino.sendRed();
+		} catch (Exception e) {
+			System.err.println("Arduino Failed.  This shouldn't happen on Comp Bot");
+			e.printStackTrace();
+		}
 
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		oi = new OI();
