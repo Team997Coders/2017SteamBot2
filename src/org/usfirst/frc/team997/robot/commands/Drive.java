@@ -51,12 +51,8 @@ public class Drive extends Command {
     			
     		} else if(!Robot.oi.forward && !Robot.oi.useDeccelerationControl) {
     			Robot.driveTrain.driveVoltage(-Robot.clamp(left), -Robot.clamp(right));
-    			
     		}
-    		
     	}
-    	
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
