@@ -16,6 +16,7 @@ public class DriveToDistance extends Command implements PIDOutput{
 	private double pidRate;
 	public PIDController controller;
 	private double setPoint;
+	private double initAngle;
 
 	public DriveToDistance(double distance) { this(distance, new DistanceEncoder(Robot.driveTrain.rightEncoder)); }
     public DriveToDistance(double distance, PIDSource source) {
@@ -34,12 +35,16 @@ public class DriveToDistance extends Command implements PIDOutput{
     	controller.setSetpoint(setPoint + Robot.driveTrain.rightEncoder.getDistance());
     	controller.enable();
     	CustomDashboard.putBoolean("DriveToDistance On", true);
+    	initAngle = Robot.driveTrain.ahrs.getAngle();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 //    	Robot.driveTrain.driveVoltage(-pidRate, 0.06*Robot.driveTrain.ahrs.getAngle());
-    	Robot.driveTrain.driveVoltage(pidRate, pidRate);
+    	double angleOffset = Robot.driveTrain.ahrs.getAngle() - initAngle;
+    	double mult = -.03;
+    	CustomDashboard.putNumber("DriveToDistance Arcade boost", angleOffset * mult);
+    	Robot.driveTrain.driveVoltage(Robot.clamp(pidRate + angleOffset * mult), Robot.clamp(pidRate - angleOffset * mult));
     }
 
     // Make this return true when this Command no longer needs to run execute()
