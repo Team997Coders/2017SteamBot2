@@ -75,7 +75,9 @@ public class RobotMap {
 		driveTrainI = 0,
 		driveTrainD = 0,
 		driveTrainF = 0,
-		
+		driveTrainMaxTurn = 0.5,
+		driveTrainMinTurn = 0.3,
+
 		shooterSpeed = 1555,
 
 		climbSpeed = .8,
