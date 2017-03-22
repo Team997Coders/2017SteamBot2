@@ -44,18 +44,15 @@ public class Drive extends Command {
     	if (useAccelerationControl) {
     		Robot.driveTrain.drivePID(left * 200, right * 200);
     	} else {
-    		if(Robot.oi.useDeccelerationControl && Robot.oi.forward) {
-        		Robot.driveTrain.driveDeccel(Robot.clamp(left), Robot.clamp(right));
-        		
-        	} else if(Robot.oi.useDeccelerationControl && !Robot.oi.forward) {
-        		Robot.driveTrain.driveVoltage(-Robot.clamp(left), -Robot.clamp(right));
-        		
-        	} else if(Robot.oi.forward && !Robot.oi.useDeccelerationControl) {
-    			Robot.driveTrain.driveVoltage(Robot.clamp(left), Robot.clamp(right));
-    			
-    		} else if(!Robot.oi.forward && !Robot.oi.useDeccelerationControl) {
-    			Robot.driveTrain.driveVoltage(-Robot.clamp(left), -Robot.clamp(right));
+    		if (!Robot.oi.forward) {
+    			left *= -1;
+    			right *= -1;
     		}
+    		if(Robot.oi.useDeccelerationControl) {
+        		Robot.driveTrain.driveDeccel(Robot.clamp(left), Robot.clamp(right));
+        	} else {
+    			Robot.driveTrain.driveVoltage(Robot.clamp(left), Robot.clamp(right));
+        	}
     	}
     }
 
