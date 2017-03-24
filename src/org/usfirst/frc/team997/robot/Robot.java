@@ -18,6 +18,8 @@ import org.usfirst.frc.team997.robot.subsystems.Gatherer;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
 import org.usfirst.frc.team997.robot.subsystems.UltraSonic;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
@@ -110,12 +112,16 @@ public class Robot extends IterativeRobot {
 		
 		try {
 			arduino = new Arduino();
-			arduino.sendRed();
+			if(DriverStation.getInstance().getAlliance() == Alliance.Red) {
+				arduino.sendRed();
+			} else {
+				arduino.sendBlue();
+			}
 		} catch (Exception e) {
 			System.err.println("Arduino Failed.  This shouldn't happen on Comp Bot");
 			e.printStackTrace();
 		}
-
+		
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		oi = new OI();
 	}
