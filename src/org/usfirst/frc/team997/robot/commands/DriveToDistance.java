@@ -40,8 +40,16 @@ public class DriveToDistance extends Command implements PIDOutput{
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	Robot.driveTrain.driveVoltage(-pidRate, 0.06*Robot.driveTrain.ahrs.getAngle());
+//    	Robot.driveTrain.driveVoltage(-pidRate, 0.06*Robot.driveTrain.ahrs.getAngle());   	
     	double angleOffset = Robot.driveTrain.ahrs.getAngle() - initAngle;
+    	
+    	//checks if angles are within range, if not puts them in range
+    	if(angleOffset < -180) {  
+    		angleOffset += 360;
+    	} else if(angleOffset > 180) {
+    		angleOffset -= 360;
+    	} 
+    	
     	double mult = -.03;
     	CustomDashboard.putNumber("DriveToDistance Arcade boost", angleOffset * mult);
     	Robot.driveTrain.driveVoltage(Robot.clamp(pidRate + angleOffset * mult), Robot.clamp(pidRate - angleOffset * mult));
