@@ -28,7 +28,7 @@ public class DriveTrain extends Subsystem {
 	private PIDController leftPID, rightPID;
 
 	public double driveSpeed = 1;
-	public double driveDrift = 1;
+	public double driveDrift = 0.9;
 	public double deccelSpeed = 0.2;
 	public double decceldivider = 1.2;
 	
@@ -139,6 +139,7 @@ public class DriveTrain extends Subsystem {
     	CustomDashboard.putNumber("PID Setpoint", leftPID.getSetpoint());
     	CustomDashboard.putNumber("PID Error", leftPID.getError());
     	CustomDashboard.putNumber("PID Output", leftPID.get());
+    	CustomDashboard.putBoolean("Deccel on", Robot.oi.useDeccelerationControl);
     }
     
     public void resetEncoders() {
