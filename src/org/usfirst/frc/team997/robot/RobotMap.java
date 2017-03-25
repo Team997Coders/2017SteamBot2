@@ -21,9 +21,9 @@ public class RobotMap {
 	
 	public static class PDP {
 		public static final int[]
-		leftDriveMotor = {0, 1, 2},
-		rightDriveMotor = {3, 14, 15}, 
-		climberTalon = {12, 13},
+		leftDriveMotor = {2, 3, 12},
+		rightDriveMotor = {13, 14, 15}, 
+		climberTalon = {0, 1},
 		ballLiftTalon = {11},
 		gatherTalon = {10};
 	}
