@@ -50,7 +50,7 @@ public class DriveToDistance extends Command implements PIDOutput{
     		angleOffset -= 360;
     	} 
     	
-    	double mult = -.03;
+    	double mult = -.05;
     	CustomDashboard.putNumber("DriveToDistance Arcade boost", angleOffset * mult);
     	Robot.driveTrain.driveVoltage(Robot.clamp(pidRate + angleOffset * mult), Robot.clamp(pidRate - angleOffset * mult));
     }
