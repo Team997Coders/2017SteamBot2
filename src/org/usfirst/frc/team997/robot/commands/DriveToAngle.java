@@ -52,7 +52,7 @@ public class DriveToAngle extends Command implements PIDOutput {
     	//if (pidRate < .17 && pidRate > 0) { pidRate = .17; }
     	//if (pidRate > -.17 && pidRate <= 0) { pidRate = -.17; }
 
-    	Robot.driveTrain.driveVoltage(pidRate, -pidRate);
+    	Robot.driveTrain.driveAutoVoltage(pidRate, -pidRate);
     }
 
     // Make this return true when this Command no longer needs to run execute()

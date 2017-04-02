@@ -100,6 +100,12 @@ public class DriveTrain extends Subsystem {
     	right.set(rightV*driveSpeed*driveDrift);
     }
     
+    public void driveAutoVoltage(double leftV, double rightV) {
+    	updateSD();
+    	left.set(leftV*driveSpeed);
+    	right.set(rightV*driveSpeed);
+    }
+    
     private double deccelIterate(double v, double prevV) {
     	    	
     	if (disableDeccel == 1) {
