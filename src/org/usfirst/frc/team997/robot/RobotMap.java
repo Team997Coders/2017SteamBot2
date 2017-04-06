@@ -59,6 +59,9 @@ public class RobotMap {
 		public static final double
 		robotWidth = 30, // FIXME
 		robotLength = 30, // FIXME
+		
+		blueOffset = 116 - 114, //measured value - ideal value
+		redOffset = 116 - 114, //measured value - ideal value
 
 		autoKeyForward = 140 - (162 - 70.5/Math.sqrt(3) + robotWidth/2 - 73*Math.sqrt(2))/2 - robotLength/2,
 		autoKeyCross = (162 - 70.5/Math.sqrt(3) + robotWidth/2 - 73*Math.sqrt(2))*Math.sqrt(3)/2 - robotLength/2,

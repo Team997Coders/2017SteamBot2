@@ -3,10 +3,11 @@ package org.usfirst.frc.team997.robot;
 import org.usfirst.frc.team997.robot.commands.AutoRedLeftGear;
 import org.usfirst.frc.team997.robot.commands.AutoRedRightGear;
 import org.usfirst.frc.team997.robot.commands.AutoRedRightShoot;
-import org.usfirst.frc.team997.robot.commands.AutoStraightGEAR;
+import org.usfirst.frc.team997.robot.commands.AutoRedStraightGEAR;
 import org.usfirst.frc.team997.robot.commands.AutoBlueLeftGear;
 import org.usfirst.frc.team997.robot.commands.AutoBlueLeftShoot;
 import org.usfirst.frc.team997.robot.commands.AutoBlueRightGear;
+import org.usfirst.frc.team997.robot.commands.AutoBlueStraightGEAR;
 import org.usfirst.frc.team997.robot.commands.AutoStraightNOGEAR;
 import org.usfirst.frc.team997.robot.commands.AutoNullCommand;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
@@ -90,7 +91,8 @@ public class Robot extends IterativeRobot {
 		// Set up the Autonomous Chooser to select auto mode
 		chooser.addDefault("Null", new AutoNullCommand());
 		chooser.addObject("Auto Straight (No Gear)", new AutoStraightNOGEAR());
-		chooser.addObject("Auto Straight (Gear)", new AutoStraightGEAR());
+		chooser.addObject("Auto Red Straight (Gear)", new AutoRedStraightGEAR());
+		chooser.addObject("Auto Blue Straight (Gear)", new AutoBlueStraightGEAR());
 		chooser.addObject("Auto Red Left (Gear)", new AutoRedLeftGear());
 		chooser.addObject("Auto Red Right (Gear)", new AutoRedRightGear());
 		chooser.addObject("Auto Blue Left (Gear)", new AutoBlueLeftGear());
@@ -100,7 +102,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Auto Blue Left Shoot", new AutoBlueLeftShoot());
 		chooser.addObject("Auto Red Right Shoot", new AutoRedRightShoot());
 		
-		CustomDashboard.putData("Auto Choices", chooser);
+		CustomDashboard.putData("Auto Choices  ", chooser);
 
 		udpReceive = new UDPReceive();
 
