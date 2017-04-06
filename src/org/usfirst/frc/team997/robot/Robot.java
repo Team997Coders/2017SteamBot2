@@ -2,10 +2,8 @@ package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.commands.AutoRedLeftGear;
 import org.usfirst.frc.team997.robot.commands.AutoRedRightGear;
-import org.usfirst.frc.team997.robot.commands.AutoRedRightShoot;
 import org.usfirst.frc.team997.robot.commands.AutoRedStraightGEAR;
 import org.usfirst.frc.team997.robot.commands.AutoBlueLeftGear;
-import org.usfirst.frc.team997.robot.commands.AutoBlueLeftShoot;
 import org.usfirst.frc.team997.robot.commands.AutoBlueRightGear;
 import org.usfirst.frc.team997.robot.commands.AutoBlueStraightGEAR;
 import org.usfirst.frc.team997.robot.commands.AutoStraightNOGEAR;
@@ -16,7 +14,6 @@ import org.usfirst.frc.team997.robot.subsystems.Climber;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Elevator;
 import org.usfirst.frc.team997.robot.subsystems.Gatherer;
-import org.usfirst.frc.team997.robot.subsystems.Shooter;
 import org.usfirst.frc.team997.robot.subsystems.UltraSonic;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -41,7 +38,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static Gatherer gatherer;
-	public static Shooter shooter;
 	public static DriveToAngle driveToAngleCommand;
 	public static Climber climber;
 	public static PowerDistributionPanel pdp;
@@ -63,12 +59,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		try {
-			shooter = new Shooter(1, 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
 		//try {
 			driveTrain = new DriveTrain();
 			//driveToAngleCommand = new DriveToAngle();
@@ -99,10 +89,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Auto Blue Right (Gear)", new AutoBlueRightGear());
 		chooser.addObject("Auto Blue Left (Gear)", new AutoBlueLeftGear());
 		chooser.addObject("Auto Blue Right (Gear)", new AutoBlueRightGear());
-		chooser.addObject("Auto Blue Left Shoot", new AutoBlueLeftShoot());
-		chooser.addObject("Auto Red Right Shoot", new AutoRedRightShoot());
 		
-		CustomDashboard.putData("Auto Choices  ", chooser);
+		CustomDashboard.putData("Auto Choices", chooser);
 
 		udpReceive = new UDPReceive();
 
@@ -129,13 +117,6 @@ public class Robot extends IterativeRobot {
 	}
 	
 	private void pollPreferences() {
-		// Set up preference variables for the shooter PID to allow easier tuning
-		// and storage of the variables
-		RobotMap.PrefVars.Shooter_P = prefs.getDouble("Shooter PID P", 0.0);
-		RobotMap.PrefVars.Shooter_I = prefs.getDouble("Shooter PID I", 0.0);
-		RobotMap.PrefVars.Shooter_D = prefs.getDouble("Shooter PID D", 0.0);
-		RobotMap.PrefVars.Shooter_F = prefs.getDouble("Shooter PID F", 0.0);
-		RobotMap.PrefVars.Shooter_defSpeed = prefs.getDouble("Shooter Default Speed", 3000.0);
 	}
 
 	/**

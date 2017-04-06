@@ -69,11 +69,6 @@ public class RobotMap {
 		autoRetrievalForward = 135 - (162 - 70.5/Math.sqrt(3) - robotWidth/2 - 53.75)/2 - robotLength/2,
 		autoRetrievalCross = ((162 - 70.5/Math.sqrt(3) - robotWidth/2 - 53.75)*Math.sqrt(3)/2 - robotLength/2)+16,
 
-		shooterF = 10,
-		shooterP = 0,//30,
-		shooterI = 0.0,
-		shooterD = 0,//500,
-		
 		driveTrainP = 0.005,
 		driveTrainI = 0,
 		driveTrainD = 0,
@@ -88,12 +83,5 @@ public class RobotMap {
 	}
 	
 	public static class PrefVars {
-		public static double 
-		
-		Shooter_P,
-		Shooter_I,
-		Shooter_D,
-		Shooter_F,
-		Shooter_defSpeed;
 	}
 }
