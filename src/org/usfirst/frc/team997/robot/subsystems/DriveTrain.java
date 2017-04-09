@@ -4,7 +4,7 @@ import org.usfirst.frc.team997.robot.RateEncoder;
 import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.commands.Drive;
-
+import org.usfirst.frc.team997.robot.Loggable;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -20,7 +20,7 @@ import org.usfirst.frc.team997.robot.CustomDashboard;
 /**
  *
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends Subsystem implements Loggable {
 	public AHRS ahrs;
 	private SpeedController left, right;
 	public Encoder leftEncoder;
@@ -47,6 +47,7 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DriveTrain() {
+		Robot.logList.add(this);
 		ahrs = new AHRS(RobotMap.Ports.AHRS);
 		left = new VictorSP(RobotMap.Ports.leftDriveMotor);
 		right = new VictorSP(RobotMap.Ports.rightDriveMotor);
@@ -95,37 +96,33 @@ public class DriveTrain extends Subsystem {
     }
     
     public void driveVoltage(double leftV, double rightV) {
-    	updateSD();
     	left.set(leftV*driveSpeed);
     	right.set(rightV*driveSpeed*driveDrift);
     }
     
     public void driveAutoVoltage(double leftV, double rightV) {
-    	updateSD();
     	left.set(leftV*driveSpeed);
     	right.set(rightV*driveSpeed);
     }
     
     private double deccelIterate(double v, double prevV) {
-    	    	
     	if (disableDeccel == 1) {
     		return v;
     	}
     	
-    	if((v >= prevV && prevV >= 0) || (v <= prevV && prevV <= 0)) {
+    	if ((v >= prevV && prevV >= 0) || (v <= prevV && prevV <= 0)) {
     		prevV = v;
     	} else {
     		if(Math.abs(prevV) <= deccelSpeed) {
     			prevV = v;
-    		}
-    		else {
+    		} else {
     			prevV = prevV / decceldivider;
     		}
     	}
     	return prevV;
     }
     
-    public void driveDeccel(double leftv, double rightv) { 
+    public void driveDeccel(double leftv, double rightv) {
     	prevLeftV = deccelIterate(leftv, prevLeftV);
     	left.set(prevLeftV*driveSpeed);
     	
@@ -133,7 +130,7 @@ public class DriveTrain extends Subsystem {
     	right.set(prevRightV*driveSpeed);
     }
     
-    private void updateSD() {
+    public void log() {
     	CustomDashboard.putNumber("DriveTrain Encoder Left", leftEncoder.getDistance());
     	CustomDashboard.putNumber("DriveTrain Encoder Right", rightEncoder.getDistance());
     	CustomDashboard.putNumber("DriveTrain Encoder Left Ticks", leftEncoder.get());
@@ -146,6 +143,8 @@ public class DriveTrain extends Subsystem {
     	CustomDashboard.putNumber("PID Error", leftPID.getError());
     	CustomDashboard.putNumber("PID Output", leftPID.get());
     	CustomDashboard.putBoolean("Deccel on", Robot.oi.useDeccelerationControl);
+    	
+    	CustomDashboard.putNumber("DriveTrain Yaw", ahrs.getYaw());
     }
     
     public void resetEncoders() {
@@ -161,8 +160,7 @@ public class DriveTrain extends Subsystem {
     	return (leftEncoder.getDistance() + rightEncoder.getDistance()) / 2.0;
     }
 
-	public void drivePID(double leftV, double rightV) {
-		updateSD();
+	public void drivePID(double leftV, double rightV) {		
 		leftPID.setSetpoint(leftV);
 		rightPID.setSetpoint(rightV);
 	}

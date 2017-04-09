@@ -24,6 +24,9 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
+import java.util.ArrayList;
+
 import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
@@ -44,7 +47,9 @@ public class Robot extends IterativeRobot {
 	public static Elevator elevator;
 	public static UltraSonic ultraSonic;
 	public static Arduino arduino;
-
+	
+	public static ArrayList<Loggable> logList;
+	
 	public static Preferences prefs;
 	
 	public static UDPReceive udpReceive;
@@ -53,12 +58,15 @@ public class Robot extends IterativeRobot {
 	final String customAuto = "My Auto";
 	Command autoSelected;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+		logList = new ArrayList<Loggable>();
+		
 		//try {
 			driveTrain = new DriveTrain();
 			//driveToAngleCommand = new DriveToAngle();
@@ -156,7 +164,7 @@ public class Robot extends IterativeRobot {
 			// Put default auto code here
 			break;
 		}*/
-		smartDashboard();
+		log();
 		Scheduler.getInstance().run();
 	}
 
@@ -168,15 +176,9 @@ public class Robot extends IterativeRobot {
 
 	}
 	
-	private void smartDashboard() {
-		CustomDashboard.putBoolean("Deccel Control", Robot.oi.useDeccelerationControl);
-		CustomDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
-		CustomDashboard.putNumber("UltraSonic Voltage", Robot.ultraSonic.ultraSonic.getVoltage());
-	}
-
 	@Override
 	public void teleopPeriodic() {
-    	smartDashboard();
+    	log();
     	Scheduler.getInstance().run();
     	
     	/*
@@ -191,7 +193,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void disabledPeriodic() {
-    	smartDashboard();
+    	log();
 	}
 
 	/**
@@ -200,6 +202,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
     	CustomDashboard.putNumber("DriveTrain Yaw", Robot.driveTrain.ahrs.getYaw());
+    	log();
 	}
 	
 	public static double deadband(double x) {
@@ -207,6 +210,12 @@ public class Robot extends IterativeRobot {
 			return 0;
 		} 
 		return x;
+	}
+	
+	private void log() {
+		for(Loggable l : logList) {
+			l.log();
+		}
 	}
 	
 	public static double clamp(double x) {

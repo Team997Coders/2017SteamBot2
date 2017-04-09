@@ -26,7 +26,7 @@ import org.usfirst.frc.team997.robot.CustomDashboard;
  * interface to the commands and command groups that allow control of the robot.
  */
 
-public class OI {
+public class OI implements Loggable {
 	public boolean isTank = false;
 	public boolean forward = true; //true when gatherer is front
 	public boolean useDeccelerationControl = true;
@@ -41,7 +41,7 @@ public class OI {
 	public JoystickButton deccelControlToggle;
 	
 	public OI() {
-		CustomDashboard.putData("Drive type", new DriveToggle());
+		Robot.logList.add(this);
 		
 		joy = new Joystick(0);
 
@@ -74,14 +74,19 @@ public class OI {
 		deccelControlToggle = new JoystickButton(joy, 4);
 		deccelControlToggle.whenPressed(new ToggleDeccelerationControl());
 
-    	CustomDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
     	CustomDashboard.putData("Toggle Acceleration Control", new ToggleAccelerationControl());
     	CustomDashboard.putData("Climb", new Climb());
     	CustomDashboard.putData("UnClimb", new UnClimb());
     	CustomDashboard.putData("Stop Climb", new StopClimb());
     	CustomDashboard.putData("ShakeGatherer", new ShakeGatherer());
-    	CustomDashboard.putBoolean("Drivetrain Forward", forward);
     	CustomDashboard.putData("Toggle Decceleration Control", new ToggleDeccelerationControl());
+    	CustomDashboard.putData("Drive type", new DriveToggle());
+	}
+	
+	public void log() {
+		CustomDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
+		CustomDashboard.putBoolean("Drivetrain Forward", forward);
+		CustomDashboard.putBoolean("Deccel Control", useDeccelerationControl);
 	}
 	
 	public double getLeftTrigger() {
