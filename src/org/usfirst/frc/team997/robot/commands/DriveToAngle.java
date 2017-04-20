@@ -16,7 +16,7 @@ import org.usfirst.frc.team997.robot.CustomDashboard;
 public class DriveToAngle extends Command implements PIDOutput {
 	public PIDController controller;
 	private double pidRate;
-	private double setPoint;
+	public double setPoint;
 
 	public DriveToAngle(double angle) { this(angle, new AHRSWrapper()); }
     public DriveToAngle(double angle, PIDSource source) {
@@ -27,7 +27,7 @@ public class DriveToAngle extends Command implements PIDOutput {
 
     	controller = new PIDController(0.75, 0, 0.9, 0, source, this);
     	controller.setInputRange(-180, 180);
-    	controller.setOutputRange(-.25, .25);
+    	controller.setOutputRange(-.26, .26);
     	controller.setAbsoluteTolerance(1.0);
     	controller.setContinuous(true);
 

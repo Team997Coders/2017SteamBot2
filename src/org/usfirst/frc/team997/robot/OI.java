@@ -88,6 +88,7 @@ public class OI implements Loggable {
 		CustomDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
 		CustomDashboard.putBoolean("Drivetrain Forward", forward);
 		CustomDashboard.putBoolean("Deccel Control", useDeccelerationControl);
+		
 	}
 	
 	public double getLeftTrigger() {

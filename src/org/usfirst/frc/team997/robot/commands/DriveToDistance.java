@@ -16,7 +16,7 @@ import org.usfirst.frc.team997.robot.CustomDashboard;
 public class DriveToDistance extends Command implements PIDOutput{
 	private double pidRate;
 	public PIDController controller;
-	private double setPoint;
+	public double setPoint;
 	private double initAngle;
 
 	public DriveToDistance(double distance) { this(distance, new DistanceEncoder(Robot.driveTrain.rightEncoder)); }

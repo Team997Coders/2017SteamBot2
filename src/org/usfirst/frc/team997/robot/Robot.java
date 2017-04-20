@@ -6,6 +6,10 @@ import org.usfirst.frc.team997.robot.commands.AutoRedStraightGEAR;
 import org.usfirst.frc.team997.robot.commands.AutoBlueLeftGear;
 import org.usfirst.frc.team997.robot.commands.AutoBlueRightGear;
 import org.usfirst.frc.team997.robot.commands.AutoBlueStraightGEAR;
+import org.usfirst.frc.team997.robot.commands.AutoMeasuredTurnBlueLeft;
+import org.usfirst.frc.team997.robot.commands.AutoMeasuredTurnBlueRight;
+import org.usfirst.frc.team997.robot.commands.AutoMeasuredTurnRedLeft;
+import org.usfirst.frc.team997.robot.commands.AutoMeasuredTurnRedRight;
 import org.usfirst.frc.team997.robot.commands.AutoStraightNOGEAR;
 import org.usfirst.frc.team997.robot.commands.AutoNullCommand;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
@@ -87,17 +91,20 @@ public class Robot extends IterativeRobot {
 		climber = new Climber();
 		
 		// Set up the Autonomous Chooser to select auto mode
-		final String autoChoicesNumber = "Thu Apr 20 11:12:36 2017 7faf79307f3b32cd85ed687619c6e62dc4a0e0e1";
+		final String autoChoicesNumber = "Fri Apr 21 08:14:42 2017 7faf79307f3b32cd85ed687619c6e62dc4a0e0e1";
 		chooser.addDefault("Null " + autoChoicesNumber, new AutoNullCommand());
-		chooser.addObject("Auto Straight (No Gear)", new AutoStraightNOGEAR());
-		chooser.addObject("Auto Red Straight (Gear)", new AutoRedStraightGEAR());
-		chooser.addObject("Auto Blue Straight (Gear)", new AutoBlueStraightGEAR());
-		chooser.addObject("Auto Red Left (Gear)", new AutoRedLeftGear());
-		chooser.addObject("Auto Red Right (Gear)", new AutoRedRightGear());
-		chooser.addObject("Auto Blue Left (Gear)", new AutoBlueLeftGear());
-		chooser.addObject("Auto Blue Right (Gear)", new AutoBlueRightGear());
-		chooser.addObject("Auto Blue Left (Gear)", new AutoBlueLeftGear());
-		chooser.addObject("Auto Blue Right (Gear)", new AutoBlueRightGear());
+		chooser.addObject("Straight (No Gear)", new AutoStraightNOGEAR());
+		chooser.addObject("Red Straight", new AutoRedStraightGEAR());
+		chooser.addObject("Blue Straight", new AutoBlueStraightGEAR());
+		chooser.addObject("Red Left", new AutoRedLeftGear());
+		chooser.addObject("Red Right", new AutoRedRightGear());
+		chooser.addObject("Blue Left", new AutoBlueLeftGear());
+		chooser.addObject("Blue Right", new AutoBlueRightGear());
+		chooser.addObject("Red Left Measured", new AutoMeasuredTurnRedLeft());
+		chooser.addObject("Red Right Measured", new AutoMeasuredTurnRedRight());
+		chooser.addObject("Blue Left Measured", new AutoMeasuredTurnBlueLeft());
+		chooser.addObject("Blue Right Measured", new AutoMeasuredTurnBlueRight());
+	
 		
 		CustomDashboard.putData("Auto Choices " + autoChoicesNumber, chooser);
 
@@ -143,7 +150,11 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		driveTrain.resetEncoders();
 		driveTrain.resetGyro();
+		
 		autoSelected = (Command) chooser.getSelected();
+		if(autoSelected instanceof Initializer) {
+			((Initializer)autoSelected).init();
+		}
 		autoSelected.start();
 		// autoSelected = CustomDashboard.getString("Auto Selector",
 		// defaultAuto);

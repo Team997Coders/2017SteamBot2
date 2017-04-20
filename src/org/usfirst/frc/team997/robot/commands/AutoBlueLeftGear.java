@@ -12,6 +12,6 @@ public class AutoBlueLeftGear extends CommandGroup {
     	addSequential(new DriveToDistance(-RobotMap.Values.autoKeyForward - RobotMap.Values.blueOffset)); //drive backward towards airship
     	addSequential(new DriveToAngle(60)); //turn at angle
     	addSequential(new DriveToDistance(-RobotMap.Values.autoKeyCross)); //drive backward to place gear
-    	addSequential(new AutoDepositGear());
+    	//addSequential(new AutoDepositGear());
     }
 }

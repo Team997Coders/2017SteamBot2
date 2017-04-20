@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoBlueStraightGEAR extends CommandGroup{
 
     public AutoBlueStraightGEAR() {
-    	addSequential(new DriveToDistance((-114 + RobotMap.Values.robotLength)-RobotMap.Values.blueOffset)); // drive backwards into gear deposit
-    	addSequential(new AutoDepositGear());
+    	addSequential(new DriveToDistance((-114 + 28)-RobotMap.Values.blueOffset)); // drive backwards into gear deposit
     }
     
 }

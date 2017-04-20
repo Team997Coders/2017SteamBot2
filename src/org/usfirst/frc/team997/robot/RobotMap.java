@@ -60,8 +60,13 @@ public class RobotMap {
 		robotWidth = 30, // FIXME
 		robotLength = 30, // FIXME
 		
-		blueOffset = 121 - 114, //measured value - ideal value
-		redOffset = 121 - 114, //measured value - ideal value
+		blueOffset = 114-114, //measured value - ideal value
+		redOffset = 114-114, //measured value - ideal value
+
+		measured = 114, //measured field value, 114 is default 
+
+		sideMeasured1 = 42, //first length in side auto
+		sideMeasured2 = 42, //second length in side auto
 
 		autoKeyForward = (140 - (162 - 70.5/Math.sqrt(3) + robotWidth/2 - 73*Math.sqrt(2))/2 - robotLength/2) +2,
 		autoKeyCross = ((162 - 70.5/Math.sqrt(3) + robotWidth/2 - 73*Math.sqrt(2))*Math.sqrt(3)/2 - robotLength/2)-2,

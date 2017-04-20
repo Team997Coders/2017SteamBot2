@@ -12,6 +12,6 @@ public class AutoRedRightGear extends CommandGroup {
     	addSequential(new DriveToDistance(-RobotMap.Values.autoKeyForward - RobotMap.Values.redOffset)); // drive backwards a bit
     	addSequential(new DriveToAngle(-60)); // turn left towards airship
     	addSequential(new DriveToDistance(-RobotMap.Values.autoKeyCross)); // drive backwards some more
-    	addSequential(new AutoDepositGear());
+    	//addSequential(new AutoDepositGear());
     }
 }
