@@ -26,7 +26,7 @@ public class DriveToDistance extends Command implements PIDOutput{
     	setPoint = distance;
 
     	controller = new PIDController(0.3, 0, 1, source, this);
-    	controller.setOutputRange(-.3, .3);
+    	controller.setOutputRange(-.28, .28);
     	controller.setAbsoluteTolerance(.5);
     }
 
