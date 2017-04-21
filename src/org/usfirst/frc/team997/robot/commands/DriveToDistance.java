@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot.commands;
 
 import org.usfirst.frc.team997.robot.Robot;
+import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.DistanceEncoder;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -50,9 +51,10 @@ public class DriveToDistance extends Command implements PIDOutput{
     		angleOffset -= 360;
     	} 
     	
-    	double mult = -.05;
+    	double mult = CustomDashboard.getNumber("Auto drive angle multiplier", RobotMap.Values.driveMult); //-.05;
     	CustomDashboard.putNumber("DriveToDistance Arcade boost", angleOffset * mult);
-    	Robot.driveTrain.driveAutoVoltage(Robot.clamp(pidRate + angleOffset * mult), Robot.clamp(pidRate - angleOffset * mult));
+    	Robot.driveTrain.driveVoltage(Robot.clamp(pidRate + angleOffset * mult), Robot.clamp(pidRate - angleOffset * mult));
+    	//When gyro is used, change ^ to driveAutoVoltage()
     }
 
     // Make this return true when this Command no longer needs to run execute()

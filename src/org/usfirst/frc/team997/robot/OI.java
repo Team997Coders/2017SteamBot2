@@ -81,6 +81,7 @@ public class OI implements Loggable {
     	CustomDashboard.putData("ShakeGatherer", new ShakeGatherer());
     	CustomDashboard.putData("Toggle Decceleration Control", new ToggleDeccelerationControl());
     	CustomDashboard.putData("Drive type", new DriveToggle());
+    	CustomDashboard.putNumber("Auto drive angle multiplier", RobotMap.Values.driveMult);
 	}
 	
 	public void log() {

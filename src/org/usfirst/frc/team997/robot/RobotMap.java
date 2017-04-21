@@ -79,7 +79,9 @@ public class RobotMap {
 		shooterSpeed = 1555,
 
 		climbSpeed = .8,
-		gatherSpeed = -1;
+		gatherSpeed = -1,
+		
+		driveMult = -0.05;
 	}
 	
 	public static class PrefVars {
