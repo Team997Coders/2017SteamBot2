@@ -25,7 +25,7 @@ public class DriveToAngle extends Command implements PIDOutput {
 
     	Robot.driveTrain.ahrs.reset();
 
-    	controller = new PIDController(0.75, 0, 0.9, 0, source, this);
+    	controller = new PIDController(1.25, 0, 0.9, 0, source, this); //p originally 0.75
     	controller.setInputRange(-180, 180);
     	controller.setOutputRange(-.25, .25);
     	controller.setAbsoluteTolerance(1.0);
