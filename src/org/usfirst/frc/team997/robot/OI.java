@@ -8,12 +8,14 @@ import org.usfirst.frc.team997.robot.commands.DriveToDistance;
 import org.usfirst.frc.team997.robot.commands.DriveToggle;
 import org.usfirst.frc.team997.robot.commands.ElevatorSpinWhileHeld;
 import org.usfirst.frc.team997.robot.commands.ExtendGatherer;
+import org.usfirst.frc.team997.robot.commands.PublicEStop;
 import org.usfirst.frc.team997.robot.commands.ReverseGatherHold;
 import org.usfirst.frc.team997.robot.commands.ShakeGatherer;
 import org.usfirst.frc.team997.robot.commands.SpitoutGatherer;
 import org.usfirst.frc.team997.robot.commands.StopClimb;
 import org.usfirst.frc.team997.robot.commands.ToggleAccelerationControl;
 import org.usfirst.frc.team997.robot.commands.ToggleDeccelerationControl;
+import org.usfirst.frc.team997.robot.commands.TogglePublicMode;
 import org.usfirst.frc.team997.robot.commands.UnClimb;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -31,9 +33,12 @@ public class OI implements Loggable {
 	public boolean forward = true; //true when gatherer is front
 	public boolean useDeccelerationControl = true;
 	public Joystick joy;
+	public Joystick publicCtl;
 
 	private JoystickButton extendGatherButton;
 	private JoystickButton driveSetDistanceButton;
+	public JoystickButton PublicModeButton;
+	public JoystickButton PublicEstopButton;
 	public JoystickButton climbButton;
 	public JoystickButton elevatorButton;
 	public JoystickButton reverseGatherButton;
@@ -44,7 +49,18 @@ public class OI implements Loggable {
 		Robot.logList.add(this);
 		
 		joy = new Joystick(0);
+		publicCtl = new Joystick(1);
 
+		// Public Mode controls...
+		PublicModeButton = new JoystickButton(publicCtl, 1);
+		PublicModeButton.whenPressed(new TogglePublicMode());
+		CustomDashboard.putBoolean("Public Mode", Robot.publicMode);
+		
+		PublicEstopButton = new JoystickButton(publicCtl, 2);
+		PublicEstopButton.whileHeld(new PublicEStop());
+		
+		// Normal Driving controls...
+		
 		//JoystickButton drive60In = new JoystickButton(joy, 4);
 		//drive60In.whenPressed(new DriveToDistance(-60));
 

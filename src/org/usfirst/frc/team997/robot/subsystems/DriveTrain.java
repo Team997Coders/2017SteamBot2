@@ -42,7 +42,7 @@ public class DriveTrain extends Subsystem implements Loggable {
 	
 	double rotpasterr = 0;
 	double rotintegral = 0;
-
+	
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -96,13 +96,11 @@ public class DriveTrain extends Subsystem implements Loggable {
     }
     
     public void driveVoltage(double leftV, double rightV) {
-    	left.set(leftV*driveSpeed);
-    	right.set(rightV*driveSpeed*driveDrift);
+    	motorSet(leftV*driveSpeed, rightV*driveSpeed*driveDrift);
     }
     
     public void driveAutoVoltage(double leftV, double rightV) {
-    	left.set(leftV*driveSpeed);
-    	right.set(rightV*driveSpeed);
+    	motorSet(leftV*driveSpeed, rightV*driveSpeed);
     }
     
     private double deccelIterate(double v, double prevV) {
@@ -123,11 +121,19 @@ public class DriveTrain extends Subsystem implements Loggable {
     }
     
     public void driveDeccel(double leftv, double rightv) {
-    	prevLeftV = deccelIterate(leftv, prevLeftV);
-    	left.set(prevLeftV*driveSpeed);
+    	if (Robot.publicMode == true) {
+    		leftv = leftv / RobotMap.Values.detunePublicDrive;
+    		rightv = rightv / RobotMap.Values.detunePublicDrive;
+    	}
     	
+    	prevLeftV = deccelIterate(leftv, prevLeftV);
     	prevRightV = deccelIterate(rightv, prevRightV);
-    	right.set(prevRightV*driveSpeed);
+    	motorSet(prevLeftV*driveSpeed, prevRightV*driveSpeed);
+    }
+    
+    public void motorSet(double leftv, double rightv) {
+    	left.set(leftv);
+    	right.set(rightv);
     }
     
     public void log() {

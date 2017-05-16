@@ -63,6 +63,8 @@ public class Robot extends IterativeRobot {
 	Command autoSelected;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
+	public static boolean publicMode = false; // detune for have the public drive
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.

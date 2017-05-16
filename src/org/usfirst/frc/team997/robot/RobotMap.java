@@ -86,7 +86,9 @@ public class RobotMap {
 		climbSpeed = .8,
 		gatherSpeed = -1,
 		
-		driveMult = -0.05;
+		driveMult = -0.05,
+		
+		detunePublicDrive = 2;
 	}
 	
 	public static class PrefVars {
