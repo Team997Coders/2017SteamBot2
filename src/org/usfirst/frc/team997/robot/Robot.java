@@ -93,7 +93,7 @@ public class Robot extends IterativeRobot {
 		climber = new Climber();
 		
 		// Set up the Autonomous Chooser to select auto mode
-		final String autoChoicesNumber = "Fri Apr 21 08:14:42 2017 7faf79307f3b32cd85ed687619c6e62dc4a0e0e1";
+		final String autoChoicesNumber = "Fri May 19 18:05:07 2017 251d09e4de78098edc4ba9339a4ccef47dabaf9b";
 		chooser.addDefault("Null " + autoChoicesNumber, new AutoNullCommand());
 		chooser.addObject("Straight (No Gear)", new AutoStraightNOGEAR());
 		chooser.addObject("Red Straight", new AutoRedStraightGEAR());

@@ -116,7 +116,7 @@ public class OI implements Loggable {
 	}
 	
 	public double getLeftY() {
-		return -joy.getRawAxis(1);
+		return (Robot.publicMode ? .5 : 1) * -joy.getRawAxis(1);
 	}
 	
 	public double getRightY() {

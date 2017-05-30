@@ -121,10 +121,10 @@ public class DriveTrain extends Subsystem implements Loggable {
     }
     
     public void driveDeccel(double leftv, double rightv) {
-    	if (Robot.publicMode == true) {
+    	/*if (Robot.publicMode == true) {
     		leftv = leftv / RobotMap.Values.detunePublicDrive;
     		rightv = rightv / RobotMap.Values.detunePublicDrive;
-    	}
+    	}*/
     	
     	prevLeftV = deccelIterate(leftv, prevLeftV);
     	prevRightV = deccelIterate(rightv, prevRightV);
