@@ -20,6 +20,7 @@ import org.usfirst.frc.team997.robot.subsystems.Elevator;
 import org.usfirst.frc.team997.robot.subsystems.Gatherer;
 import org.usfirst.frc.team997.robot.subsystems.UltraSonic;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -58,6 +59,8 @@ public class Robot extends IterativeRobot {
 	
 	public static UDPReceive udpReceive;
 	
+	CameraServer server;
+	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	Command autoSelected;
@@ -67,6 +70,7 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
+	
 	@Override
 	public void robotInit() {
 		logList = new ArrayList<Loggable>();
@@ -125,6 +129,14 @@ public class Robot extends IterativeRobot {
 			}
 		} catch (Exception e) {
 			System.err.println("Arduino Failed.  This shouldn't happen on Comp Bot");
+			e.printStackTrace();
+		}
+		
+		try {
+			server = CameraServer.getInstance();
+			//server.setQuality(50);
+			server.startAutomaticCapture();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
