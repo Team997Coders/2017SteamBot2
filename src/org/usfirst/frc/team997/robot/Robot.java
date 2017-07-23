@@ -20,6 +20,7 @@ import org.usfirst.frc.team997.robot.subsystems.Elevator;
 import org.usfirst.frc.team997.robot.subsystems.Gatherer;
 import org.usfirst.frc.team997.robot.subsystems.UltraSonic;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
@@ -29,9 +30,12 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.vision.VisionThread;
 
 import java.util.ArrayList;
 
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team997.robot.CustomDashboard;
 
 /**
@@ -59,7 +63,14 @@ public class Robot extends IterativeRobot {
 	
 	public static UDPReceive udpReceive;
 	
-	CameraServer server;
+	//CameraServer server;
+	
+	private static final int IMG_WIDTH = 320;
+	private static final int IMG_HEIGHT = 240;
+	
+	private VisionThread visionThread;
+	private double centerX = 0.0;
+	private final Object imgLock = new Object();
 	
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
@@ -132,13 +143,32 @@ public class Robot extends IterativeRobot {
 			e.printStackTrace();
 		}
 		
-		try {
+		/*try {
 			server = CameraServer.getInstance();
 			//server.setQuality(50);
 			server.startAutomaticCapture();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
+		
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		
+		//camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		
+		visionThread = new VisionThread(camera, new GripPipeline(), pipeline ->  {
+			if (!pipeline.filterContoursOutput().isEmpty()) {
+				if (pipeline.findContoursOutput().size() >= 2) {
+					Rect left = Imgproc.boundingRect(pipeline.findContoursOutput().get(0));
+					Rect right = Imgproc.boundingRect(pipeline.findContoursOutput().get(1));
+					synchronized (imgLock) {
+						centerX = (left.x + (left.width / 2)) + (right.x + (right.width / 2))/2;
+						//this.centerX = 666;	//for debugging
+					}
+				} else { centerX = 0; }
+			} else { this.centerX = 999;}
+			CustomDashboard.putNumber("Number of contours", pipeline.findContoursOutput().size());
+		});
+		visionThread.start();
 		
 		//OI INITIALIZATION MUST MUST MUST MUST BE LAST
 		oi = new OI();
@@ -214,6 +244,8 @@ public class Robot extends IterativeRobot {
     	 * CustomDashboard.putNumber("DriveTrain Right Voltage 2", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[1]));
     	 * CustomDashboard.putNumber("DriveTrain Right Voltage 3", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[2]));
     	 */
+    	CustomDashboard.putNumber("CENTERX", this.centerX);
+    	
 	}
 	
 	public void disabledPeriodic() {
