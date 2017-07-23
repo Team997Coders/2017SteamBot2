@@ -26,11 +26,11 @@ public class VisionTurnToPeg extends Command {
     	error = RobotMap.centerX - 238;	//238 = arbitrary center value
     	
     	if (error > 0) {
-    		//more voltage to left side of robot, less to right
-    		Robot.driveTrain.driveAutoVoltage(speed, -speed*error);
-    	} else if (error < 0) {
-    		//less voltage to right side of robot, more to right
+    		//more voltage to right side of robot, less to right
     		Robot.driveTrain.driveAutoVoltage(speed*error, -speed);
+    	} else if (error < 0) {
+    		//less voltage to right side of robot, more to left
+    		Robot.driveTrain.driveAutoVoltage(speed, -speed*error);
     	} else if (error == 0) {
     		Robot.driveTrain.driveAutoVoltage(speed, speed);
     		onTarget = true;
