@@ -152,12 +152,14 @@ public class Robot extends IterativeRobot {
 		}*/
 		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setFPS(8);
+		camera.setResolution(640, 480);
 		
 		//camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 		
 		visionThread = new VisionThread(camera, new GripPipeline(), pipeline ->  {
 			if (!pipeline.filterContoursOutput().isEmpty()) {
-				if (pipeline.findContoursOutput().size() >= 2) {
+				if (pipeline.findContoursOutput().size() == 2) {
 					Rect left = Imgproc.boundingRect(pipeline.findContoursOutput().get(0));
 					Rect right = Imgproc.boundingRect(pipeline.findContoursOutput().get(1));
 					synchronized (imgLock) {
