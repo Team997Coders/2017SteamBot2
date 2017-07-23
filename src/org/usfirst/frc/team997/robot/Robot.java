@@ -13,6 +13,7 @@ import org.usfirst.frc.team997.robot.commands.AutoMeasuredTurnRedRight;
 import org.usfirst.frc.team997.robot.commands.AutoStraightNOGEAR;
 import org.usfirst.frc.team997.robot.commands.AutoNullCommand;
 import org.usfirst.frc.team997.robot.commands.DriveToAngle;
+import org.usfirst.frc.team997.robot.commands.VisionTurnToPeg;
 import org.usfirst.frc.team997.robot.subsystems.Arduino;
 import org.usfirst.frc.team997.robot.subsystems.Climber;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
@@ -119,6 +120,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Red Right Measured", new AutoMeasuredTurnRedRight());
 		chooser.addObject("Blue Left Measured", new AutoMeasuredTurnBlueLeft());
 		chooser.addObject("Blue Right Measured", new AutoMeasuredTurnBlueRight());
+		chooser.addObject("VISION TurnToPeg", new VisionTurnToPeg());
 	
 		
 		CustomDashboard.putData("Auto Choices " + autoChoicesNumber, chooser);
@@ -163,11 +165,11 @@ public class Robot extends IterativeRobot {
 					Rect left = Imgproc.boundingRect(pipeline.findContoursOutput().get(0));
 					Rect right = Imgproc.boundingRect(pipeline.findContoursOutput().get(1));
 					synchronized (imgLock) {
-						centerX = (left.x + (left.width / 2)) + (right.x + (right.width / 2))/2;
+						RobotMap.centerX = (left.x + (left.width / 2)) + (right.x + (right.width / 2))/2;
 						//this.centerX = 666;	//for debugging
 					}
-				} else { centerX = 0; }
-			} else { this.centerX = 999;}
+				} else { RobotMap.centerX = 0; }
+			} else { RobotMap.centerX = 999;}
 			CustomDashboard.putNumber("Number of contours", pipeline.findContoursOutput().size());
 		});
 		visionThread.start();
@@ -246,7 +248,7 @@ public class Robot extends IterativeRobot {
     	 * CustomDashboard.putNumber("DriveTrain Right Voltage 2", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[1]));
     	 * CustomDashboard.putNumber("DriveTrain Right Voltage 3", pdp.getCurrent(RobotMap.PDP.rightDriveMotor[2]));
     	 */
-    	CustomDashboard.putNumber("CENTERX", this.centerX);
+    	CustomDashboard.putNumber("CENTERX", RobotMap.centerX);
     	
 	}
 	

@@ -19,6 +19,8 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
+	public static double centerX;
+	
 	public static class PDP {
 		public static final int[]
 		leftDriveMotor = {2, 3, 12},
