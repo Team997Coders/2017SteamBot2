@@ -44,11 +44,11 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain driveTrain;
-	public static Gatherer gatherer;
+	//public static Gatherer gatherer;	//No gathering for Girl's Gen 
 	public static DriveToAngle driveToAngleCommand;
 	public static Climber climber;
 	public static PowerDistributionPanel pdp;
-	public static Elevator elevator;
+	//public static Elevator elevator;	//no elevator for Girl's Gen
 	public static UltraSonic ultraSonic;
 	public static Arduino arduino;
 	
@@ -78,13 +78,13 @@ public class Robot extends IterativeRobot {
 			e.printStackTrace();
 		}*/
 			
-		try {
+		/*try {
 			gatherer = new Gatherer();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		elevator = new Elevator();
+		elevator = new Elevator();*/
 		
 		pdp = new PowerDistributionPanel();
 

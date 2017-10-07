@@ -34,16 +34,16 @@ public class RobotMap {
 		leftDriveMotor = 0,
 		rightDriveMotor = 1,
 		climberTalon = 2,
-		elevatorTalon = 3,
-		gatherTalon = 4,
+		//elevatorTalon = 3,
+		//gatherTalon = 4,
 		
 		//Digital IO
 		leftEncoderOne = 2,
 		leftEncoderTwo = 3,
 		rightEncoderOne = 0,
 		rightEncoderTwo = 1,
-		gatherSensor = 4,
-		elevatorSensor = 5,
+		//gatherSensor = 4,
+		//elevatorSensor = 5,
 		
 		//Analog
 		ultraSonic = 0,

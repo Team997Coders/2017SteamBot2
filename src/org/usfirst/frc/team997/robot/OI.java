@@ -32,10 +32,10 @@ public class OI implements Loggable {
 	public boolean useDeccelerationControl = true;
 	public Joystick joy;
 
-	private JoystickButton extendGatherButton;
+	//private JoystickButton extendGatherButton;
 	private JoystickButton driveSetDistanceButton;
 	public JoystickButton climbButton;
-	public JoystickButton elevatorButton;
+	//public JoystickButton elevatorButton;
 	public JoystickButton reverseGatherButton;
 	public JoystickButton driveDirectionToggle;
 	public JoystickButton deccelControlToggle;
@@ -59,8 +59,8 @@ public class OI implements Loggable {
 		climbButton = new JoystickButton(joy, 1);
 		climbButton.whenPressed(new Climb());
 
-		elevatorButton = new JoystickButton(joy, 5);
-		elevatorButton.whenPressed(new ElevatorSpinWhileHeld());
+		//elevatorButton = new JoystickButton(joy, 5);
+		//elevatorButton.whenPressed(new ElevatorSpinWhileHeld());
 
 //		extendGatherButton = new JoystickButton(joy, 2);
 //		extendGatherButton.whenPressed(new ExtendGatherer());
@@ -85,7 +85,7 @@ public class OI implements Loggable {
 	}
 	
 	public void log() {
-		CustomDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
+		//CustomDashboard.putNumber("Shooter Setpoint", RobotMap.Values.shooterSpeed);
 		CustomDashboard.putBoolean("Drivetrain Forward", forward);
 		CustomDashboard.putBoolean("Deccel Control", useDeccelerationControl);
 		
